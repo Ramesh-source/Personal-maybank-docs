@@ -1,0 +1,8 @@
+JVM
+https://dzone.com/articles/jvm-architecture-explained
+https://www.geeksforgeeks.org/jvm-works-jvm-architecture/
+
+
+Exception
+-----------------
+https://beginnersbook.com/2013/04/java-checked-unchecked-exceptions-with-examples/

@@ -1,0 +1,195 @@
+
+Autowiring
+----------
+It is the process of identifying dependent bean and inject into target bean
+Autowiring having several modes
+byType - Based on datatype it will identify dependent
+byName – based on bean name it will identify dependent
+
+By Default camel case will work for every bean object
+Flow
+	Constructor
+	Field Injection
+	Setter Injection
+
+How ioc container will start in SB ?
+------------------------------------
+In SpringBoot Application, run method is responsible to start IOC Container.
+Run method is bootstrapping method in Spring Boot Application
+Based on starter available in classpath, it will decide how to start IOC
+Based on type of the application, IOC will start.
+spring-boot-starter-webflux 		-> Reactive Type 
+spring-boot-starter-web 		->Web Servlet Type 
+spring-boot-starter 			-> Default Type 
+
+----------------------------------------------------------------------------------
+Banner in Spring Boot
+---------------------------------------------------------------------------------
+
+-> When we run Spring Boot applications spring logo is printing on the console that is called as 
+Banner in Spring Boot.
+
+-> Banner Printing is part of SpringApplication.run(..) method
+
+-> Spring Boot banner is having below 3 modes
+
+		1) OFF
+		2) LOG
+		3) CONSOLE (default)
+
+-> We can customize banner text in Spring Boot by creating banner.txt file 
+in src/main/resource folder. 
+We need keep ASCII chracters in that text file to print as banner content.
+
+Note: First preference will be given to banner.txt file.
+ If this banner.txt not available then default banner text will be printed that is Spring.
+
+spring.banner.location=classpath:banner
+spring.main.banner-mode=off
+
+Runners in Spring Boot
+----------------------
+Runners are used to execute the logic only one time once application got started
+Spring Boot Provided 2 types of runners
+Application Runners
+Command Line Runners
+Runners will be executed only once after SpringBoot Application got started
+Above two runners are functional interfaces and contain single method
+Note : To Execute our runners bean logic is available inside run method.
+
+Ways to implement runners
+-------------------------
+We can develop Runners in 3 ways
+Using @Component to declare them as beans
+We can implement runners interface in Spring Boot main class
+Using Java 8 Feature
+
+Real time use cases
+-------------------------
+Loading data to Cache
+Configuring CRON jobs
+Spring Batch framework will trigger jobs using using Runners only
+
+How to generate random port in Spring Boot Applicatoin ?
+server.port = 0
+
+How to generate a jar file in Spring Boot ?
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+Part 2 - Spring Data JPA
+-----------------------------------------------------------------------------------------------------------------------------
+
+Spring Data 
+-------------
+Spring Data is used to develop Persistence layer in applications
+
+
+We can develop Persistence layer using below technologies
+---------------------------------------------------------
+JDBC
+Spring JDBC 
+ORM frameworks (Hibernate)
+Spring ORM
+Spring Data
+
+Difference between JDBC vs Hibernate ORM
+---------------------------------------
+
+IN JDBC we have several drawbacks
+	Boiler Plate code
+	Every line will throw SQL Exception.
+
+To Simplify Persistance layer development ORM frameworks came into market
+	Ex : Hibernate
+
+Hibernate Frameworks follows ORM Principles and it will represent data in the form of objects.
+
+Notes : Hibernate framework internally using JDBC API only to communicate with database.
+
+-------------------------JDBC Code to insert a receord-----------------------------
+Class.forName("");
+Connection con = DriverManager.getConnection(url,username,password);
+PreparedStatement ps = con.createPrepareStatement(sql);
+ps.setInt(1,101);
+ps.setName(2,"java");
+ps.executeUpdate();
+con.close();
+-------------------------Hibernate Code to insert a record-----------------------------
+
+Configuration cfg  = new Configuration();
+cfg.configure();
+SessionFactory sf = cfg.buildSessionFactory();
+Session s = sf.openSession();
+Transactiont tx =s.beginTransaction();
+s.save(Employee)
+tx.commit();
+s.close();
+sf.close();
+------------------------------------------------------------------------------------------------------------
+To avoid boiler plate code in jDBC, Spring released Spring JDBC Module
+To avoid boiler plate code in Hibernate, Spring released Spring ORM Module.
+
+
+-------------------------Insert Record using Spring JDBC-------------------------
+
+JdbcTemplate JdbcTemplate;
+JdbcTemplate.update(sql); // data represent in the the text format only
+
+---------------------------Insert record using Spring ORM------------------------------------------------------------
+
+HibernateTemplate hibernateTemplate;
+hibernateTemplate.save(entityObject);
+
+---------------------------Database Operations using Spring DATA JPA------------------------------------------------------------
+
+interface ProductRepository extends CrudRepository {
+	
+}
+
+
+Tables:
+
+Product
+-------
+public interface IProduct {
+    public boolean save(Product product);
+    public void update(Product product);
+    public Product findById(Integer id);
+    public List<Product> findAll( );
+    public void delete(Integer id);
+    public void deleteAll( );
+}
+public class ProductDaoImpl implements IProduct{
+      //implement all the abstract methods
+}
+
+In real time, we have multiple tables for ecommerce project like	
+	User
+	Product
+	Category
+	Cart
+	Order 
+	Address
+
+Common Operations to peform every tables ( CRUD Operations)
+------------------------------------------------------------
+1) insert record into table
+2) update record in table
+3) retrieve record using Primary Key
+4) retrieve all records from table
+5) delete record from table using PK
+6) delete all records from table
+
+If we have 6 tables in DB
+----------------------------
+6 methods in dao * 6 = 36 methods need to implement in DAO package
+In place of Spring ORM if we use Spring Data then we no need to write single method also.
+
+Advantages
+-----------
+-> No need to write our own logic to perform curd operations
+
+Dis-Advantages
+--------------
+-> Not suitable for relationships

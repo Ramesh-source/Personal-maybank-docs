@@ -1,0 +1,413 @@
+Today Session : Spring Data JPA 
+
+CrudRepository
+----------------
+-> CrudRepository is a predefined interface provided by Data JPA to perform Curd operations.
+-> CrudRepository interface having 11 methods.
+
+		save()
+		saveAll()
+
+		findById()
+		findAll()
+		findAllById()
+
+		existsById()
+		count()
+
+		delete()
+		deleteById()
+		deleteAllById()
+		deleteAll()
+
+-> We don't have seperate method to perform update operation. 
+Update operation we can do using save() method only.
+
+-> When we call save( ) method with entity object, if that entity object 
+contains primary key value and if record already presented in db with given primary 
+key then record will be updated else record will be inserted.
+
+JpaRepository
+-------------
+-> It is predefined interface available in Spring Data
+-> Using this interface we can perform curd operations in our application
+-> This interface is superior to CrudRepository
+-> This interface provides extra methods to perform pagination and sorting
+
+Pagination
+-----------
+The process of retrieving records which are really required to display in page.
+			or
+The process of dividing total records into multiple pages is called pagination
+	Ex: Gmail inbox, Google Search Results etc...
+
+Sorting
+-------
+Perform sorting lower to higher && higher to lower etc...
+Sort the records based column values
+
+ex:    findAll(Sort.property("empSalary"));
+       findAll(Sort.property("empSalary").descending());
+
+Note: The property that we are passing is an entity class variable 
+which is mapped to database table.
+
+We can implement pagination in 2 ways
+	1) Server side pagination
+
+	2) Client Side pagination	
+
+Server Side Pagination
+-----------------------
+-> In this approach we will retrieve only page specific records from database
+-> Memory will not be wasted
+-> For every page load DB interaction will happen
+-> For huge data sets this is recommended
+
+Client Side Pagination
+----------------------
+-> In this approach we will retrieve all records from the able and will manage pages in    applications
+-> Memory consumption will be more
+-> DB Interaction only one time
+-> For small data sets this is recommended
+
+Server side pagination implementation
+-------------------------------------
+What is page size ? -- How many records we need to display in page
+Total records in Tbl? -- How many records are available in table
+How many pages are required ? -
+
+
+Primary Key Column Discussion
+-----------------------------
+-> For every table it is very important to maintain Primary Key column
+-> Primary Key constraint is combination of below 2 constraints
+
+		a) NOT NULL
+		b) Unique
+-> Primary key column value should be unique and it should not be NULL
+-> If we ask end user to enter the data for primary key column value he may enter duplicate value
+
+-> If end user tries to submit form data with duplicate column value then application can't save that 
+	data to table due to Primary key constraint.
+-> If we try to insert duplicate data to Primary Column Database will throw    UniqueConstraintViolation.
+-> End users may not know about primary key constraints
+-> To avoid this problem instead of asking end user to enter PK value application should generate that value
+
+
+Generators
+----------
+Generators are used to generate value for primary key column when record is inserting to table.
+
+@Entity
+@Table(name = "CUSTOMER_DTLS")
+@Data
+public class CustomerDtlsEntity {
+	@Id
+	@GeneratedValue
+	private Integer customerId;
+	private String customerName;
+	private String customerEmail;
+
+}
+
+Entity class
+------------
+The java class which represents DB table structure is called as Entity Class
+			or
+
+The Class which is mapped with DB table is called as Entity class
+We will use below annotations to map our java class to DB Table
+---------------------------------------------------------------
+
+@Entity : 
+----------
+It represents entity class
+It is class level annotation
+It is mandatory annotation
+
+
+@Table
+------
+It is used to map class name to particular name
+It is class level annotation
+It is optional annotation
+If @Table is not mentioned then SB Data considers our class name as table name
+
+@Id
+---
+It is represent variable which mapped with PK
+It is field level annotation
+It is mandatory annotation
+
+
+@Column
+-------
+It is used to map entity class varible name with Tbl column name
+It is field level annotation
+It is optional annotation
+If we don't use @Column, SB data will consider variable name as column name
+
+
+Steps to develop SpringBootApplication using Spring Data JPA
+------------------------------------------------------------
+1) Create SpringBootApplication using below dependencies
+	spring-boot-starter
+	spring-boot-starter-data-jpa
+	Database driver
+	Project Lombok
+2) Configure DataSource Properties in application.properties file
+		1)DB URL
+		2)DB Uname
+		3)DB PWD
+		4)DB Driver Class
+3) Create Entity Class ( (To map with DB table))
+4) Create Repository interface for our DB table by extending Spring Data repository
+   (SpringData will provide methods to perform curd operations with our table)
+Note-1: When our repository interface extends from SB Data Repository interface writing @Repository is optional.
+Note-2: For our repository interface implementation class will be created in run time using proxy pattern.
+
+5) Test Application 
+
+create table product(
+   product_id INT NOT NULL AUTO_INCREMENT,
+   product_name VARCHAR(40) NOT NULL,
+   product_desc DATE,
+   PRIMARY KEY ( product_id )
+);
+
+Spring Data JPA will provide implementation for all DAO operations using Proxy Desing Pattern.
+
+CurdRepository interface provided methods
+-----------------------------------------
+-> This is predefined interface available in Spring Data JPA
+-> In this interface we have several methods to perform curd operations
+
+
+E save(E entity) : 
+-----------------------------
+-> It is used to save a record into DB table
+-> We can use this method to update a record also
+   Ex:	ContactDtlsEntity  entity = dtlsRepo.save(contactEntity);
+
+Note: When we pass entity object as a parameter for save method, it takes primary key column value and 
+	it will verify record presence in db with given primary key value.
+With the given PK if we have a record in table, then save( ) method performs update operation 
+	else it performs insert opearation.
+
+-> After inserting/updating save ( ) method return entity object
+
+
+findById(Serializable id)
+--------------------------
+-> It is used to retrieve one record from DB tbl using Primary Key value
+-> The return type of findById( ) method is Optional<E>
+-> For the given PK value, if record is available in DB then that entity will be holded by Optional 
+	else Optional will be empty
+
+findAllById(Iterable<Serializable> ids)
+----------------------------------------
+-> To retrieve records by passing more than one primary key we will use findAllById( ) method
+
+findAll ( )
+-----------
+-> To retrieve all records available in the table we will use findAll ( ) method
+
+Along with these predefined methods Spring Data can perform below 2 operations as well
+-------------------------------------------------------------------------------------
+1) Spring Data can construct query based on findBy method syntaxes
+
+2) We can execute Custom Queries also using Spring data
+
+
+@GeneratedValue:
+----------------
+When we use this annotation internally it is using SequenceGenerator to 
+generate value for primary key column
+
+Note: hibernate_sequence is the default sequence which will start with 1
+ and increments by 1.
+
+Entity class with @GeneratedValue
+----------------------------------
+@Entity
+@Table(name = "CUSTOMER_DTLS")
+@Data
+public class CustomerDtlsEntity {
+
+	@Id
+	@GeneratedValue
+	private Integer customerId;
+	private String customerName;
+	private String customerEmail;
+
+}
+
+Schema Generation
+-----------------
+
+-> ORM frameworks are having support to generate schema in runtime
+-> ORM frameworks can create table and can create sequence in runtime required for app
+-> By Default Schema Generation mode will be OFF
+-> To enable schema generation we will use ddl-auto property
+	spring.jpa.hibernate.ddl-auto=create/create-drop/update
+
+-> We have several possible values for ddl-auto property
+
+			-> create
+			-> create-drop
+			-> update
+			-> validate
+			-> none
+
+-> create means every time new table will be created
+-> create-drop: it creates table and drops table at end of operaton
+-> update: If table is not available it will create if table is already available it will    just perform operation
+-> validate: It is used to validate schema details
+
+Note: Don't enable this property in Production Environment
+
+
+
+Package Structure
+------------------
+com.javaexpress
+    Start Class
+
+com.javaexpress.controllers 
+    Web Layer
+
+com.javaexpress.service
+    Service Classes - ProductService,OrderServie
+
+com.javaexpress.beans or com.javaexpress.model or com.javaexpress.bo or com.javaexpress.dto
+or com.javaexpress.entities
+
+    Entity Classes
+    Product - Entity class
+
+com.javaexpress.repository or com.javaexpress.dao 
+    If you use Spring Data JPA 
+            create interface for ProductRepository
+    
+    If you use Spring JDBC or Spring ORM
+            create class ProductDaoIMPL class and implment all database operations inside this class.
+
+com.javaexpress.config
+    Security Configuration
+    Kafka Configuration
+    DataSource Configuration
+
+com.javaexpress.util - Common Logic
+    DataUtil
+    ReportUtil
+    Helper classes.
+
+
+
+Spring Boot Data JPA Project
+------------------------------
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+application.properties
+------------------------
+#data source configuration
+
+spring.datasource.url=jdbc:mysql://localhost:3306/05_SB_MICROSERVICES
+spring.datasource.username=root
+spring.datasource.password=India@123
+
+#spring.datasource.driver-class-name=com.mysql.jdbc.Driver 
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57InnoDBDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+Start Class Logic 
+------------------
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		ContactRepository contactRepository = context.getBean(ContactRepository.class);
+		System.out.println(contactRepository.getClass().getName());
+		
+		//saveContactInformation(contactRepository);
+		
+		//fetchContactDetails(contactRepository);
+		
+		long count = contactRepository.count();
+		System.out.println("Total Records in DB ="+count);
+		
+		//findContactDetailsByID(contactRepository);
+		
+		//contactRepository.deleteById(3);
+	}
+
+	private static void findContactDetailsByID(ContactRepository contactRepository) {
+		Optional<Contact> optional = contactRepository.findById(30);
+		if(optional.isPresent()) {
+			System.out.println(optional.get());
+		}else {
+			System.out.println("Record not Available");
+		}
+	}
+
+	private static void fetchContactDetails(ContactRepository contactRepository) {
+		Iterable<Contact> contactList = contactRepository.findAll();
+		//contactList.forEach(contact -> System.out.println(contact));
+		
+		
+		for(Contact contact : contactList) {
+			System.out.println(contact);
+		}
+	}
+
+	private static void saveContactInformation(ContactRepository contactRepository) {
+		Contact contact = new Contact();
+		contact.setContactName("javaexpress");
+		contact.setContactEmail("javaexpresschannel@gmail.com");
+		contact.setCity("Hyderabad");
+		contactRepository.save(contact);
+	}
+
+}
+
+Contact Entity 
+---------------
+@Entity
+@Data
+public class Contact {
+
+	@Id
+	@GeneratedValue
+	private Integer contactId;
+	
+	private String contactName;
+	
+	private String contactEmail;
+	
+	private String city;
+	
+	public Contact() {
+		
+	}
+}
+
+
+
+
+
+
+

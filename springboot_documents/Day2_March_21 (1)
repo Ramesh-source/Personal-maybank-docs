@@ -1,0 +1,268 @@
+Group Id : 
+	A unique base name of the company or group that created the project
+Artifact ids
+	A unique name of the project
+
+Group Id : org.springframework
+Artifact ids:
+		spring-core
+		spring-context
+		spring-web
+		spring-aop
+		spring-test
+
+Group Id : org.springframework.boot
+Artifact ids :
+		spring-boot-starter-parent
+		spring-boot-starter-web
+		spring-boot-starter-webflux
+		spring-boot-starter-data-jpa
+		spring-boot-starter-mail
+		spring-boot-validation
+		Spring-boot-devtools
+
+01-JE-FirstApp  
+	 Download from Google
+	 https://start.spring.io
+	 GroupId : com.javaexpress
+	 ArtifactId : 01-JE-SB-FirstApp
+
+Download & Import in STS 
+
+2) STS Communication with start.spring.io (27)
+----------------------------------------------
+Create second project using STS
+	02-JE-SB-SecondApp
+
+Spring Boot Folder Structure (31)
+
+Embedded Servers
+----------------
+SpringBoot Providing embedded servers to run web application.
+By default tomcat comes as embedded servers.
+	Tomcat
+	Jetty
+	Undertow
+
+Embedded Databases
+------------------
+Spring Boot having very good integration with embedded database.
+It is temporary database when application start tables will create 
+and if you stop then all tables will drop.
+
+When to use Embedded databases 
+POC
+	H2
+	Derby
+	HSQL
+
+Actuators
+----------
+Spring Boot Actuator is a sub-project of Spring Boot
+Spring Boot actuators are providing production ready features.
+The Spring Boot Actuator is mainly used to get the internals of running application
+			Health 
+			Metrics
+			Trace
+			environment
+Using Actuators we will monitor our application.
+
+What is Spring Boot starter ?
+-----------------------------
+Spring Boot starters can help to reduce the number of manually added dependencies just by adding one dependency. 
+So instead of manually specifying the dependencies just add one starter.
+The Spring Boot Framework provides the following application starters under the org.springframework.boot group.
+
+Spring Boot Starter Parent
+--------------------------
+	The spring-boot-starter-parent is a project starter. 
+	It provides default configurations for our applications. It is used internally by all dependencies. 
+	All Spring Boot projects use spring-boot-starter-parent as a parent in pom.xml file.
+
+Spring Boot Web Starter
+--------------------------
+	It is used for building the web application, including RESTful applications using Spring MVC. 
+	It uses Tomcat as the default embedded container.
+
+What is Start Class in Spring Boot ?
+------------------------------------
+Start class is the entry point for Spring Boot Application Execution.
+Start class contain main method to start program execution
+As part of Spring Boot start class main method we are calling SpringApplication.run(..) method
+
+
+Internal logic of run method in springboot
+------------------------------------------
+This run() method contains boot strapping logic to start spring boot application.
+		Start Stopwatch
+		Start Listeners
+		Prepares Environment
+		Create IOC Container
+		Print Banner
+		Print Application Startup Time
+		Call Runners
+		Return Context.
+
+@SpringBootApplication
+----------------------
+	This is class level annotation in Spring Boot Start class.
+This annotation is equal to below 3 annotations
+	@SpringBootConfiguration
+	@ComponentScan
+	@EnableAutoConfiguration
+
+What is Auto-configuration ?
+--------------------------------------------
+	@EnableAutoConfiguration annotation triggers auto-configuration functionalities for our application
+	Spring Boot is intelligent to understand what configuration is required for our project and 
+	it will provide that.
+			Create IOC Container
+			Deploy Web Application in Embedded Container
+			Dispatcher Controller no need to configure in application (web.xml)
+			Embedded DB Support
+			View Resolvers
+
+@ SpringbootConfiguration
+--------------------------
+	This Annotation represents our class as Configuration class
+	To Customize bean creation we can write @Bean methods in this class.
+	This annotation internally using @Configuration.
+
+@ComponentScan
+--------------
+	Component Scan is the in built functionality in Spring Boot Application
+	Component scan is the process of identifying spring beans available in our application
+	@Component, @Service,@Repository
+	Component Scan will start from base package. After base package scanning it will scan sub-packages of package.
+	@ComponentSacn provides functionalities to scan for Spring Beans Available in application.
+
+Package Names in Component Scan
+-------------------------------
+	The packages which are starting with base package name are called sub packages of base package.
+	com.javaexpress – base package
+	com.javaexpress.dao – will be scanned
+	com.javaexpress.services – will be scanned
+	In.javaexpress.beans – will not be scanned
+	It will not participate in component scanning process because of different package
+
+What is Spring bean ?
+---------------------
+	Any normal java class is initialized by Spring IOC container is called Spring Bean.
+	Spring IOC manages the life cycle of Spring bean cycle, 
+		bean scopes and injecting any required dependencies in the bean.
+
+How to Represent java class as spring bean ? 
+---------------------------------------------------------------
+Java Bean Annotations
+	@Component
+		@Component is used to for helper classes like
+			DateUtil
+			ReportUtil
+	@Service
+	@Repository
+	@Configuration
+		@Configuration is used to customize objects with the help of Bean
+		It is internally using builder design pattern
+
+	@Controller
+	@RestController
+	@Bean – Method Level Annotation
+
+------------------------------------------------------------------------------------------------------
+@Component
+public class Employee {
+	
+	public Employee() {
+		System.out.println("Employee Constructor");
+	}
+}
+
+@Component
+public class Address {
+	
+	public Address() {
+		System.out.println("Address Constructor");
+	}
+}
+
+SpringApplication.run(Application.class, args);
+------------------------------------------------------------------------------------------------------
+
+What is IOC Container ?
+-----------------------
+Giving control to the container to get instance of object is called IOC.
+IOC is a principle which is used to manage and collaborate dependencies among the objects in the application.
+IOC Container is a mechanism to achieve loose coupling between object dependencies. 
+IOC will use dependency injection to manage
+
+Why Spring Containers are light weight ?
+----------------------------------------------
+Spring Containers are light weight containers because 
+they can be activated any where by just creating objects of pre-defined classes.
+We cant’ activate Servlet Container, JSP Container by creating objects for certain classes. 
+,So they are heavy weight containers because we need to start heavy weight servers to activate these containers.
+
+What is dependency Injection ?
+----------------------------------------------
+The process of injecting one class object into another class is called as Dependency Injection
+Dependency Injections is a design pattern in order to remove dependency from the programming code.
+In Spring Framework IOC will perform Dependency Injection
+Dependent object inject into target object , who will perform this action.
+
+Types of dependency injection
+----------------------------------------------
+IOC will use dependency injection to manage
+	Setter Injection
+By using setXxx(-) of Spring Bean Class
+	Constructor Injection
+By using Parameterized constructors of Spring Bean Class
+	Interface Injection
+By implementing special interfaces on Spring Bean Class
+
+Setter Injection
+-----------------
+Injecting dependent object into target object through target class setter method is called as setter injection.
+How to enable setter injection in Spring Boot ?
+	To Enable setter injection we are using @Autowired annotation at setter method level
+Partial dependency injection is possible in Setter Injection
+	Employee has a address
+	Address is dependent bean
+	Employee is target bean
+
+------------------------------------------------------------------------------------------------------
+@Component
+public class Employee {
+	
+	public Employee() {
+		System.out.println("Employee Constructor");
+	}
+}
+
+@Component
+public class Address {
+	
+	public Address() {
+		System.out.println("Address Constructor");
+	}
+}
+
+SpringApplication.run(Application.class, args);
+------------------------------------------------------------------------------------------------------
+
+Constructor Injection
+---------------------
+The process of injecting dependent bean into target bean by calling target bean parameterized constructor 
+	is called Constructor Injection.
+To enable constructor injection we will write @Autowired annotation at constructor level.
+If we have more then one constructor we have to specify @Autowired else it is optional.
+
+Field injection
+---------------
+If we use @Autowired at variable level then IOC will perform field Injection
+When we use Field Injection,  Internally IOC will use reflection api to inject dependent object into target object.
+Field Injection is not recommended because there is a chance to violate Single Responsibility Principle.
+
+SI vs CI
+---------------
+CI will be performed at the time of target object creation and all dependent objects are mandatory in CI
+SI will be performed after target bean object got created. Dependent bean objects are not mandatory in SI.

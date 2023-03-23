@@ -1,0 +1,185 @@
+What is a Framework ?
+-----------------------------------
+ Framework is a special kind of Software which provides some common logics which are required for application development in less time.
+
+ Common Logic - JDBC
+ 		Creating Database connection
+ 		driver manager
+ 		create statement
+ 		execute statement
+ 		Result query
+
+Frameworks are divided into 3 types
+-----------------------------------
+ORM frameworks are used to develop Persistence layer in applications.
+	Hibernate, Ibatis
+
+Using Web frameworks We can just develop web applications
+	Structs, JSF, Wicket
+
+Using Spring, we can develop all kinds of applications like Business Logic, Persistance Logic & Web Logic
+Spring
+
+Introduction to spring
+-------------------------
+Spring is a alternative framework for EJB Technology.
+Spring is a application development framework
+Using Spring we can develop all types of applications ( end to end)
+Spring framework is light weight and open source framework for building java applications.
+Open Source means it is not only free s/w but its source code will be exposed to programmers along with installation.
+The main feature of Spring is Dependency Injection & IOC Container.
+Spring is non-invasive framework.
+If we use SF to develop project, we need to manage all the configurations required for that project.
+Spring Modules are loosely coupled.
+
+
+Type 	   : Java EE Framework / Application Framework
+Vendor     : Interface 21
+				https://spring.io/blog/2006/12/16/why-the-name-interface21
+Creator  : Mr. Rod Jhonson
+Open Source Software
+To Download    : Download as Zip File from www.springframework.org
+
+spring 5 download
+		https://repo.spring.io/release/org/springframework/spring/
+Versions	: 2.X, 3.X, 4.X & 5.x
+				2.x – Compatible with JDK 1.5+
+				3.x – Compatible with JDK 1.5+
+				4.x  - Compatible with JDK 1.7+
+				5.x – Compatible with JDK 1.8+
+
+Spring framework released into market in the year of 2002
+
+	0.9 --------> 2002
+
+	1.0 --------> 2003
+
+	2.0 --------> 2006
+
+	3.0 --------> 2009
+
+	4.0 --------> 2013
+		---------------In this gap they Concentrated on Spring Boot
+					
+				Spring Boot 1.1 -> 2014
+				Spring Boot 1.2 -> 2015
+				Spring Boot 1.3 -> 2016
+				Spring Boot 1.4 -> 2017
+				Spring Boot 1.5 -> 2018
+		
+	5.0 --------> 2017
+
+Why Spring is light weight ?
+----------------------------
+If java class is acting as resource of certain technology based software application is 
+not extending, implementing predefined classes of Spring API then it is called POJO class.
+
+
+Using Spring, How many types of applications we can develop ?
+	Standalone applications
+	Web Applications
+	Distributed Applications
+
+What is a Web Applicatoin ?
+----------------------------
+A web application is a software or program which is accessible using any web browser 
+Its frontend is usually created using languages like HTML, CSS, Javascript, which are supported by major browsers.
+Web applications are meant for C 2 B (Customer to Business)
+End users will interact with web applications directly
+		Gmail
+		Flipkart
+		Amazon
+
+Distributed Applications
+----------------------------
+A distributed application is software that is executed or run on multiple computers
+The application which is interacting with another application is called as Distributed application
+To develop distributed applications we will use Webservices
+Using Spring MVC we can develop and access REST APIs
+Distributed applications are meant for B 2 B
+		Passport ----> Aadhar app
+		Zomato -----> Banking apps
+		MakeMyTrip ---> Airlines apps
+
+Why Spring is loosely coupled software ?
+-----------------------------------------
+While working with Spring we can use either individual modules or multiple modules together.
+We can integrate spring with other java technologies in application development like Servlet, JSP, Hibernate, Structs etc.
+
+
+Spring Modules 
+-------------------
+Spring can be used for the development of particular layer of a real time application unlike struts and hibernate, but with spring we can develop all layers.
+Spring 1.x contains 7 Modules
+Spring 2.x contains 6 Modules
+Spring 3.x contains 20 Modules but they are grouped into 6 major categories
+
+Spring Modules
+-------------------
+Spring core is the base module for all other modules
+Spring DAO/Spring JDBC module provides abstraction layer on plain JDBC to develop persistence logic.
+Spring ORM Module provides abstraction layer on other ORM flows like Hibernate & Ibatis
+Spring AOP module is given to apply aspects on Spring Applications
+Spring Web Module is given to make spring application communication from other web framework software applications like Structs, JSF e.t.c
+Spring Web-MVC is given spring own web framework develop MVC Architecture based web applications.
+Spring Context/JEE Module provides abstraction layer on multiple core technologies like EJB, RMS, JMS, Java Mail to develop Distributed applications & other applications.
+
+Second Session
+---------------
+Why Spring Boot ? 
+----------------------
+
+Spring Boot is an open-source java based framework maintained by a company called Pivotal. 
+Spring Boot is built on top of the Spring framework, with minimal or less configurations.
+Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run". 
+Spring Boot provides production-ready features such as metrics, health checks and externalized configuration. 
+Spring Boot can be used to develop Spring based applications either by using JAVA or Kotlin or Groovy 
+Spring Boot reduces application development time. 
+Spring Boot will improve Productivity. 
+SpringBoot provided auto-configuration mechanism to simplify programmers life.
+
+Spring Versions 
+--------------------
+
+Why SpringBoot
+--------------------
+	Develop Spring Application Faster
+	Avoid Boiler Plate Code
+	Convention Over Configuration
+	Embedded Tomcat
+	Actuators
+
+Preferred Languages
+-------------------
+	Java
+	Kotlin
+	Groovy
+
+Build Management tool
+---------------------
+	maven
+	Gradle
+
+Advantages of Spring Boot
+-------------------------
+1) Spring Boot Starters : To Simplify Maven Configuration
+						spring-boot-starter-parent
+						spring-boot-starter-web
+						spring-boot-starter-webflux
+						spring-boot-starter-data-jpa
+						spring-boot-starter-mail
+						spring-boot-validation
+						Spring-boot-devtools
+
+2) Autoconfiguration
+3) Embedded Servers
+4) Embedded Databases
+5) Actuators
+6) No Version Conflicts
+
+1) How to create spring boot Application ?
+---------------------------------------
+To create Spring Boot Applications, Spring People provided Spring Initializer
+		https://start.spring.io
+Application will be downloaded in the form zip then we will extract that zip and we will import into IDE. 
+Using Spring Tool Suite ( STS )

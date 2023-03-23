@@ -1,0 +1,15 @@
+add the jad jars(net.sf.jadclipse_3.2.4.jar) into our local eclipse - pluggins folder.
+
+C:\Program Files (x86)\IBM\WebSphere\AST1\eclipse\plugins
+Add the jsd.exe into our jre folder.
+
+Restart your Eclipse, in menu Windows->Preference->Java, you can find there is a new option JadClipse, maintain the path of your JAD.exe to "Path to decompiler".
+
+
+And set the jad path.
+
+path to decompiler  - C:\jad\jad.exe
+
+
+
+

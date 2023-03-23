@@ -1,0 +1,57 @@
+package com.code;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Tester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Integer> arList = new ArrayList<Integer>();
+		arList.add(4);
+		arList.add(4);
+		arList.add(3);
+		arList.add(8);
+		arList.add(6);
+		try{
+		System.out.println(method1(arList));
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static List<Integer> method1(List<Integer> v)throws IOException {
+		if(v.size()<=1) return v;
+		
+		List<Integer> a = new ArrayList<Integer>();
+		List<Integer> b = new ArrayList<Integer>();
+		
+		int p = (Integer)v.get(0);
+		
+		for(Integer x:v){
+			if(x<=p){
+				a.add(x);
+			}else if(x>=p){
+				b.add(x);
+			}
+		}
+		
+		a=method1(a);
+		b=method1(b);
+		
+		List<Integer> ans = new ArrayList<Integer>();
+		
+		ans.addAll(a);
+		ans.add(p);
+		ans.addAll(b);
+		
+		return ans;
+		
+	}
+
+}

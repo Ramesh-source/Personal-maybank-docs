@@ -1,0 +1,529 @@
+YUM=> Yellowdog Updater, Modified
+[ec2-user@ip-172-31-63-13 ~]$ sudo su -
+[root@ip-172-31-63-13 ~]#
+[root@ip-172-31-63-13 ~]# hostnamectl set-hostname dockers
+[root@ip-172-31-63-13 ~]#
+[root@ip-172-31-63-13 ~]# bash
+[root@dockers ~]#
+[root@dockers ~]# yum install docker -y => to install docker
+
+[root@dockers ~]# systemctl enable docker  => to enable docker  
+
+.
+[root@dockers ~]# systemctl restart docker  => to restart docker 
+
+[root@dockers ~]# systemctl start docker  => to start docker 
+
+[root@dockers ~]# systemctl status docker  => to know the docker status 
+
+[root@dockers ~]# docker images => it will show  available doloaded docker images (pulled)
+REPOSITORY    TAG    IMAGE ID    CREATED SIZE
+
+[root@dockers ~]# docker ps => it will show running containers
+CONTAINER ID        IMAGE   COMMAND      CREATED      STATUS              PORTS               NAMES
+
+[root@dockers ~]# docker ps -a    => it will show running and terminated containers
+CONTAINER ID        IMAGE   COMMAND      CREATED     STATUS  PORTS          NAMES
+
+[root@dockers ~]# docker pull centos => it will pull the docker image from dockergub
+
+
+
+[root@dockers ~]# docker pull centos:7 => it will download centos:7 version 
+
+[root@dockers ~]# docker images
+
+
+[root@dockers ~]# docker run -it --name mycont1 centos /bin/bash => run is used to create the container and login to container 
+ls => it will show list of files in the current directory
+ls -lrt => it will show list of files in the current directory with details
+chmod to change the file permission 
+rm => to remove filecontainers also 
+rmi=> to remoce image 
+
+[root@2f17c0e595c5 /]# cat /etc/redhat-release
+CentOS Linux release 8.3.2011
+[root@2f17c0e595c5 /]# exit
+exit
+[root@dockers ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@dockers ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                      PORTS               NAMES
+2f17c0e595c5        centos              "/bin/bash"         About a minute ago   Exited (0) 12 seconds ago                       mycont1
+[root@dockers ~]# #ctrl+p+q => its used to come out from running container
+[root@dockers ~]# docker start mycont1 => to start docker container (stopped)
+
+docker stop mycont1(container name) => to stop docker container
+
+
+[root@dockers ~]# docker ps
+seconds                            mycont1
+[root@dockers ~]# docker ps -a
+
+[root@dockers ~]# docker exec -it mycont1 /bin/bash  => to login to running container / Existing running container
+[root@2f17c0e595c5 /]# read escape sequence(CTRL+p+q)
+[root@dockers ~]# docker ps
+[root@dockers ~]# docker run -itd --name mycont2 centos:7 /bin/bash => creating container in detached mode) 
+838e70451e11e365c2d20c011a16275426c6fd2bb910b3099efd1d4c32eed5c9
+[root@dockers ~]# docker ps
+
+[root@dockers ~]# docker exec -it mycont2 /bin/bash => to login in to the runnung docker 
+
+
+[root@dockers ~]# docker run -itd --name test1 centos /bin/bash
+
+[root@dockers ~]# docker run -itd --name test2 centos /bin/bash
+[root@dockers ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              
+[root@dockers ~]# docker exec -it test1 /bin/bash
+[root@5e0518f9486c /]# touch /tmp/test1.txt ==> touch is used to create file 
+[root@5e0518f9486c /]# ls -l /tmp/test1.txt
+-rw-r--r-- 1 root root 0 Dec 31 02:10 /tmp/test1.txt
+[root@5e0518f9486c /]# read escape sequence
+[root@dockers ~]#
+[root@dockers ~]#
+[root@dockers ~]# docker exec -it test2 /bin/bash
+[root@2b0f9b63d910 /]# #ls -l /tmp/test1.txt
+[root@2b0f9b63d910 /]# ls -l /tmp/test1.txt
+ls: cannot access '/tmp/test1.txt': No such file or directory
+
+====================================================================
+
+[root@dockers ~]# docker run -itd --name cont1 centos /bin/bash
+9ea0fd6772fcce8dffb64c19b79a8fad716936a4ac7b44c5ccbff830ca57d1ea
+[root@dockers ~]# docker exec -it cont1 /bin/bash
+[root@9ea0fd6772fc /]# id -a devops => its used to create the user name
+id: 'devops': no such user
+[root@9ea0fd6772fc /]# telent
+bash: telent: command not found
+[root@9ea0fd6772fc /]# telnet
+bash: telnet: command not found
+[root@9ea0fd6772fc /]# exit
+[root@dockers ~]#
+[root@dockers ~]#
+[root@dockers ~]#
+[root@dockers ~]# mkdir myimages
+[root@dockers ~]# cd myimages/
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install telnet
+RUN useradd devops
+[root@dockers myimages]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+centos              latest              300e315adb2f        3 weeks ago         209MB
+centos              7                   8652b9f0cb4c        6 weeks ago         204MB
+[root@dockers myimages]# docker build -t "myimage:v1" .
+
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install telnet
+RUN useradd devops
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install telnet -y
+RUN useradd devops
+[root@dockers myimages]# #docker build -t "myimage:v1" .
+[root@dockers myimages]# docker build -t "myimage:v1" .
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install telnet -y
+RUN useradd devops
+[root@dockers myimages]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+myimage             v1                  393b487be4cb        9 minutes ago       242MB
+centos              latest              300e315adb2f        3 weeks ago         209MB
+centos              7                   8652b9f0cb4c        6 weeks ago         204MB
+[root@dockers myimages]# docker run -itd --name c1 myimage:v1
+
+[root@dockers myimages]# docker run -itd --name c1 myimage:v1 /bin/bash
+[root@dockers myimages]# docker exec -it c1 /bin/bash
+[root@b936014a0080 /]# id -a devops
+uid=1000(devops) gid=1000(devops) groups=1000(devops)
+[root@b936014a0080 /]# telnet
+telnet> q
+[root@b936014a0080 /]# exit
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# #docker build -t "myimage:v1" .
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install telnet -y && useradd devops
+[root@dockers myimages]# docker run -it --name test centos /bin/bash
+[root@6b3d2547bd21 /]# env
+LANG=en_US.UTF-8
+HOSTNAME=6b3d2547bd21
+PWD=/
+HOME=/root
+TERM=xterm
+SHLVL=1
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+_=/usr/bin/env
+[root@6b3d2547bd21 /]# exit
+[root@dockers myimages]# vi Dockerfile
+
+
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install telnet -y && useradd devops
+ENV BATCHNO=6
+[root@dockers myimages]# docker build -t "myimage:env" .
+[root@dockers myimages]# docker build -t "myimage1:env" .
+
+[root@dockers myimages]# docker build -t "test:env" .
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]#
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+
+[root@dockers myimages]# docker build -t "test:env" .
+[root@dockers myimages]# docker build -t "myimage1:env" .
+[root@dockers myimages]# docker build -t "myimage:env" .
+[root@dockers myimages]# docker run -it --name env myimage:env /bin/bash
+[root@1ff6b43cddfb /]# env
+LANG=en_US.UTF-8
+HOSTNAME=1ff6b43cddfb
+BATCHNO=6
+PWD=/
+HOME=/root
+TERM=xterm
+SHLVL=1
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+_=/usr/bin/env
+[root@1ff6b43cddfb /]# exit
+[root@dockers myimages]#
+[root@dockers myimages]#
+[root@dockers myimages]#
+[root@dockers myimages]# cat  Dockerfile
+FROM centos
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+[root@dockers myimages]# ls -l
+total 4
+
+=======================copy command========================
+-rw-r--r-- 1 root root 70 Dec 31 02:52 Dockerfile
+[root@dockers myimages]# tar -cvf mytmp.tar /tmp
+tar: Removing leading `/' from member names
+/tmp/
+/tmp/.font-unix/
+/tmp/.X11-unix/
+/tmp/.Test-unix/
+/tmp/.ICE-unix/
+/tmp/.XIM-unix/
+/tmp/systemd-private-6a670072150d478ebee6c251499df26f-chronyd.service-RJb2d4/
+/tmp/systemd-private-6a670072150d478ebee6c251499df26f-chronyd.service-RJb2d4/tmp/
+/tmp/ssh-DmrkaqUx9m/
+tar: /tmp/ssh-DmrkaqUx9m/agent.3272: socket ignored
+[root@dockers myimages]# ls -l
+total 16
+-rw-r--r-- 1 root root    70 Dec 31 02:52 Dockerfile
+-rw-r--r-- 1 root root 10240 Dec 31 02:55 mytmp.tar
+[root@dockers myimages]# #docker run -it --name env myimage:env /bin/bash
+[root@dockers myimages]# docker exec -it env /bin/bash
+Error response from daemon: Container 1ff6b43cddfbfc98916c8d1f00d9de3a7b1fadc5dea167e048ca557c1f547409 is not running
+[root@dockers myimages]# docker start env
+env
+[root@dockers myimages]# docker exec -it env /bin/bash
+[root@1ff6b43cddfb /]# ls -l /tmp/
+[root@dockers myimages]#
+[root@dockers myimages]# ls -l
+total 16
+-rw-r--r-- 1 root root    70 Dec 31 02:52 Dockerfile
+-rw-r--r-- 1 root root 10240 Dec 31 02:55 mytmp.tar
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+COPY mytmp.tar /root/
+
+[root@dockers myimages]# docker build -t "myimage:copy" .
+[root@dockers myimages]# docker run -it --name copy myimage:copy /bin/bash
+[root@033e3c127853 /]# pwd
+/
+[root@033e3c127853 /]# cd /root/
+[root@033e3c127853 ~]# ls -l
+total 24
+-rw------- 1 root root  2328 Dec  4 17:37 anaconda-ks.cfg
+-rw-r--r-- 1 root root   435 Dec  4 17:37 anaconda-post.log
+-rw-r--r-- 1 root root 10240 Dec 31 02:55 mytmp.tar
+-rw------- 1 root root  2026 Dec  4 17:37 original-ks.cfg
+[root@033e3c127853 ~]# exit
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+ADD mytmp.tar /root/
+====================================add==============================================
+[root@dockers myimages]# docker build -t "myimage:add" .
+
+[root@dockers myimages]# #docker run -it --name add myimage:add /bin/bash
+[root@dockers myimages]# docker run -it --name add myimage:add /bin/bash
+[root@0fbae88bd8a8 /]# cd /root/
+[root@0fbae88bd8a8 ~]# ls -l
+total 12
+-rw------- 1 root root 2328 Dec  4 17:37 anaconda-ks.cfg
+-rw-r--r-- 1 root root  435 Dec  4 17:37 anaconda-post.log
+-rw------- 1 root root 2026 Dec  4 17:37 original-ks.cfg
+drwxrwxrwt 9 root root  194 Dec 31 02:55 tmp
+[root@0fbae88bd8a8 ~]# ls -l tmp/
+total 0
+drwx------ 2 devops devops  6 Dec 31 01:42 ssh-DmrkaqUx9m
+drwx------ 3 root   root   17 Dec 31 01:41 systemd-private-6a670072150d478ebee6c251499df26f-chronyd.service-RJb2d4
+
+
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM ubuntu
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+ADD mytmp.tar /root/
+[root@dockers myimages]# docker build -t "myimage:add" .
+Sending build context to Docker daemon   12.8kB
+Step 1/4 : FROM ubuntu
+latest: Pulling from library/ubuntu
+da7391352a9b: Pull complete
+14428a6d4bcd: Pull complete
+2c2d948710f2: Pull complete
+Digest: sha256:c95a8e48bf88e9849f3e0f723d9f49fa12c5a00cfc6e60d2bc99d87555295e4c
+Status: Downloaded newer image for ubuntu:latest
+ ---> f643c72bc252
+Step 2/4 : ENV BATCHNO=6
+ ---> Running in fd7e344c6e7d
+Removing intermediate container fd7e344c6e7d
+ ---> 6709328f1862
+Step 3/4 : RUN yum install telnet -y && useradd devops
+ ---> Running in 2944be9a6c93
+ 
+/bin/sh: 1: yum: not found
+The command '/bin/sh -c yum install telnet -y && useradd devops' returned a non-zero code: 127
+[root@dockers myimages]#
+[root@dockers myimages]# ls -l
+total 16
+-rw-r--r-- 1 root root    91 Dec 31 03:05 Dockerfile
+-rw-r--r-- 1 root root 10240 Dec 31 02:55 mytmp.tar
+[root@dockers myimages]#
+
+========================user==========================
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+ADD mytmp.tar /root/
+USER devops
+RUN yum install httpd -y
+[root@dockers myimages]# docker build -t "myimage:user" .
+Sending build context to Docker daemon   12.8kB
+Step 1/6 : FROM centos
+ ---> 300e315adb2f
+Step 2/6 : ENV BATCHNO=6
+ ---> Using cache
+ ---> d550fcf5f180
+Step 3/6 : RUN yum install telnet -y && useradd devops
+ ---> Using cache
+ ---> c6aba7482687
+Step 4/6 : ADD mytmp.tar /root/
+ ---> Using cache
+ ---> 0609bb267118
+Step 5/6 : USER devops
+ ---> Running in 67e00d286e17
+Removing intermediate container 67e00d286e17
+ ---> 2032a899fb8c
+Step 6/6 : RUN yum install httpd -y
+ ---> Running in 4e9b8e6954d9
+Error: This command has to be run with superuser privileges (under the root user on most systems).
+The command '/bin/sh -c yum install httpd -y' returned a non-zero code: 1
+[root@dockers myimages]#
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+ENV BATCHNO=6
+RUN yum install telnet -y && useradd devops
+ADD mytmp.tar /root/
+USER devops
+[root@dockers myimages]# docker build -t "myimage:user" .
+
+Successfully tagged myimage:user
+[root@dockers myimages]# docker run -it --name user myimage:user id 
+[devops@23e7668c6098 /]$ id -a
+uid=1000(devops) gid=1000(devops) groups=1000(devops)
+[devops@23e7668c6098 /]$ exit
+[root@dockers myimages]# docker exec -it -u 0 user /bin/bash
+Error response from daemon: Container 23e7668c609896985d093711e12a3839e825ac2f1ca60ee02664dff304456ec7 is not running
+[root@dockers myimages]# docker start user
+user
+[root@dockers myimages]# docker exec -it -u 0 user /bin/bash
+[root@23e7668c6098 /]# whoami
+root
+[root@23e7668c6098 /]# read escape sequence
+[root@dockers myimages]# docker exec -it user /bin/bash
+[devops@23e7668c6098 /]$ whomai
+bash: whomai: command not found
+[devops@23e7668c6098 /]$ whoami
+devops
+[devops@23e7668c6098 /]$ read escape sequence
+[root@dockers myimages]# id -a root
+uid=0(root) gid=0(root) groups=0(root)
+[root@dockers myimages]#
+[root@dockers myimages]#
+[root@dockers myimages]#
+[root@dockers myimages]# vi DO
+
+============================================
+[root@dockers myimages]# docker run -d --name webnginx nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+6ec7b7d162b2: Pull complete
+cb420a90068e: Pull complete
+2766c0bf2b07: Pull complete
+e05167b6a99d: Pull complete
+70ac9d795e79: Pull complete
+Digest: sha256:4cf620a5c81390ee209398ecc18e5fb9dd0f5155cd82adcbae532fec94006fb9
+Status: Downloaded newer image for nginx:latest
+d10428591175eaa8d82312d249fe16da10ecab8176cb4bfa7ec44694f41776e9
+
+[root@dockers myimages]# docker ps|grep -i web
+d10428591175        nginx               "/docker-entrypoint.…"   8 seconds ago       Up 7 seconds        80/tcp              webnginx
+
+=========================cmd Expose================================================
+[root@dockers myimages]# vi Dockerfile
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+RUN yum install nginx -y
+CMD ["nginx", "-g", "daemon off;"]
+
+[root@dockers myimages]# docker build -t "myweb:v1" .
+Successfully tagged myweb:v1
+[root@dockers myimages]# docker run -d --name mynginxc1 myweb:v1
+7fda77729218e0fb65aa01ef68e47520d2ba824c3c9fa4e4d0b7358fd11ebe83
+[root@dockers myimages]# docker ps|grep -i nginx
+7fda77729218        myweb:v1            "nginx -g 'daemon of…"   7 seconds ago       Up 6 seconds                            mynginxc1
+d10428591175        nginx               "/docker-entrypoint.…"   2 minutes ago       Up 2 minutes        80/tcp              webnginx
+[root@dockers myimages]# vi Dockerfile
+FROM centos
+EXPOSE 80
+RUN yum install nginx -y
+
+[root@dockers myimages]# docker build -t "myweb:v2" .
+Successfully tagged myweb:v2
+[root@dockers myimages]# docker run -d --name mynginxc2 myweb:v2
+20cc8af11a6500f83791c3175726c443b9b06e6ff970c8edab3a79b1c8dddae1
+[root@dockers myimages]# docker ps|grep -i nginx
+20cc8af11a65        myweb:v2            "nginx -g 'daemon of…"   4 seconds ago       Up 3 seconds        80/tcp              mynginxc2
+7fda77729218        myweb:v1            "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes                            mynginxc1
+d10428591175        nginx               "/docker-entrypoint.…"   5 minutes ago       Up 5 minutes        80/tcp              webnginx
+
+=============================httpd=======================
+
+[root@dockers myimages]# cat Dockerfile
+FROM centos
+EXPOSE 80
+RUN yum install nginx -y
+CMD ["nginx", "-g", "daemon off;"]
+[root@dockers myimages]# ls -l /etc/system
+systemd/            system-release      system-release-cpe
+[root@dockers myimages]# ls -l /etc/system
+systemd/            system-release      system-release-cpe
+[root@dockers myimages]# ls -l /etc/systemd/
+total 24
+-rw-r--r--  1 root root  720 Feb  3  2020 bootchart.conf
+-rw-r--r--  1 root root  615 Feb  3  2020 coredump.conf
+-rw-r--r--  1 root root  983 Feb  3  2020 journald.conf
+-rw-r--r--  1 root root  957 Feb  3  2020 logind.conf
+drwxr-xr-x 12 root root  319 Dec 21 20:03 system
+-rw-r--r--  1 root root 1552 Feb  3  2020 system.conf
+drwxr-xr-x  2 root root   28 Dec 21 20:04 system.conf.d
+drwxr-xr-x  2 root root    6 Feb  3  2020 user
+-rw-r--r--  1 root root 1127 Feb  3  2020 user.conf
+[root@dockers myimages]# yum install httpd -y
+[root@dockers myimages]# systemctl status httpd
+? httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: man:httpd.service(8)
+[root@dockers myimages]# ls -l /usr/lib/systemd/system/httpd.service
+-rw-r--r-- 1 root root 944 Aug 24 18:53 /usr/lib/systemd/system/httpd.service
+[root@dockers myimages]# cat /usr/lib/systemd/system/httpd.service
+# See httpd.service(8) for more information on using the httpd service.
+
+# Modifying this file in-place is not recommended, because changes
+# will be overwritten during package upgrades.  To customize the
+# behaviour, run "systemctl edit httpd" to create an override unit.
+
+# For example, to pass additional options (such as -D definitions) to
+# the httpd binary at startup, create an override unit (as is done by
+# systemctl edit) and enter the following:
+
+#       [Service]
+#       Environment=OPTIONS=-DMY_DEFINE
+
+[Unit]
+Description=The Apache HTTP Server
+Wants=httpd-init.service
+After=network.target remote-fs.target nss-lookup.target httpd-init.service
+Documentation=man:httpd.service(8)
+
+[Service]
+Type=notify
+Environment=LANG=C
+
+ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND
+ExecReload=/usr/sbin/httpd $OPTIONS -k graceful
+# Send SIGWINCH for graceful stop
+KillSignal=SIGWINCH
+KillMode=mixed
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+)
+[root@dockers myimages]# /usr/sbin/httpd -DFOREGROUND
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using fe80::458:95ff:fe22:8893. Set the 'ServerName' directive globally to suppress this message
+^C[root@dockers myimages]# systemctl status httpd
+? httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: man:httpd.service(8)
+[root@dockers myimages]# cat /usr/lib/systemd/system/httpd.service
+# See httpd.service(8) for more information on using the httpd service.
+
+# Modifying this file in-place is not recommended, because changes
+# will be overwritten during package upgrades.  To customize the
+# behaviour, run "systemctl edit httpd" to create an override unit.
+
+# For example, to pass additional options (such as -D definitions) to
+# the httpd binary at startup, create an override unit (as is done by
+# systemctl edit) and enter the following:
+
+#       [Service]
+#       Environment=OPTIONS=-DMY_DEFINE
+
+[Unit]
+Description=The Apache HTTP Server
+Wants=httpd-init.service
+After=network.target remote-fs.target nss-lookup.target httpd-init.service
+Documentation=man:httpd.service(8)
+
+[Service]
+Type=notify
+Environment=LANG=C
+
+ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND
+ExecReload=/usr/sbin/httpd $OPTIONS -k graceful
+# Send SIGWINCH for graceful stop
+KillSignal=SIGWINCH
+KillMode=mixed
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+[root@dockers myimages]# #cat /usr/lib/systemd/system/httpd.service
+[root@dockers myimages]# #/usr/sbin/httpd -DFOREGROUND
+[root@dockers myimages]#

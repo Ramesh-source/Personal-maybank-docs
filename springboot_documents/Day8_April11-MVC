@@ -1,0 +1,681 @@
+Spring Form Tag library
+----------------------------------------------
+
+-> Form Binding objects are used to store form data
+
+-> When we submit form, DispatcherServlet will capture form data and will store into form binding object
+
+-> DispatcherServlet providing flexibility in form binding
+   
+-> When we submit form all data will transfer to server in the form of String. DispatcherServlet will convert that data according form binding object filed data types.
+
+-> With this form binding mechanism we can avoid lot of boiler plate code (We no need to write logic to capture form data using request.getParameter("key"))
+--------------------------------------------------------------------
+
+Spring MVC Form Tag Library
+------------------------------
+
+-> Spring MVC module provided form tag library to simply forms development in our web application
+
+-> As part of this tag library we have several pre-defined tags like
+	
+	a)input
+	b)password
+	c)select
+	d)option & options
+	e)radioButton & radioButtons
+	f)checkbox & checkboxes etc...
+
+-> To work with Spring MVC form tag library, we need to create Form Binding class
+
+-> The java class which is representing structure of form data is called as Form Binding class
+
+-> If we have form binding class then form data can be stored to form binding class object and vice versa
+
+How to bind form fields to Form Binding Class Variables
+-------------------------------------------------------
+
+<form:form action="" modelAttribute="" method="">
+  Username : <form:input path="uname"/>
+  Password : <form:password path="pwd"/>
+</form:form>
+
+-> action attributre represents request handler url (handler method)
+
+-> method attribute represents HTTP request type (default is GET)
+
+Note: For forms we should use POST request
+
+-> modelAttribute represents mapping between form and form binding object
+
+-> path attribute represents mapping between form field and binding class variable
+
+ Student Registration Form Submission
+-------------------------------------------------------------------
+
+-> To simply forms development, Spring MVC module provided form tag library for us.
+
+-> As part of form tag library we are having below tags
+		
+		a)<form:form />
+		b)<form:input/>
+		c)<form:password/>
+		d)<form:radioButton>
+		e)<form:radioButtons/>
+		f)<form:select/>
+		g)<form:option/>
+		h)<form:options/>
+		i)<form:checkbox/>
+		j)<form:checkboxes/> etc...
+
+-> In order to use Spring MVC Form Tag library we need to add Taglib directive in our view component.
+
+Syntax to configure taglib directive
+-------------------------------------
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+		
+-> Spring MVC Form tags will be converted HTML tags in background
+
+-> To load Student Registration Form we have written one method in Controller which is binded to HTTP GET Request
+
+	@Controller
+	public class StudentController{
+		
+		@GetMapping(value={"/","/regStudent"})
+		public String loadForm(Model model){
+		
+                   //form binding class
+		   Student s = new Student( ); 
+
+		   //sending data to view
+		   model.addAttribute("stu",s);
+
+		   //logical view name
+		   return "registerStudent";
+			
+		}
+	}
+
+	<form:form action="" modelAttribute="" method="">
+		Username : <form:input path="uname"/>
+	</form:form>
+
+
+
+Form Submission
+---------------
+-> To submit a form we should write action attribute in form tag.
+
+-> action attribute represents request handler url (controller method url)
+
+-> For Form we should specify method as POST then form data will go server in Request Body
+
+	<form:form method="POST">
+	
+	</form:form>
+
+-> If we don't specify method attribute like above then it will consider as GET Request.
+
+-> If we submit a form with GET request, then form data will be appended to URL (it will be visiable). When we are dealing with sensitive information security will not be avilable.
+
+If we submit a form with GET request below are the drawbacks
+------------------------------------------------------------
+1) Form data will be displayed in URL
+2) Browsers will support upto 1024 characters only in URL
+3) MIME data can't be sent in URL (images, videos and files)
+
+Controller Method to handle form submission
+--------------------------------------------
+@Controller
+public class StudentController{
+	
+    @PostMapping(value="/registerStudent")
+    public String handleRegisterBtn(Student s, Model model){
+	
+         //form data operation (store to db)
+
+	 //send response to UI
+	 model.addAttribute("succmsg","Registration completed");
+
+	return "registerStudent";
+    }
+
+}
+
+
+ @ModelAttribute annotation
+-------------------------------------------
+-> For Form submissions we should use POST Request
+
+-> In post request data willbe sent in request body
+
+-> In GET request data will go in URL (not secureD)
+
+
+By Default Embedded Container will not reload the changes made in project
+
+When ever we make a change we need to re-start the server
+
+When we are working on development part, several times we will make code changes. For every code change if we want to restart the server it will take more time (Time waste)
+
+To avoid this problem we can use 'DevTools'
+
+DevTools will reload the changes and will re-start Boot application
+
+To Enable Dev Tools in Spring Boot application, we should add below dependency in pom.xml.
+-----------------------------------------------------------
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-devtools</artifactId>
+</dependency>
+-----------------------------------------------------------
+
+
+What is @ModelAttribute
+----------------------
+-> This is one of the important annotation in Spring MVC module
+
+-> It binds a method parameter or method return value to a named attributed and it exposes that to a view.
+
+This annotation we can use at 2 places
+---------------------------------------
+1) At method level
+------------------
+ @ModelAttribute
+ public void m1(Model model){
+	//set data to model scope
+ }
+
+If a controller having a method with @ModelAttribute annotation then that methdod will be executed for every request
+
+Use case
+--------
+-> To load common values for all views
+
+2) As method parameter
+-----------------------
+@PostMapping("/register")
+public String handleSubmitBtn(@ModelAttribute("student") Student s, 
+							Model model){
+
+     return "lvn";
+}
+
+-> To capture data coming in request into form binding object then we will at method parameter.
+
+Steps to develop Book  application
+----------------------------------------
+1) Create Spring Boot web application with below dependencies
+
+	a)spring-boot-web-starter
+	b)spring-boot-starter-data-jpa
+	c)Oracle driver
+	d)project lombok
+	e)tomcat-embed-jasper
+	f)devtools
+
+2) Create Entity class and map it to DB table
+
+3) Create Repository interface using Data JPA Repositoy
+
+4) Create Form Binding Class
+
+5) Create Servie Layer interface & implementation components
+
+6) Create Controller with required methods for request handling
+
+7) Create View Components
+
+8) Configure below properties in application.yml file
+	a) Server Port
+	b) View Resolver Configuration
+	c) Data Source Configuration
+
+9) Start Boot application and test functionality	
+
+Thymeleaf Introduction
+----------------------
+Spring Web MVC Module we are using to develop web applications
+In Spring Web MVC module we are using JSP a presentation techonology
+Traditionally this jsp is the default choice for generating html files while building web applications
+
+Important points to remember about JSP
+
+JSP is not a template engine it will not render web pages directly browser
+JSP files will be converted into servlet to produce response on the broswer.
+
+
+Thymeleaf
+--------
+Thymeleaf is a true template engine which takes HTMl file, parse it and then produce web content on browser directly.
+Thymeleaf is more like HTML View
+Using Thymeleaf we can display dynamic data in HTML files.
+Spring Boot supports for Thymeleaf as a presentation techonology
+
+Working with Thymeleaf in Spring Boot
+--------------------------------------
+Spring Boot provided below starter
+
+    spring-boot-starter-thymeleaf
+
+Note ; we no need to add any other configuration to work with thymeleaf.
+Spring Boot will inject all required configuration to work with thymeleaf.
+
+Steps to develop SB application with Thymeleaf
+------------------------------------------------
+Creat springboot application with below dependancies
+    web starter
+    thymeleaf 
+    dev tools
+
+Create controller class with required methods
+
+Create HTML view file using Thymeleaf
+    Location of view : src/main/resources/templates
+Note : View file extendsion .html only
+
+Configure server port & Run application
+
+
+
+Working with Embedded Databases
+-------------------------------
+
+Embedeed datatabase is called as in-Memory Database.
+Embedded datatabase are tightly coupled with application.
+If application start then Embedded datatabase will start.
+If application stopped Embedded datatabase will be stopped.
+Embedded datatabase are also called temporary datatabase.
+No need of any installation to work with Embedded Databases.
+If we add dependancy in pom.xml then db will be available for our application.
+There are so many Embedded datatabase available like H2,HSQL,Derby,SQlite.
+Spring boot is having good integration with Embedded datatabases.
+
+dependancy in Pom.xml
+----------------------
+<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
+DataSource configuration in application.properties
+-------------------------------------------------
+spring.datasource.url=jdbc:h2:mem:javaexpress
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect
+
+
+# Runtime we need to create database tables or schema 
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+com.javaexpress.dto(data transfer object) or com.javaexpress.bo (business object) or com.javaexpress.request
+    Request objects
+com.javaexpress.response
+    response objects
+entity
+    Table Entities
+------------------------------------------------------
+package com.javaexpress.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.javaexpress.dto.Book;
+import com.javaexpress.model.BookEntity;
+import com.javaexpress.repository.BookRepository;
+
+@Controller
+public class BookController {
+	
+	@Autowired
+	private BookRepository bookRepository;
+	
+	@GetMapping(value = {"/","/bookform"})
+	public String loadForm(Model model) {
+		Book book = new Book();
+		model.addAttribute("book",book);
+		return "addBook";
+	}
+	
+	@PostMapping(value="/addBook")
+	public String handleSubmitButton(@ModelAttribute("book")BookEntity book,Model model) {
+		BookEntity dbBook = bookRepository.save(book);
+		if(dbBook.getBookId()!=null) {
+			model.addAttribute("success", "Book Stored Successfully");
+		}
+		return "addBook";
+	}
+	
+	@GetMapping("/viewBooks")
+	public String viewAllBooks(Model model) {
+		model.addAttribute("books", bookRepository.findAll());
+		return "viewBooks";
+	}
+	
+}
+
+
+
+package com.javaexpress.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="BOOKS_TBL")
+public class BookEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer bookId;
+	
+	private String bookName;
+	
+	private String authorName;
+	
+	private String bookPrice;
+
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(String bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+	
+	
+	
+}
+
+
+package com.javaexpress.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.javaexpress.model.BookEntity;
+
+@Repository
+public interface BookRepository extends JpaRepository<BookEntity, Integer>{
+
+}
+
+
+package com.javaexpress.dto;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+public class Book {
+
+	
+	private String bookName;
+	
+	private String authorName;
+	
+	private String bookPrice;
+
+	
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(String bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+}
+
+
+spring.datasource.url=jdbc:h2:mem:javaexpress
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
+
+
+# Runtime we need to create database tables or schema 
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+spring.mvc.view.prefix=/views/
+spring.mvc.view.suffix=.jsp
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>Add New Book</h1>
+<p>${success}</p>
+<form:form action="addBook" modelAttribute="book" method="post">
+	
+	<table>
+		<tr>
+			<td>Book Name:</td>
+			<td><form:input path="bookName"/></td>
+		</tr>
+		<tr>
+			<td>Author Name:</td>
+			<td><form:input path="authorName"/></td>
+		</tr>
+		<tr>
+			<td>Book Price:</td>
+			<td><form:input path="bookPrice"/></td>
+		</tr>
+		
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Add Book"></td>
+		</tr>
+	
+	</table>
+	<a href="viewBooks">View All Books</a>
+</form:form>
+</body>
+</html>
+
+viewBooks
+----------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<a href="bookform">Add New Book</a>
+<table>
+	<thead>
+		<tr>
+			<th>Book Name</th>
+			<th>Author Name</th>
+			<th>Book Price</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<c:forEach items="${books}" var="book">
+			<tr>
+				<td>${book.bookName}</td>
+				<td>${book.authorName}</td>
+				<td>${book.bookPrice}</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+	
+</table>
+
+</body>
+</html>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.9.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.javaexpress</groupId>
+	<artifactId>27-JE-SB-SpringMVC_EmbeddedDatabase_H2</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>27-JE-SB-SpringMVC_EmbeddedDatabase_H2</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+        <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+
+

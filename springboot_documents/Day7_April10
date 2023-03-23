@@ -1,0 +1,869 @@
+Key Points
+-----------------
+-> For Running Spring Boot based applications we no need to install any server
+
+-> Spring Boot Supporting for Embedded Containers (Apache Tomcat is default Embedded Container)
+
+-> Embedded Apache Tomact Container run on port no : 8080
+
+-> If we want to change the port no then we should add below property in application.properties file
+		
+	server.port = 8081
+
+-> To parse JSP files in Boot application, we need tomcat embed jasper dependency. Add below dependency in pom.xml file
+
+<dependency>
+   <groupId>org.apache.tomcat.embed</groupId>
+   <artifactId>tomcat-embed-jasper</artifactId>
+</dependency
+
+
+How to add Context-Path in Spring Boot application?
+----------------------------------------------------
+
+server.servlet.context-path=/App
+
+Note: If we add this context-path, 
+then it is mandatory to specify in URL to access resources.
+
+Note: Context path willstart with / and it should not end with /
+
+Today's session : Working with Controller methods
+---------------------------------------------------------
+
+To create Controller we are using @Controller annotation
+@Controller annotation is a stereotype annotation 
+
+-> Inside controller we will write methods to handle requests
+
+-> Controller methods we will bind to URL patterns
+
+-> @RequestMapping annotation we will use to bind Controller method   to URL pattern
+
+--------------------Approach-1------------------------------------
+		@Controller
+		public class HomeController{
+
+			@RequestMapping("/home")
+			public ModelAndView displayHomePage(){
+					//logic
+					return mav;
+			}
+		}
+----------------------------------------------------------------------
+-> By default @RequestMapping annotation will bind our method to HTTP GET Request Method
+
+-> To bind our controller method to HTTP Post request method we should write like below
+
+		@RequestMapping(value="/home",method=RequestMethod.POST)
+
+-> One controller method can bind to multiple url patterns
+
+		@RequestMapping(value={"/","/index","/home"})
+
+
+-> From Spring 4.0 version on wards we can use below methods 
+to bind Controller methods to URL pattern
+
+	1) @GetMapping :-> To bind our method to Http Get request
+
+	Ex : 
+
+			@GetMapping("/home")
+			public ModelAndView displayHomePage(){
+					//logic
+					return mav;
+			}
+
+	2)@PostMapping :-> To bind our method to Http post request
+
+			@PostMapping("/dashboard")
+			public ModelAndView displayDashboardPage(){
+					//logic
+					return mav;
+			}
+
+	3)@PutMapping :-> To bind our method to Http PUT request
+
+			@PutMapping("/dashboard")
+			public ModelAndView displayDashboardPage(){
+					//logic
+					return mav;
+			}
+
+	4)@DeleteMapping:-> To bind our method to HTTP DELETE request
+
+			@DeleteMapping("/dashboard")
+			public ModelAndView displayDashboardPage(){
+					//logic
+					return mav;
+			}
+
+--------------------Approach-2------------------------------------
+		@Controller
+		public class HomeController{
+
+			@GetMapping("/index")
+			public String displayHomePage(Model model){
+					//logic
+					return "indexPage";
+			}
+		}
+----------------------------------------------------------------------
+Note: When Spring Controller method returns String value 
+then DispatcherServlet will consider that as a Logical View Name.
+
+Note: Taking Model object as a parameter is optional. 
+If we want to send any data from controller to UI then only Model object is required.
+
+
+-> From controller method we can return raw response also
+
+    @GetMapping("/validate")
+    public @ResponseBody String validEmail(){
+    	//logic
+    	return msg;
+    }
+    }
+
+-> When we add @RequestMapping annoation at controller method it will bind by default to 
+   HTTP GET Request. Writing method=RequestMethod.GET is optional
+
+	@RequestMapping("/index")
+	public String index(){
+		//logic
+        }
+		or
+
+	@RequestMapping(value="/index",method=RequestMethod.GET)
+	public String index(){
+		//logic
+        }
+
+-> Note: The above two methods are same
+
+-> One controller method can bind to multiple url patterns like below
+-------------------------------------------------------------------------------
+@Controller
+public class DemoController {
+
+	@RequestMapping(value = { "/", "/index", "/home" })
+	public ModelAndView index() {
+		ModelAndView mav = new ModelAndView();
+
+		// set data to model in key-value format
+		mav.addObject("msg", "Welcome to Spring MVC with Spring Boot..!!");
+
+		// set logical view name
+		mav.setViewName("index");
+
+		return mav;
+	}
+}
+----------------------------------------------------------------------------------
+-> We can send request to above controller method in below ways
+
+	1) http://localhost:<port-no>/
+	2) http://localhost:<port-no>/index
+	3) http://localhost:<port-no>/home
+	
+
+Why we need to bind one method to more than one url-pattern?
+------------------------------------------------------------
+-> When user enters ---> www.facebook.com in browser login page should be displayed
+
+-> when user click on logout --> login page should be displayed
+
+-> Here for different requests we need to process with same logic
+
+-> For this we can write our controller method like below
+
+	@RequestMapping(value={"/", "/index", "/logout"})
+	public String index(){
+		//logic
+	   return "index";
+	}
+----------------------------------------------------------------------------------
+
+-> Every Controller method we should bind to unique url-pattern
+
+-> In below scenario, both methods are binded to HTTP GET request and both are having "/home" as URL-pattern. In this situation DispatcherServlet will get confused which method it has to execute when request comes for "/home"
+	
+	@RequetMapping(value={"/", "/index", "/home"})
+	public String index( )
+
+	@RequestMapping("/home")
+	public String home()
+
+ -> Note: We can bind multiple methods to same url pattern if they are binded to    
+  Different HTTP Request methods
+
+	@RequetMapping(value={"/home"})
+	public String index( )
+
+	@RequestMapping(vallue="/home",method=RequestMethod.POST)
+	public String home()
+
+-> When multiple developers are working on web layer, there is a possibility to use same url patterns and same http request methods for more than one controller method which results ambiguity problem.
+
+-> To avoid this problem it is recommended to specify URL pattern at class level also along with the method level.
+
+	@Controller("/demo")
+	public class DemoController {	//methods goes here
+	}
+	
+	@Controller("/user")
+	public class UserController { //methods goes here
+	}
+
+
+ Sending Data From Controller To UI
+
+-> To send data from Conttoller to UI pages we are using Model Object.
+Model is an interface it is avaialble in Spring MVC.
+-> Every Controller method should be binded to URL pattern
+
+-> To bind methods to URL pattern we will use @RequestMaping or 
+Spring4.0 introduced annotations like @GetMapping and @PostMapping
+
+-> One method can be binded to more than one URL pattern
+
+-> To avoid ambiguity problems we will differentiate Request mappings at both class level and method level
+
+@Controller
+@RequestMapping("/user")
+public class UserController{
+
+     @RequestMapping(value="/signup")
+     public String displaySingUpPage(){
+		//logic goes here
+     }
+}
+
+URL to access above method : http://localhost:port/user/signup
+
+Can we store one object as a value in model objects ?
+Yes, we can store.
+
+Can we access object data in view file ?
+Yes,we can access object data in view file using variable name.
+
+
+What is the difference between below code snippets?
+---------------------------------------------------
+@Controller("/user")
+public class UserController{
+
+}
+
+@Controller
+@RequestMapping("/user")
+public class UserController{
+
+}
+
+-> First part will represent only bean name
+
+-> Second part will represent controller with URL-pattern
+
+-> We can bind Controller class to more than one url pattern
+
+-------------------------------------------------------------------------------
+@Controller
+@RequestMapping(value = { "/user", "/user1" })
+public class UserController {
+
+	@GetMapping(value = { "/index", "/index1" })
+	public String index(Model model) {
+		// set data in model to send to ui
+		model.addAttribute("msg", "Hey User, Good Morning..!!");
+		return "index";
+	}
+}
+----------------------------------------------------------------------------------------
+The above controller method can be accessed in below ways
+
+1) http://localhost:port/user/index
+2) http://localhost:port/user/index1
+3) http://localhost:port/user1/index
+4) http://localhost:port/user1/index1
+
+
+-> In controller methods we can return ModelAndView object or we can return direct 'String' object
+
+-> In ModelAndView object class we have methods to set data to model obj & to set view name
+
+	ModelAndView mav = new ModelAndView( );
+	mav.addObject(String key, Object value);
+	mav.setViewName(String viewName);
+
+
+-> If we take String as a return type for Controller method, by default DispatcherServlet will consider that as Logical view Name.
+
+-> When we are taking String as return type for Controller method then how to send the data from Controller method to UI?
+-----------------------------------------------------------------------------------------
+To send data from Controller to UI we will use Model 
+
+	
+How to access model data in View File?
+--------------------------------------
+Using Expression Language we can access data available in model scope
+
+Ex: ${key}
+
+
+---------------------------------------------------
+public String index( ){
+   return "indexPage"
+}
+In this approach we can't send data from Controller to UI
+---------------------------------------------------------
+
+
+Can we return direct response from Controller method?
+-----------------------------------------------------
+Yes, using @ResponseBody
+
+-> When we use @ResponseBody annotation for controller method, then DispatcerServet will not execute ViewResolver.
+
+
+@Controller + ResponseBody ===> Restcontroller
+
+Topic : Form based applications
+----------------------------------------------
+
+-> In web application we will have several forms
+	
+	Ex : Login, Registration, Forgot Password, Search Form
+
+-> These forms are used to collect data from end user
+
+-> In our web applications we can develop forms using below technolgies
+
+		a) HTML 
+		b) JSP
+		c) JS frameworks
+
+ Form Binding Object
+----------------------
+
+
+-> We used HTML tags to develop registration form
+
+-> In controller we have 2 methods
+		a)method for loading form (GET)
+		b)method for handling form submission (POST)
+
+-> Once form is submitted, request going to controller method which is binded to given action url in form tag.
+
+	<form action="register" >
+		<fields>
+	</form>
+
+-> action attribute represents "request-handler url-pattern"
+
+-> method attributre represents what type of HTTP request should be sent to server.
+
+-> POST request means form data will go to server in request body
+
+-> If we don't specify method as post, then by default it will be considered as GET request method.
+
+-> If we submit form with GET request then form data will be sent to server as query parameters (we can see the data in url)-security problems will be there.
+
+GET Method Use cases
+--------------------
+-> If we want to send data from Controller to UI then we will bind our controller method to GET Request method.
+
+-> If controller method is expecting sensitive information from client then we will bind our controller method to POST request methods.
+
+-> In post request data wil be sent in request body (which is safe).
+
+-> If we use GET request for form submission below are the challenges
+
+	a)Form data will be sent to serer in URL
+	b)GET req can carry onl 1024 charaterc in URl
+	c)Binary data can't sent to server using GET req
+
+@PostMapping("/register")
+public String handleSubitBtn(HttpServletReq req, Model model){
+	//capturing form data
+
+	//setting data to model
+
+	//returning logical view name
+}
+HttpServletRequest ---> To capture data coming in Request
+
+	String name = req.getParameter("uname");
+
+-> If we have more fields in form then we should write boiler plate code to capture form data.
+
+-> In application we will have several forms and every form will have several fields then we should write lot of boiler plate code in our application.
+
+-> To avoid this boiler plate code, Spring MVC provided Form Bindg OBject mechanism.
+
+----------------------------------------------------
+@PostMapping("/register")
+	public String handleSubmitBtn(User user, Model model) {
+		// Sending Data from Controller to UI
+		String succMsg = "Registration completed successfully..!!";
+		model.addAttribute("msg", succMsg);
+
+		// Returning Logical View Name
+		return "regSuccess";
+	}
+-------------------------------------------
+Sending data from UI to Controller
+-----------------------------------
+We can send data from UI to controller in below ways.
+	1) QUery parameter
+	2) Path parameter
+	3) Forms
+
+Request URl :
+	http://localhost:9090/welcome?name=bhaskar
+
+Response : Bhaskar, Welcome to Spring MVC
+
+Request URl :
+	http://localhost:9090/welcome?name=ramesh
+
+Response : ramesh, Welcome to Spring MVC
+
+ 
+ Query parameter
+ ----------------
+Query Parameters are used to send data to server in URL.
+Query Parameters should present only at end of url.
+Query Parameters will start with ?
+Query Parameters represents data in the form of key-value pair
+http://localhost:9090/welcome?id=40
+We can send more than one query Parameter also in URL using & Separator
+http://localhost:9090/getprice?book=spring&author=RodJhonson
+
+
+Path Params
+------------
+Path Params are used to send data to server in URL.
+Path Params contains values directly ( no keys)
+To Read Path Params we will use @PathVaraible(”name") in Spring MVC Controller
+Path Params can present any where in the URL.
+http://localhost:8080/book/{name}/author/{authorName}
+http://localhost:8080/book/spring/author/rodjhoson
+
+-----------------------------------
+16-JE-SB-SpringMVC_SendingDataToUI
+-----------------------------------
+
+Product Controller
+
+package com.javaexpress.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/product")
+public class ProductController {
+
+	@GetMapping("/display")
+	public String getProductInformation(Model model) {
+		model.addAttribute("pid", 101);
+		model.addAttribute("pname", "One Plus Mobile");
+		model.addAttribute("price", 50000);
+		
+		return "product";
+	}
+}
+
+-----------------
+user Controller
+-----------------
+package com.javaexpress.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.javaexpress.models.User;
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
+	@GetMapping("/display")
+	public String getProductInformation(Model model) {
+		
+		User userInformation = new User();
+		userInformation.setUserId(123);
+		userInformation.setFirstName("java");
+		userInformation.setLastName("express");
+		
+		model.addAttribute("userInfo", userInformation);
+		
+		return "user";
+	}
+}
+-----------------
+Welcome Controller
+-----------------
+package com.javaexpress.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class WelcomeController {
+	
+	@GetMapping("/hello")
+	@ResponseBody
+	public String display() {
+		return "Welcome to Spring Boot Course";
+	}
+	
+}
+// @Controller + @ReponseBody = @RestController
+
+-----
+User 
+-----
+package com.javaexpress.models;
+
+public class User {
+	
+	private Integer userId;
+	private String firstName;
+	private String lastName;
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	
+}
+
+-----------
+product.jsp
+-----------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>Product id</td>
+		<td>${pid}</td>
+	</tr>
+	<tr>
+		<td>Product Name</td>
+		<td>${pname}</td>
+	</tr>
+	<tr>
+		<td>Product Price</td>
+		<td>${price}</td>
+	</tr>
+
+</table>
+
+</body>
+</html>
+
+--------
+user.jsp
+---------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+	<h1>User Information from User Controller</h1>
+	<tr>
+		<td>User id</td>
+		<td>${userInfo.userId}</td>
+	</tr>
+	<tr>
+		<td>First Name</td>
+		<td>${userInfo.firstName}</td>
+	</tr>
+	<tr>
+		<td>last Price</td>
+		<td>${userInfo.lastName}</td>
+	</tr>
+
+</table>
+
+</body>
+</html>
+
+----------------------------------------------
+17-JE-SB-SpringMVC_QueryParameters
+------------------------------------------------
+
+WElcome Controller
+
+package com.javaexpress.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class WelcomeController {
+	
+	@GetMapping("/welcome")
+	public String displayWelcomeMsg(@RequestParam(name = "name")
+	String displayName,Model model) {
+		String outputName  =displayName.concat(",Welcome to Spring Boot Course");
+		model.addAttribute("name", outputName);
+		
+		return "index";
+	}
+	
+	
+	@GetMapping("/price")
+	public String display(@RequestParam(name = "book") String bookName,
+			@RequestParam(name = "author") String authorName,Model model) {
+		String outputName = "Price of "+bookName+"written by "+authorName+"is 300$";
+		model.addAttribute("name", outputName);
+		return "index";
+		
+	}
+	
+}
+// http://localhost:8080/getprice?book=spring&author=RodJohson
+// Price of Spring written by RodJohson is 300$
+
+
+---------
+index.jsp
+----------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+${name}
+</body>
+</html>
+
+
+-----------------------------
+18-JE-SB-SpringMVC_PathParams
+-----------------------------
+
+Book Controller
+----------------
+package com.javaexpress.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Controller
+public class BookController {
+	
+	@GetMapping("/price/{bookname}/{authorName}")
+	public String display(@PathVariable(name = "bookname") String bookName,
+			@PathVariable(name = "authorName") String authorName,Model model) {
+		String outputName = "Price of "+bookName+" written by "+authorName+" is 300$";
+		model.addAttribute("name", outputName);
+		return "index";
+		
+	}
+	
+}
+// http://localhost:8080/price/spring/rodjoshnson
+
+
+index .jsp
+----------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+${name}
+</body>
+</html>
+
+
+-----------------------------------
+19-JE-SB-SpringMVC_FormedBased_HTML
+-----------------------------------
+package com.javaexpress.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.javaexpress.models.Book;
+
+@Controller
+public class BookController {
+	
+	@GetMapping(value= {"/","/loadform","/bookinfo"})
+	public String loadForm() {
+		return "index";
+	}
+	
+	@PostMapping("/saveBook")
+	public String handleSubmitBtn(Book book,Model model) {
+		model.addAttribute("bookInfo", book);
+		return "bookdata";
+	}
+}
+
+
+------
+Book 
+------
+package com.javaexpress.models;
+
+public class Book {
+	
+	private String bookName;
+	private String authorName;
+	private String bookPrice;
+	
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	public String getAuthorName() {
+		return authorName;
+	}
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+	public String getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(String bookPrice) {
+		this.bookPrice = bookPrice;
+	}	
+}
+
+---------
+index.jsp
+---------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="saveBook" method="post" >
+	
+	<table>
+		<tr>
+			<td>Book Name</td>
+			<td><input type="text" name="bookName"></td>
+		</tr>
+		<tr>
+			<td>Author Name</td>
+			<td><input type="text" name="authorName"></td>
+		</tr>
+		<tr>
+			<td>Price</td>
+			<td><input type="text" name="bookPrice"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" name="submit"></td>
+		</tr>
+		
+	</table>
+</form>
+
+</body>
+</html>
+
+
+-------
+bookdata.jsp
+------------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>Book Name</td>
+		<td>${bookInfo.bookName}</td>
+	</tr>
+	<tr>
+		<td>Author Name</td>
+		<td>${bookInfo.authorName}</td>
+	</tr>
+	<tr>
+		<td>Book Price</td>
+		<td>${bookInfo.bookPrice}</td>
+	</tr>
+
+</table>
+
+<a href="loadform">Go Back</a>
+
+</body>
+</html>
+
+
+
+
+

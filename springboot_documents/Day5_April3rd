@@ -1,0 +1,181 @@
+Part -1 Module
+--------------
+What is Spring Boot ?
+What are the advantages of Spring Boot over Spring Framework ?
+Difference between web applicatoin vs Distributed Application ?
+what is Internal logic of run method in springboot
+What is @SpringBootApplication ?
+Which annoation will use internally for @SpringbootConfiguration ?
+What is Spring Bean ?
+How to Represent java class as spring bean ? 
+How to provide two base packages in main application ?
+When to use @Bean anotation in Spring Boot ?
+Which dependancy required to create standalone application in spring Boot ?
+Which dependancy required to create web or Distributed application in spring Boot ?
+Which dependancy required to create reative based application in spring Boot ?
+Can i use @component annoatation instead of @Service if Yes, why two annoatations are required ?
+When to use @component annoataoin and in real time where will use this annoation ?
+Can i use @Repository annoatation instead of @component ?
+What is the importance of Actuators in SpringBootApplication ?
+
+
+In Spring Data we can execute queries in below 3 ways
+-----------------------------------------------------
+1) By using predefined methods (save( ), findById(), findAll() ....)
+2) By writing findBy methods ( findByCustomerName(.), findByEmail(.) )
+3) By writing custom queries (@Query)
+		Ex : "from ContactDtlsEntity where contactEmail=:email"
+
+-> To pass values to query dynamically we can use parameters in the query
+-> In our custom queries we can use either positional parameters or named positional        parameters
+-> Positional parameters will be represented as '?'
+-> Named positional parameters means we will assign a name for the parameter
+		ex:- :email
+-> Named positional parameters will improve readability of the query
+-> Using Positional params : insert into contact_dtls values(?,?,?,?)
+-> Using Named params : insert into contact_dtls values(:id,:name:,:email,:phno)
+	-> When we use Named Positional Parameters in query, method parameter names should match    
+	with positional parameter names then Spring Data will bind method parameter values to    
+	positional parameters names in run time to execute that query.
+-> When we write hql query, dialect class will convert hql queries to sql queries in    runtime
+
+-> @Query annotation is used to execute both hql and native sql queries.
+------------------------------------------------------------------------
+
+-> Native SQl query nothing but plain sql query which uses table name and columns names in the query.
+
+	Ex : SELECT * FROM EMP_DTLS WHERE EMP_SALARY >= 20000
+
+-> NATIVE SQL queries are db dependent (db specific)
+
+->  HQL (Hibernate Query Language) queries are DB independent.
+
+-> In HQL  queries we will use entity classname and entity class variable names.
+
+	table name -----> entity class name
+	column name ---> entity class variable names
+
+	Ex : FROM Employee where empSalary>=20000
+
+-> HQL queries can't be executed in DB directly because databases knows only Sql.
+
+-> When we write hql queries in the application, those queries should be converted into sql queries to execute.
+
+-> To convert HQL queries to SQL queries we will use Dialect classes.
+-----------------------------------------------------------------------
+
+@Query("") -----> It will consider that as HQL query
+
+@Query(value="", nativeSql="true") - It will consider that as Native SQL
+
+-----------------------------------------------------------------------
+Employee ----------> EMP_DTLS
+
+empId ----------> EMP_ID
+
+empName --------> EMP_NAME
+
+empSalary ------> EMP_SALARY
+-----------------------------------------------------------------------
+SQL : SELECT * FROM EMP_DTLS
+HQL: From Employee
+
+SQL: SELECT * FROM EMP_DTLS WHERE EMP_NAME='ram';
+HQL : From Employee where empName='ram';
+
+SQL: SELECT EMP_NAME FROM EMP_DTLS WHERE EMP_ID=104;
+HQL: Select empName from Employee where empId=104;
+
+SQL: SELECT EMP_NAME,EMP_SALARY FROM EMP_DTLS WHERE EMP_ID=105;
+HQL: select empName, empSalary from Employee where empId=105;
+-------------------------------------------------------------------------
+
+-> finally we understood that we can perform db operations using data jpa in 3 ways
+
+	1) Using predefined methods
+
+	2) Using user-defined findByXXX methods
+
+	3) Using Custom Queries (@Query)
+
+
+
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+---------------------------------------------------
+It is database dependent
+Doesn't support for Oracle
+Supports for MySql
+
+@GeneratedValue(strategy = GenerationType.SEQUENCE)
+---------------------------------------------------
+Sequence is database dependent
+Oracle DB supports for Sequences but MySql DB doesn't for sequences
+When we specify GenerationType as SEQUENCE, Spring Data JPA using default sequence(HIBERNATE_SEQUENCE)
+In Realtime it is not recommended to use default sequence (HIBERNATE_SEQUENCE)
+It is recommended to create a dedicated sequence for every primary key column
+
+	CUSTOMER_ID  ---------------- CUSTOMER_ID_SEQ
+	USER_ID	     ----------------  USER_ID_SEQ
+	PRODUCT_ID   ---------------- PROD_ID_SEQ
+
+
+SEQUENCE CREATION IN DATABASE
+-----------------------------
+CREATE SEQUENCE <SEQUENCE-NAME>
+START WITH 1
+INCREMENT BY 1;
+
+Getting value from sequence
+---------------------------
+To get current value  : select sequence-name.currval from dual;
+To get next value  : select sequence-name.nextval from dual;
+
+Note: Every sequence should use unique name
+
+create sequence CUSTOMER_ID_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+Configuring Custom Sequence Generator in Entity Class
+------------------------------------------------------
+	@Id
+	@SequenceGenerator(
+				name="abc",
+				sequenceName="CUSTOMER_ID_SEQ",
+				allocationSize=1
+	)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="abc")
+	private Integer customerId;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "sequence-generator")
+	@SequenceGenerator(name = "sequence-generator", 
+		sequenceName = "employee_sequence",initialValue = 1,allocationSize = 2)
+
+With this we mapped our primary column variable with CUSTOMER_ID_SEQ
+
+When application inserting record into CUSTOMER_DTLS table 
+it will read next value from CUSTOMER_ID_SEQ for primary key column data.
+
+Custom Generators
+-----------------
+-> We are having 11 predefined generators in Hibernate
+-> Every Generator having its own algorithm to generate value for Primary Key
+-> Few Generators will generate Numeric value and few generates will generate alpha
+ numeric value for Primary key column.
+
+Custom Requirement
+------------------
+For my ORDER_DTLS table i want to generate primary key like below
+
+OD1
+OD2
+OD3
+OD4 etc....
+
+For EMP_MASTER table i want to generate primay key like below
+IBM1
+IBM2
+IBM3
+IBM4 etc...

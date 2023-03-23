@@ -1,0 +1,173 @@
+Admin console:
+https://172.31.182.106:7002/console/login/LoginForm.jsp
+user id : rhpadmin
+password : P@ssw0rd
+
+
+QA Inbox url
+http://172.31.182.106:7017/TaskInboxUI/
+http://172.31.182.106:7017/TaskInboxUI/applicationlist
+
+Initial Check:
+--------------------
+https://172.31.99.144/services/rhpcore/api/completeApplTaskParams/RHP20210000995
+
+Rest Api Body:
+
+{
+    
+}
+
+DDE
+--------------------
+RHP_APPL_STATUS Table _ INITIAL_CHECK = Completed
+UPDATE RHP_APPL_STATUS SET INITIAL_CHECK='Completed' where appl_no='RHP20210000995';
+
+Credit Checks
+--------------------
+RHP_APPL_STATUS Table
+FINANCIAL_INFO_STATUS='Completed', FINANCING_STATUS='Completed',GOODS_STATUS='Completed',CUST_DETAILS_STATUS='Completed'
+UPDATE RHP_APPL_STATUS SET FINANCIAL_INFO_STATUS='Completed', FINANCING_STATUS='Completed',
+GOODS_STATUS='Completed',CUST_DETAILS_STATUS='Completed' where appl_no='RHP20210000995';
+
+UPDATE RHP_APPL_STATUS SET CREDIT_CHECKS_STATUS='Completed' where appl_no='RHP20210000995';
+
+Should be FRAUD_ALERT ='C' || ACTION_TAKEN ='S' in rhp_fds_det table
+update rhp_fds_det set appl_no='RHP20210000995' where appl_no='RHP20210000701';
+
+
+Rest Api Body:
+
+Revert:
+{
+    "creditChecksResp":"DDE"
+}
+
+FDS:
+{
+    "creditChecksResp":"DOCS"
+}
+
+VERIFY DOCS:
+
+{
+    "creditChecksResp":"DOCS"
+}
+
+VerifyDocs
+-------------
+Rest Api Body:
+
+{
+    
+}
+
+
+Recommendation:
+--------------------
+{
+    "actionFlag":"RECOMMEND_APPROVE"
+}
+
+
+APPROVAL_BM /APPROVAL_ACM
+---------------------------
+{
+    "approvalGroup":"RHP_Head_Cre_Appr",
+    "actionFlag":"RECOMMEND_APPROVE"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Queries -- 
+--------------------
+uam :
+select * from uam_user_usergroups where user_login='12350017'; --RHP_Buss_Mgr
+update uam_user_usergroups set user_group_id='RHP_Head_Cre_Appr' where user_login='12350017' and module_id IN ('RHP','TaskInboxUI');
+
+wfi:
+----
+select * from task_instance_dtl where v_task_id='1602';
+select * from human_node_defn;
+select * from task_security_params where human_node_id='_678E529B-A645-4ADF-9D51-E7E21ECB4C83';
+select * from executionerrorinfo order by id desc;
+
+RHP:
+------
+select * from rhp_appl_task order by appl_no desc;
+select * from rhp_appl_task where appl_no='RHP20210000995';
+
+update rhp_appl_task set active_task_name='APPROVAL_ACM' where appl_no='RHP20210000995';
+
+select * from rhp_application where appl_no='RHP20210000995';
+
+update rhp_application set final_approval_group ='RHP_Zone_Mgr' where appl_no='RHP20210000995';
+
+SELECT * FROM RHP_APPL_STATUS WHERE appl_no='RHP20210000995';
+FINANCIAL_INFO_STATUS='Completed', FINANCING_STATUS='Completed',GOODS_STATUS='Completed',CUST_DETAILS_STATUS='Completed'
+UPDATE RHP_APPL_STATUS SET FINANCIAL_INFO_STATUS='Completed', FINANCING_STATUS='Completed',
+GOODS_STATUS='Completed',CUST_DETAILS_STATUS='Completed' where appl_no='RHP20210000995';
+
+FRAUD_ALERT ='C' || ACTION_TAKEN ='S'
+select * from rhp_fds_det where appl_no='RHP20210000995';
+update rhp_fds_det set appl_no='RHP20210000995' where appl_no='RHP20210000701';
+
+select final_approval_group from rhp_application where final_approval_group !=null;
+
+select * from appr_groups;
+
+select * from rhp_task_notif_template;
+
+
+select * from appr_rule_scorecard;
+
+select * from appr_rule_condition;
+--RHP_Buss_Mgr
+select * from rhp_user_assignment_setup where branch_code='88812'; --RHP_Head_Cre_Appr
+update rhp_user_assignment_setup set group_code='RHP_Head_Cre_Appr' where user_id='12350017';
+
+   @Autowired
+    private ApplLOUService applLOUService;
+
+else if (ApplTaskName.POST_APPROVAL.toString().equals(task.getActiveTaskName())) {
+    			applLOUService.generateLOUNotification(applNo);
+    		}
+------------------
+
+Generate Lou:
+https://172.31.99.144/services/rhpcore/api/generateLOUNotification/RHP20210000995
+select * from doc_master_map;
+FACIlITY_TYPE: select * from rhp_appl_financing where appl_no='RHP20210000995';
+update rhp_appl_financing set facility_type ='IF37' where appl_no='RHP20210000995';
+
+select * from rhp_appl_task where appl_no='RHP20210000995';
+select * from rhp_dealers where dealer_code='H0343025';
+--H0013003 LOU_TL_ISLAMIC_DEPOSIT_DEALER
+DEALER_CODE : select * from rhp_application where appl_no='RHP20210000995';
+select * from rhp_dealers where dealer_code='H0343025';
+update rhp_dealers set email='rameshrs@maybank.com' where dealer_code='H0343025';
+--------------------
+
+
+GenerateNotification
+----------------------------
+select * from rhp_task_notif_template;
+select * from rhp_template_master;
+select * from rhp_template_param_map where template_id='email10';
+select * from rhp_template_params; 
+select * from rhp_application;
+email : select * from rhp_dealers where dealer_code='H0343025';
+-
+
+this.generateNotification(applNo, Constants.CUSTOMER_DOCUMENT_SIGNING);

@@ -1,0 +1,228 @@
+﻿//prepare API Call to Update Lead remarks 
+String leadNo_ = (String) kcontext.getVariable("leadNo");
+String leadRemarksReq = "{\"leadNo\":\"" + leadNo_ + "\", \"inputType\":\"WORKFLOW\", \"stage\":\"LEADS_VERIFICATION\", \"remarksText\":\"Leads verification workflow is triggered!\"}";
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpinit/api/leadsRemarks");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("requestBody", leadRemarksReq);
+System.out.println("lead remarks update request: "+leadRemarksReq);
+System.out.println("lead remarks update URL: "+kcontext.getVariable("url"));
+
+//prepare API Call to Update AA Remarks
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/remarks");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("requestBody", "{\"applNo\": \"" + _applNo + "\", \"stage\": \"INITIAL_CHECK\", \"remarksText\": \"Initial Check task is being executed\"}");
+System.out.println("save AA remarks URL : "+kcontext.getVariable("url"));
+System.out.println("save AA remarks requestBody: "+kcontext.getVariable("requestBody"));
+
+//prepare API Call to Update Status
+String leadNo_ = (String) kcontext.getVariable("leadNo");
+String url_="http://172.31.20.85:7003/maybank-rhp/services/rhpinit/api/updateLeadInitiationStatus/" + leadNo_ + "/CONVERTED"; 
+kcontext.setVariable("url",url_);
+kcontext.setVariable("method","POST");
+System.out.println("lead status update to converted url: "+kcontext.getVariable("url"));
+
+System.out.println("On Exit of Update Lead Status Converted");
+String resp =  (String)  kcontext.getVariable("RestResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for update lead converted status:" + (String) jsonResult.get("status"));
+---------------------------------------------------------------------------------------
+System.out.println("On Entry of AA Remarks Initial Check");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/remarks");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("requestBody", "{\"applNo\": \"" + _applNo + "\", \"stage\": \"INITIAL_CHECK\", \"remarksText\": \"Initial Check task is being executed\"}");
+System.out.println("save AA remarks URL : "+kcontext.getVariable("url"));
+System.out.println("save AA remarks requestBody: "+kcontext.getVariable("requestBody"));
+
+System.out.println("On Exit of AA Remarks Initial Check");
+String resp =  (String)  kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for AA remarks Initial Check:" + (String) jsonResult.get("status"));
+
+System.out.println("On Entry of AA Remarks DDE");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/remarks");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("requestBody", "{\"applNo\": \"" + _applNo + "\", \"stage\": \"DETAILED_DATA_ENTRY\", \"remarksText\": \"DDE task is being executed\"}");
+System.out.println("save AA remarks URL : "+kcontext.getVariable("url"));
+System.out.println("save AA remarks requestBody: "+kcontext.getVariable("requestBody"));
+
+System.out.println("On Exit of AA Remarks DDE");
+String resp =  (String)  kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for AA remarks DDE:" + (String) jsonResult.get("status"));
+---------------------------------------------------------------------------------------------------
+System.out.println("On Entry of INITIAL_CHECK_PRE_REMARKS");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/remarks");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("requestBody", "{\"applNo\": \"" + _applNo + "\", \"stage\": \"INITIAL_CHECK\", \"remarksText\": \"Initial Check task is being executed\"}");
+System.out.println("save AA remarks URL : "+kcontext.getVariable("url"));
+System.out.println("save AA remarks requestBody: "+kcontext.getVariable("requestBody"));
+
+INITIAL_CHECK_POST_REMARKS
+----------------------------------------------------------------------------------------------
+System.out.println("On Entry of CREDIT_CHECKS_PRE_REMARKS");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/generateNotification/" + _applNo + "/CREDIT_CHECKS_PRE_REMARKS");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("CREDIT_CHECKS_PRE_REMARKS URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of CREDIT_CHECKS_PRE_REMARKS");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for CREDIT_CHECKS_PRE_REMARKS:" + (String) jsonResult.get("status"));
+--------------------------------------------------------------------------------
+System.out.println("On Entry of CREDIT_CHECKS_POST_REMARKS");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/generateNotification/" + _applNo + "/CREDIT_CHECKS_POST_REMARKS");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("CREDIT_CHECKS_POST_REMARKS URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of CREDIT_CHECKS_POST_REMARKS");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for CREDIT_CHECKS_POST_REMARKS:" + (String) jsonResult.get("status"));
+--------------------------------------------------------------------------------
+System.out.println("On Entry of VERIFY_DOCS_PRE_REMARKS");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/generateNotification/" + _applNo + "/VERIFY_DOCS_PRE_REMARKS");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("VERIFY_DOCS_PRE_REMARKS URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of VERIFY_DOCS_PRE_REMARKS");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for VERIFY_DOCS_PRE_REMARKS:" + (String) jsonResult.get("status"));
+--------------------------------------------------------------------------------
+System.out.println("On Entry of VERIFY_DOCS_POST_REMARKS");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/generateNotification/" + _applNo + "/VERIFY_DOCS_POST_REMARKS");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("VERIFY_DOCS_POST_REMARKS URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of VERIFY_DOCS_POST_REMARKS");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for VERIFY_DOCS_POST_REMARKS:" + (String) jsonResult.get("status"));
+------------------------------------------------------------------------------
+System.out.println("On Entry of RESET_INTEGRATION_STATUS");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/resetIntegrationStatus/" + _applNo);
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("RESET_INTEGRATION_STATUS URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of RESET_INTEGRATION_STATUS");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for RESET_INTEGRATION_STATUS:" + (String) jsonResult.get("status"));
+------------------------------------------------------------------------------
+System.out.println("On Entry of VIEW_PARTY_REFRESH");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/refreshConnectedParty/" + _applNo);
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("VIEW_PARTY_REFRESH URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of VIEW_PARTY_REFRESH");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for VIEW_PARTY_REFRESH:" + (String) jsonResult.get("status"));
+------------------------------------------------------------------------------
+System.out.println("On Entry of AUTO_APPROVAL");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/checkAutoApproval/" + _applNo);
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("AUTO_APPROVAL URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of AUTO_APPROVAL");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for AUTO_APPROVAL:" + (String) jsonResult.get("status"));
+kcontext.setVariable("actionFlag", jsonResult.get("data"));
+System.out.println("Decision for auto approval:" + (String) jsonResult.get("data"));
+------------------------------------------------------------------------------
+System.out.println("On Entry of STORE_PDA_MITIGTN_RULES");
+String _applNo = (String) kcontext.getVariable("applNo");
+String ruleTypes = "";
+if ("I".equals(applType)){
+	ruleTypes = "PDA_IND";
+} else if ("NI".equals(applType)){
+	ruleTypes = "PDA_NON_IND";
+}
+ruleTypes = ruleTypes + ",MITIGATION";
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/applBussRuleCheck/" + _applNo + "/" + ruleTypes);
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+System.out.println("STORE_PDA_MITIGTN_RULES URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of STORE_PDA_MITIGTN_RULES");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for STORE_PDA_MITIGTN_RULES:" + (String) jsonResult.get("status"));
+------------------------------------------------------------------------------
+System.out.println("On Entry of GET_APPROVAL_GROUP");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/saveFinalApprovalAuthorityGroup/" + _applNo);
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("authToken", "Authorization=Bearer " + jwt);
+System.out.println("GET_APPROVAL_GROUP URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of GET_APPROVAL_GROUP");
+String resp = (String) kcontext.getVariable("restResp");
+System.out.println("Response from GET_APPROVAL_GROUP: " + resp);
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for GET_APPROVAL_GROUP:" + (String) jsonResult.get("status"));
+System.out.println("Approval Group:" + (String) jsonResult.get("data"));
+kcontext.setVariable("approvalGroup", jsonResult.get("data"));
+-------------------------------------------------------------------------------
+return (KieFunctions.equalsTo(actionFlag, "RECOMMEND_APPROVE") || KieFunctions.equalsTo(actionFlag, "RECOMMEND_REJECT")) && KieFunctions.equalsTo(approvalGroup, "RHP_Zone_Mgr");
+
+return (KieFunctions.equalsTo(actionFlag, "RECOMMEND_APPROVE") || KieFunctions.equalsTo(actionFlag, "RECOMMEND_REJECT")) && KieFunctions.equalsTo(approvalGroup, "RHP_Hub_Mgr");
+
+return (KieFunctions.equalsTo(actionFlag, "RECOMMEND_APPROVE") || KieFunctions.equalsTo(actionFlag, "RECOMMEND_REJECT")) && KieFunctions.equalsTo(approvalGroup, "RHP_Mgr_Cre_Appr");
+
+return (KieFunctions.equalsTo(actionFlag, "RECOMMEND_APPROVE") || KieFunctions.equalsTo(actionFlag, "RECOMMEND_REJECT")) && KieFunctions.equalsTo(approvalGroup, "RHP_Head_Cre_Appr");
+
+return (KieFunctions.equalsTo(actionFlag, "RECOMMEND_APPROVE") || KieFunctions.equalsTo(actionFlag, "RECOMMEND_REJECT")) && KieFunctions.equalsTo(approvalGroup, "RHP_Head_Auto_Fin");
+
+return (KieFunctions.equalsTo(actionFlag, "RECOMMEND_APPROVE") || KieFunctions.equalsTo(actionFlag, "RECOMMEND_REJECT")) && KieFunctions.equalsTo(approvalGroup, "RHP_Head_Cons_Fin");
+
+------------------------------------------------------------------------
+System.out.println("On Entry of UPDATE_STATUS_APPROVE");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/updateApplStatus/" + _applNo + "/APPROVE");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("authToken", "Authorization=Bearer " + jwt);
+System.out.println("UPDATE_STATUS_APPROVE URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of UPDATE_STATUS_APPROVE");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for UPDATE_STATUS_APPROVE:" + (String) jsonResult.get("status"));
+------------------------------------------------------------------------
+System.out.println("On Entry of UPDATE_STATUS_REJECT");
+String _applNo = (String) kcontext.getVariable("applNo");
+kcontext.setVariable("url", "http://172.31.20.85:7003/maybank-rhp/services/rhpcore/api/updateApplStatus/" + _applNo + "/REJECT");
+kcontext.setVariable("method", "POST");
+kcontext.setVariable("jsonContentType", "application/json");
+kcontext.setVariable("authToken", "Authorization=Bearer " + jwt);
+System.out.println("UPDATE_STATUS_REJECT URL : " + kcontext.getVariable("url"));
+
+System.out.println("On Exit of UPDATE_STATUS_REJECT");
+String resp = (String) kcontext.getVariable("restResp");
+org.json.JSONObject jsonResult = new org.json.JSONObject(resp);
+System.out.println("status for UPDATE_STATUS_REJECT:" + (String) jsonResult.get("status"));

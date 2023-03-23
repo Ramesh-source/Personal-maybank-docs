@@ -1,0 +1,38 @@
+13
+
+To create one use the .sh extension but it doesn't really matter but it helps future users to quickly determine which file type it is. The bat name is mostly used on Windows but in Linux file name extensions do not really matter. Meaning I can call my file say run.de and it would still run in bash file but I believe it's a good practice to name them with the .sh file extension.
+
+For the editor, part uses any that is best for you between nano vim gedit emacs, but I believe gedit would be nice to start with.
+
+How to:
+
+using gedit text editor:
+
+Create the file:
+
+gedit runme.sh
+Add code into file:
+
+#!/bin/bash 
+
+
+echo "Hello World!"
+Make file executable:
+
+chmod +x runme.sh
+Run the file from terminal:
+
+./runme.sh
+
+
+
+--------------
+
+to give the permision to the perticular folder
+chmod 775 /opt/lampp/htdocs
+chmod 777 doUnitTrustFundList
+chmod +rwx doUnitTrustFundList to add permissions.
+chmod -rwx directoryname to remove permissions.
+chmod +x filename to allow executable permissions.
+chmod -wx filename to take out write and executable permissions.
+

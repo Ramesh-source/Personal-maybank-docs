@@ -1,0 +1,19 @@
+Hi Michelle,
+
+As verified configurations for world check api there is no IP address configured in RBS side, we only have configured the domain name in product state file as mentioned below.
+
+
+ 
+
+However, I am not sure if we need to install new certificates since there is a change in the IP address for the pilot environment.
+For prod, I guess we should install new cert since both IP and domain changed. 
+
+I hope there is no change in https://signon.thomsonreuters.com.
+
+Hi Ashok,
+
+Kindly let us know if there any configuratios/steps 
+
+
+Thanks 
+Ramesh Raju.S

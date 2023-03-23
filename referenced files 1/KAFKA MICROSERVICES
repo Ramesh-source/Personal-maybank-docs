@@ -1,0 +1,52 @@
+server:
+  port: 9090
+security:
+  oauth2:
+    client:
+      client-id: 96a1ae292529d0332ec8
+      client-secret: 1fe16a4fe84455293d0a2e4a4afa074b8e5df28f
+      access-token-uri: https://github.com/login/oauth/access_token
+      user-authorization-uri: https://github.com/login/oauth/authorize
+      client-authentication-scheme: form
+    resource:
+      user-info-uri: https://api.github.com/user
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-security</artifactId>
+		</dependency>
+
+
+server:
+  port: 9090
+security:
+  oauth2:
+    client:
+      client-id: 
+      client-secret: 
+      access-token-uri: https://graph.facebook.com/v10.0/oauth/access_token
+      user-authorization-uri: https://www.facebook.com/dialog/oauth
+      token-name: oauth_token
+      authenticationScheme: query
+      client-authentication-scheme: form
+    resource:
+      user-info-uri: https://graph.facebook.com/me
+
+
+
+
+KAFKA----
+https://www.apache.org/dyn/closer.cgi?path=/kafka/2.8.0/kafka_2.12-2.8.0.tgz
+http://mirrors.estointernet.in/apache/kafka/2.8.0/
+cd /Users/bhaskar/Documents/softwares/kafka_2.13-2.7.0/bin/windows
+
+Zookeper server
+
+zookeeper-server-start.bat zookeeper.properties
+
+Kafka server 
+kafka-server-start.bat server.properties
+

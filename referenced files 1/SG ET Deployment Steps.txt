@@ -1,0 +1,468 @@
+
+Pre-requisite steps SG ET Deployment
+====================================
+1)Transfer Z:\PSO-ET-custom-env.zip into /opt/IBM/WebSphere/installables/MYET/ET using winscp. Please use Binary transfer setting. 
+If prompting for credentials do enter password : 1234Hjkl (username : db2admin)
+2)Open Putty (load hostname: 172.29.74.14, username : wasapp, password : wasapp)
+3)cd /opt/IBM/WebSphere/installables/MYET/ET
+4)jar -xvf PSO-ET-custom-env.zip
+5)cd et/S1-INSTALL-INF
+6)cp ../../../s1-product-state.xml .
+7)cd /opt/IBM/WebSphere/installables/eclipse
+8)Pls go to menu and start the Cygwin-X-->XWin Server
+9)./eclipse -data /opt/IBM/WebSphere/installables/workspacenew /usr/java6/bin
+
+Deployment Steps
+================
+
+a)At Enterprise Teller > ET Client Distribution
+	1) Right Click(Hold) > Refresh
+	2) Right Click(Hold) > validate
+	3) Right Click(Hold) > Configure > Ok
+	4) Right Click(Hold) > Deploy > Ok
+
+b)At Enterprise Teller > ET Enterprise Distribution
+	1) Right Click(Hold) > Refresh
+	2) Right Click(Hold) > validate
+	3) Right Click(Hold) > Configure > Ok
+	4) Right Click(Hold) > Deploy > Ok
+	
+	
+	
+
+Restart Server:
+Standalone path:
+cd /opt/IBM/WebSphere/AppServer/profiles/ET/bin
+./stopServer.sh server1 -username Admin -password password
+./startServer.sh server1 -username Admin -password password
+
+
+Post Deployment Steps
+=====================
+1)$cd /opt/IBM/WebSphere/installables/MYET/ET
+2)$rm -r PSO-ET-custom-env.zip et
+
+
+...................................................................................................................................
+
+
+Pre-requisite steps SG ET Release Deployment
+====================================
+1)Transfer Y:\PSO-ET-custom-env.zip into /opt/IBM/WebSphere/installables/SGETRel/ET using winscp. Please use Binary transfer setting. 
+If prompting for credentials do enter password : 1234Hjkl (username : db2admin)
+2)Open Putty - Load SG Dev detail and login (load hostname: 172.29.74.14, username : wasapp, password : wasapp )
+3)cd /opt/IBM/WebSphere/installables/SGETRel/ET
+4)jar -xvf PSO-ET-custom-env.zip
+5)cd et/S1-INSTALL-INF
+6)cp ../../../s1-product-state.xml .
+7)cd /opt/IBM/WebSphere/installables/eclipse
+8)Pls go to menu and start the Cygwin-X-->XWin Server
+9)./eclipse -data /opt/IBM/WebSphere/installables/SGETRel/workspace -vm /usr/java6/bin/java
+
+Deployment Steps
+================
+
+a)At Enterprise Teller > ET Client Distribution
+	1) Right Click(Hold) > Refresh
+	2) Right Click(Hold) > validate
+	3) Right Click(Hold) > Configure > Ok
+	4) Right Click(Hold) > Deploy > Ok
+
+b)At Enterprise Teller > ET Enterprise Archive
+	1) Right Click(Hold) > Refresh
+	2) Right Click(Hold) > validate
+	3) Right Click(Hold) > Configure > Ok
+	4) Right Click(Hold) > Deploy > Ok
+
+Restart Server:
+Standalone path:
+cd /opt/IBM/WebSphere/AppServer/profiles/ETRel/bin
+./stopServer.sh server1 -username Admin -password password
+./startServer.sh server1 -username Admin -password password
+
+
+Post Deployment Steps
+=====================
+9)cd /opt/IBM/WebSphere/installables/SGETRel/ET
+10)rm -r PSO-ET-custom-env.zip et
+
+
+
+
+
+....................................................................
+Path /opt/IBM/WebSphere/AppServer/profiles/ETRel/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear/jwsweb.war/app
+
+/opt/IBM/WebSphere/AppServer/profiles/ETRel/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear
+
+
+
+       ---------------------
+       
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+       
+       Pre-requisite steps SG ET Release Deployment
+====================================
+1)Transfer Y:\PSO-ET-custom-env.zip into /opt/IBM/WebSphere/installables/SGETRel/ using winscp. Please use Binary transfer setting. 
+If prompting for credentials do enter password : 1234Hjkl (username : db2admin)
+2)Open Putty - Load SG Dev detail and login (load hostname: 172.29.74.14, username : wasapp, password : wasapp )
+Developemnt was855
+3)cd /rbssit/installables/SGET
+4)jar -xvf PSO-ET-custom-env.zip
+5)cd et/S1-INSTALL-INF
+6)cp ../../../s1-product-state.xml .
+7)cd /rbssit/installables/SGET/eclipse
+8)Pls go to menu and start the Cygwin-X-->XWin Server
+
+9)./eclipse -data /rbssit/installables/workspace13062019 -vm /usr/java6/bin/java
+
+
+dev was7
+--------------------
+cd /opt/IBM/WebSphere/AppServer/profiles/ET/bin
+./stopServer.sh server1 -username Admin -password password
+./startServer.sh server1 -username Admin -password password
+
+
+project DEV WAS85
+------------------------------------------------
+3)cd /opt/IBM/WAS85/installables/SGETRel
+4)jar -xvf PSO-ET-custom-env.zip
+5)cd et/S1-INSTALL-INF
+6)cp ../../../s1-product-state.xml .
+7)cd /opt/IBM/WAS85/installables/eclipse
+8)Pls go to menu and start the Cygwin-X-->XWin Server
+
+9)./eclipse -data /opt/IBM/WAS85/installables/workspaceMY22062019 -vm /usr/java6/bin/java
+./eclipse -data /opt/IBM/WAS85/installables/workspaceSG09072019 -vm /usr/java6/bin/java
+
+cd /opt/IBM/WAS85/AppServer/profiles/ET/bin
+./stopServer.sh server1 -username Admin -password password
+./startServer.sh server1 -username Admin -password password
+
+-------------------------------------------------------------
+
+project sit
+3)cd /rbs85sit/installables/SGET
+4)jar -xvf PSO-ET-custom-env.zip
+5)cd et/S1-INSTALL-INF
+6)cp ../../../s1-product-state.xml .
+7)cd /rbs85sit/eclipse
+8)Pls go to menu and start the Cygwin-X-->XWin Server
+
+9)./eclipse -data /rbs85sit/installables/workspace_14062019 -vm /usr/java6/bin/java
+
+./eclipse -data /opt/IBM/WAS85/installables/workspace21062019 -vm /usr/java6/bin/java
+
+
+// project sit was855
+./eclipse -data /rbs85sit/installables/workspace_14062019 -vm /usr/java6/bin/java
+3)cd /rbs85sit/installables/SGET
+jar -xvf PSO-ET-custom-env.zip
+
+
+rbs85Server01
+
+rbs85Server01
+
+stop and start the server after deployment
+
+cd /opt/IBM/WAS85/AppServer/profiles/ET/bin
+./stopServer.sh server1 -username Admin -password password
+./startServer.sh server1 -username Admin -password password
+
+
+./stopServer.sh rbs85Server01 -username Admin -password password
+./startServer.sh rbs85Server01 -username Admin -password password
+
+
+--------
+security enable --- WAS Console- invalid username and password
+cd /opt/IBM/WAS85/AppServer/bin
+./wsadmin.sh -conntype NONE
+securityoff
+exit
+
+kill the existing servers
+ps -ef |more
+kill -9 23134294
+// restart the servers
+cd /opt/IBM/WAS85/AppServer/profiles/ET/bin
+./stopServer.sh server1 -username Admin -password password
+./startServer.sh server1 -username Admin -password password
+
+
+
+
+
+
+
+project sit was8.5
+-------------------------
+cd /rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/bin
+project sit was855
+./stopServer.sh rbs85Server01 -username Admin -password password
+./startServer.sh rbs85Server01 -username Admin -password password
+
+pps sit -
+------------------
+cd /rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile02/bin
+./stopServer.sh rbs85Server02 -username Admin -password password
+./startServer.sh rbs85Server02 -username Admin -password password
+df -k
+
+remove folder using linux
+rm -rf filename - latest
+rm -r filename
+
+
+check the current directory
+pwd
+
+verify the running process
+ps -ef |more
+
+kill the process
+kill -9 23134294
+
+---
+tail -f filename
+-- to see the content inside the file
+
+
+db2jcc.jar
+
+
+grep -R 'db2jcc.jar' /rbssit/
+grep command examples
+Common grep command explained with examples in Linux:
+
+grep 'word' filename – Search any line that contains the word in filename on Linux
+grep -i 'bar' file1 – A case-insensitive search for the word ‘bar’ in Linux and Unix
+grep -R 'foo' . – Search all files in the current directory and in all of its subdirectories in Linux for the word ‘foo’
+grep -c 'nixcraft' frontpage.md – Search and display the total number of times that the string ‘nixcraft’ appears in a file named frontpage.md
+
+For renaming file:
+---------------------------
+mv filename newfilename
+
+
+
+Directories can be created on a Linux operating system using the following command
+-----------------------------------------------------------------------------------
+mkdir directoryname
+For example:
+mkdir /tmp/MUSIC
+
+
+Removing Directories
+-----------------------------------
+To remove a directory, use the command -
+rmdir directoryname
+
+To get help on any command that you do not understand, you can type
+------------------------------------
+man 
+
+The clear command
+-------------
+clear
+
+History
+----------
+history
+
+Printing a file
+--------------------------
+Once you are done with the formatting, and it is time for you to get a hard copy of the file, you need to use the following command:
+lp Filename
+
+
+
+9. locate
+------------------------
+The locate - a.k.a. find - command is meant to find a file within the Linux OS. If you don't know the name of a certain file or you aren't sure where the file is saved and stored, the locate command comes in handy. A locate command example:
+
+locate -i *red*house**city*
+
+Find the files by using the below command in linx
+--------------------------------------------------------
+find /rbssit/batch -name "rbset_EJPurge.sh" -print
+
+
+searching content in the file
+----------------------------------------
+grep -iRl "your-text-to-find" ./
+
+The basic grep command syntax is as follows:
+
+grep 'word' filename
+grep 'word' file1 file2 file3
+grep 'string1 string2'  filename
+cat otherfile | grep 'something'
+command | grep 'something'
+command option1 | grep 'data'
+grep --color 'data' fileName
+
+----------------------------------------------------------------------------------------------
+ls
+
+Lists all files and directories in the present working directory
+
+ls - R
+
+Lists files in sub-directories as well
+
+ls - a
+
+Lists hidden files as well
+
+ls - al
+
+Lists files and directories with detailed information like permissions, size, owner, etc.
+
+cat > filename
+
+Creates a new file
+
+cat filename
+
+Displays the file content
+
+cat file file2 > file3
+
+Joins two files (file1, file2) and stores the output in a new file (file3)
+
+mv  file "new file path"
+
+Moves the files to the new location
+
+mv filename new_file_name
+
+Renames the file to a new filename
+
+sudo
+
+Allows regular users to run programs with the security privileges of the superuser or root
+
+rm filename
+
+Deletes a file
+
+man
+
+Gives help information on a command
+
+history
+
+Gives a list of all past commands typed in the current terminal session
+
+clear
+
+Clears the terminal
+
+mkdir directoryname
+
+Creates a new directory in the present working directory or a at the specified path
+
+rmdir
+
+Deletes a directory
+
+mv
+
+Renames a directory
+
+pr -x	Divides the file into x columns
+pr -h	Assigns a header to the file
+pr -n	Denotes the file with Line Numbers
+lp -nc 
+lpr c	Prints "c" copies of the File
+lp -d lp -P	Specifies name of the printer
+apt-get	Command used to install and update packages
+mail -s 'subject' -c 'cc-address' -b 'bcc-address' 'to-address'	Command to send email
+mail -s "Subject" to-address < Filename	Command to send email with attachment
+
+
+
+
+
+jar signer
+
+cd /usr/java6/bin
+
+./jarsigner -keystore /opt/IBM/WAS85/installables/keystore/jwskeystore -digestalg SHA1 -storepass password /opt/IBM/WAS85/AppServer/profiles/ET/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear/jwsweb.war/app/sg__V2.1.4.99.1.jar s1
+
+./jarsigner -verify -verbose -digestalg SHA1 /opt/IBM/WAS85/AppServer/profiles/ET/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear/jwsweb.war/app/sg__V2.1.4.99.1.jar
+
+---------------- 
+
+project SIT WAS855
+----------------------------
+putty
+
+172.17.4.124 
+etwssit
+qwer1234
+
+cd /usr/java6/bin
+
+./jarsigner -keystore /rbssit/installables/keystore/jwskeystore -storepass password /rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/installedApps/mbbaixdev26newCell01/et.ear/jwsweb.war/app/sg__V2.1.7.817.jar s1
+
+./jarsigner -keystore /rbssit/installables/keystore/jwskeystore  -digestalg SHA1 -storepass password /rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/installedApps/mbbaixdev26newCell01/et.ear/jwsweb.war/app/sg__V2.1.7.777.jar s1
+
+./jarsigner -verify -verbose /rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/installedApps/mbbaixdev26newCell01/et.ear/jwsweb.war/app/sg__V2.1.7.817.jar
+
+-----------------
+
+
+project uat was855
+-------------------
+
+putty
+--
+
+172.17.4.124 
+username - etwsacp
+qwer1234
+
+cd /usr/java6/bin
+
+./jarsigner -keystore /rbsacp/apps/keystore/jwskeystore -storepass password /rbsacp/WebSphere85/AppServer/profiles/rbsacpServerProfile01/installedApps/mbbaixdev26newCell01/et.ear/jwsweb.war/app/sg__V2.1.3.187.jar s1
+./jarsigner -verify -verbose /rbsacp/WebSphere85/AppServer/profiles/rbsacpServerProfile01/installedApps/mbbaixdev26newCell01/et.ear/jwsweb.war/app/sg__V2.1.3.187.jar
+
+
+
+Batch program running
+----------------------------
+172.17.4.124
+etwssit
+qwer1234
+
+cd /rbssit/batch/bci/IGF
+./doIGF.ksh
+
+to check the logs:
+
+/rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/logs/rbs85Server01/mbbaixdev26newCell01/mbbaixdev26newCell02Node01/rbs85Server01/et
+
+To stop and start the server project sit was855:
+
+cd /rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/bin
+
+./stopServer.sh rbs85Server01 -username Admin -password password
+./startServer.sh rbs85Server01 -username Admin -password password
+
+
+sgserver path
+/rbssit/WebSphere85/AppServer/profiles/rbs85sitProfile01/installedApps/mbbaixdev26newCell01/et.ear/jwsweb.war/app/

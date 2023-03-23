@@ -1,0 +1,590 @@
+Queries
+---------------------
+
+CREATE OR REPLACE FORCE EDITIONABLE VIEW "RHPDEV"."VW_APPL_HEADER" ("APPL_PK", "LEAD_NO", "APPL_NO", "STATUS", "MAKE_MODEL", "PRODUCT_SUB_TYPE", "PRODUCT_SUB_TYPE_DESC", "APPROVAL_LEVEL", "AUTO_CENTRE_NAME", "APPLICANT_NAME", "FINANCING_AMOUNT", "CASE_TYPE", "RISK_GRADE", "SOURCING_CHANNEL", "CUST_SUB_TYPE", "CUST_SUB_TYPE_DESC", "FINANCE_MARGIN", "CUST_RISK_RATING", "DEBT_SERVICE_RATIO", "ID_NO", "ID_TYPE", "ALT_ID_NO", "ALT_ID_TYPE") AS 
+  select a.appl_pk, a.lead_no, a.appl_no, a.status, d.model, a.product_sub_type, h.ref_desc, '' as approval_level, e.branch_name,
+	case when b.cust_name is null then c.cust_name else b.cust_name end as applicant_name,
+	f.TOTAL_financing_amount AS financing_amount, '' as case_type, '' as risk_grade, a.source, 
+  	case when b.cust_name is null then c.cust_sub_type else b.cust_sub_type end as cust_sub_type, i.ref_desc as cust_sub_type_desc,
+  	f.finance_margin, j.ref_desc as cust_risk_rating,
+	'' as debt_service_ratio,
+	case when b.id_no is null then c.id_no else b.id_no end as id_no,
+	case when b.id_type is null then c.id_type else b.id_type end as id_type,
+	case when b.alt_id_no is null then c.alt_id_no else b.alt_id_no end as alt_id_no,
+	case when b.alt_id_type is null then c.alt_id_type else b.alt_id_type end as alt_id_type
+	from rhp_application a
+	left join rhp_ind_det b on a.ind_main_applicant = b.ind_pk
+	left join rhp_non_ind_det c on a.non_ind_main_applicant = c.non_ind_pk
+  left join rhp_appl_goods d on a.appl_no = d.appl_no
+  left join rhp_branches e on a.branch_code = e.branch_code
+  left join rhp_appl_financing f on a.appl_no = f.appl_no
+  --left join rhp_pricing_master g on f.facility_type = g.facility_type
+  left join rhp_common_reference h on a.product_sub_type = h.ref_code and h.ref_type='PRODUCT_SUB_TYPE'
+  left join rhp_common_reference i on (b.cust_sub_type = i.ref_code or c.cust_sub_type = i.ref_code) and i.ref_type='CUST_SUBTYPE'
+  left join rhp_common_reference j on (b.risk_category = j.ref_code or c.risk_category = j.ref_code) and j.ref_type='CUSTOMER_RISK_RATING';
+
+
+DROP VIEW VW_APPL_HEADER;
+
+
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "RHPDEV"."VW_VULNERABLE_SEGMENT" ("APPL_NO", "ZONE", "TOTAL_HS_INC_THRESHOLD", "NET_INCOME_AFT_THRESHOLD", "TOTAL_MONTHLY_INCOME", "DSR_PERCENTAGE", "NET_INCOME_AFT_COMMITMENT") AS 
+  select a.appl_no,c.zone,d.total_hs_inc_threshold,d.net_income_aft_threshold,e.total_monthly_income,f.dsr_percentage,
+		   f.total_income_dsr - f.total_mthly_commitment_dsr as net_income_aft_commitment
+	from vw_application a 
+	left join rhp_appl_address b on a.applicant_pk = b.ind_pk
+	left join rhp_postcode_mapping c on b.postal = c.postcode
+	left join rhp_zone_threshold d on c.zone = d.zone_name
+	left join rhp_entity_inc_comm_summary e on a.applicant_pk = e.cust_pk
+	left join rhp_dsr_exposure_summary f on a.appl_no = f.appl_no
+	where b.type='REST'
+	union
+	select a.appl_no,c.zone,d.total_hs_inc_threshold,d.net_income_aft_threshold,e.total_monthly_income,f.dsr_percentage,
+		   f.total_income_dsr - f.total_mthly_commitment_dsr as net_income_aft_commitment
+	from vw_application a 
+	left join rhp_appl_address b on a.applicant_pk = b.non_ind_pk
+	left join rhp_postcode_mapping c on b.postal = c.postcode
+	left join rhp_zone_threshold d on c.zone = d.zone_name
+	left join rhp_entity_inc_comm_summary e on a.applicant_pk = e.cust_pk
+	left join rhp_dsr_exposure_summary f on a.appl_no = f.appl_no
+	where b.type='RGTD';
+
+
+
+proceedures
+--------------------
+create or replace PROCEDURE          "RHP_VULNERABLE_SEGMENT_CHECK" (
+    applno      IN   VARCHAR2,
+    custpk      IN   VARCHAR2,
+    tablename   IN   VARCHAR2
+) AS
+BEGIN
+    DECLARE
+        is_applicant NUMBER;
+    BEGIN
+        IF ( tablename = 'RHP_DSR_EXPOSURE_SUMMARY' ) THEN
+            DELETE FROM rhp_vulnerable_segment
+            WHERE
+                appl_no = applno;
+
+            INSERT INTO rhp_audit_logs (
+                audit_log_pk,
+                logged_by,
+                logged_at,
+                status,
+                category,
+                event_type,
+                req_msg,
+                res_msg,
+                status_desc,
+                url
+            ) VALUES (
+                rhp_audit_log_seq.NEXTVAL,
+                'system',
+                current_timestamp,
+                'OK',
+                'DeleteVulnerableSegment',
+                'DeleteVulnerableSegmentRecordByApplno',
+                '{delete from rhp_vulnerable_segement}',
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ELSIF ( tablename = 'RHP_APPL_ADDRESS' OR tablename = 'RHP_ENTITY_INC_COMM_SUMMARY' ) THEN
+            SELECT
+                CASE
+                    WHEN EXISTS (
+                        SELECT
+                            appl_no
+                        FROM
+                            rhp_application
+                        WHERE
+                            appl_no = applno
+                            AND ( ind_main_applicant = custpk
+                                  OR non_ind_main_applicant = custpk )
+                    ) THEN
+                        1
+                    ELSE
+                        0
+                END
+            INTO is_applicant
+            FROM
+                dual;
+
+            IF ( is_applicant = 1 ) THEN
+                DELETE FROM rhp_vulnerable_segment
+                WHERE
+                    appl_no = applno;
+
+                INSERT INTO rhp_audit_logs (
+                    audit_log_pk,
+                    logged_by,
+                    logged_at,
+                    status,
+                    category,
+                    event_type,
+                    req_msg,
+                    res_msg,
+                    status_desc,
+                    url
+                ) VALUES (
+                    rhp_audit_log_seq.NEXTVAL,
+                    'system',
+                    current_timestamp,
+                    'OK',
+                    'DeleteVulnerableSegment',
+                    'DeleteVulnerableSegmentRecordByApplno',
+                    '{delete from rhp_vulnerable_segement}',
+                    NULL,
+                    NULL,
+                    NULL
+                );
+
+            END IF;
+
+        END IF;
+    END;
+
+    dbms_output.put_line('RHP_VULNERABLE_SEGMENT_CHECK exiting ...');
+END;
+
+--------------
+create or replace PROCEDURE          "RHP_APPL_PHE_CHECK" (
+    applno      IN   VARCHAR2,
+    reqMsg      IN   VARCHAR2,
+    tablename   IN   VARCHAR2
+) AS
+BEGIN
+    IF ( tablename = 'RHP_DSR_EXPOSURE_SUMMARY' ) THEN
+        DELETE FROM rhp_appl_phe
+        WHERE
+            appl_no = applno;
+
+        INSERT INTO rhp_audit_logs (
+            audit_log_pk,
+            logged_by,
+            logged_at,
+            status,
+            category,
+            event_type,
+            req_msg,
+            res_msg,
+            status_desc,
+            url
+        ) VALUES (
+            rhp_audit_log_seq.NEXTVAL,
+            'system',
+            current_timestamp,
+            'OK',
+            applno,
+            'DeletePheRecordByApplno',
+            reqMsg,
+            NULL,
+            NULL,
+            NULL
+        );
+
+    END IF;
+
+    dbms_output.put_line('RHP_APPL_PHE_CHECK  exiting ...');
+END;
+---------------------
+Triggers
+------------------
+
+create or replace TRIGGER "RHP_DSR_EXPOSURE_SUMMARY_TRG" 
+  AFTER UPDATE ON "RHP_DSR_EXPOSURE_SUMMARY"
+  REFERENCING FOR EACH ROW
+  BEGIN
+    DECLARE
+        loc_title VARCHAR(20);
+    BEGIN
+        dbms_output.put_line('RHP_DSR_EXPOSURE_SUMMARY_TRG before value...'
+                             || :old.dsr_percentage
+                             || ' new value : '
+                             || :new.dsr_percentage
+                             || :new.appl_no);
+
+        IF ( :old.dsr_percentage != :new.dsr_percentage ) THEN
+            rhp_vulnerable_segment_check(:old.appl_no, '', 'RHP_DSR_EXPOSURE_SUMMARY');
+        END IF;
+
+        IF ( :old.dsr_percentage != :new.dsr_percentage ) THEN
+            SELECT
+                recommendation_status
+            INTO loc_title
+            FROM
+                rhp_appl_status
+            WHERE
+                appl_no = :old.appl_no;
+
+            IF ( loc_title != 'Completed' OR loc_title IS NULL OR loc_title = '' ) THEN
+                rhp_appl_phe_check(:old.appl_no, 'Field Change=dsr_percentage, Old Value ="'
+                                                 || :old.dsr_percentage
+                                                 || '" , New Value ="'
+                                                 || :new.dsr_percentage
+                                                 || '" , Delete from rhp_appl_phe', 'RHP_DSR_EXPOSURE_SUMMARY');
+
+            END IF;
+
+        END IF;
+
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN dbms_output.put_line('No Application Status found. Quit');
+
+    dbms_output.put_line('rhp_dsr_exposure_summary exiting ...');
+    END;
+END;
+
+
+-------------------
+create or replace TRIGGER rhpdev.RHP_APPL_ADDRESS_TRG AFTER
+    UPDATE ON rhpdev.rhp_appl_address 
+--REFERENCING NEW AS New OLD AS Old
+    FOR EACH ROW
+BEGIN
+    DECLARE
+        applno   VARCHAR2(20);
+        custpk   VARCHAR2(20);
+    BEGIN
+        dbms_output.put_line('RHP_APPL_ADDRESS_TRG before value...'
+                             || :old.postal
+                             || ' new value : '
+                             || :new.postal);
+
+        IF ( :old.postal != :new.postal ) THEN
+            SELECT
+                appl_no
+            INTO applno
+            FROM
+                rhp_application
+            WHERE  ind_main_applicant = :old.ind_pk
+                      OR non_ind_main_applicant = :old.non_ind_pk ;
+
+            IF ( :old.ind_pk IS NOT NULL ) THEN
+                custpk := :old.ind_pk;
+            ELSIF ( :old.non_ind_pk IS NOT NULL ) THEN
+                custpk := :old.non_ind_pk;
+            END IF;
+
+            rhp_vulnerable_segment_check(applno, custpk, 'RHP_APPL_ADDRESS');
+        END IF;
+
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN dbms_output.put_line('No data found. Quit');
+
+        dbms_output.put_line('RHP_APPL_ADDRESS_TRG exiting ...');
+    END;
+END;
+
+-----------------------------
+Table Creation
+
+-- RHP_APPL_BANK_INFO
+CREATE TABLE RHP_APPL_BANK_INFO ( 
+	BANK_INFO_PK				NUMBER (*, 0) NOT NULL,
+	APPL_NO						VARCHAR2(20) NOT NULL,
+	IND_PK						VARCHAR2(20),
+	NON_IND_PK					VARCHAR2(20),
+	SEQ							NUMBER (2, 0),
+	BANK_NAME					VARCHAR2(100) NOT NULL,
+	ACCOUNT_TYPE				VARCHAR2(20) NOT NULL,
+	DATE_OPENED					DATE,
+	OVERDRAFT_STATUS			VARCHAR2(20),
+	BRANCH_NAME					VARCHAR2(100) NOT NULL,
+	ACCOUNT_NO					VARCHAR2(20) NOT NULL,
+	CREDIT_LIMIT				NUMBER (13, 2),
+	CURRENT_BALANCE				NUMBER (13, 2),
+	TOTAL_DEBITS				NUMBER (3, 0),
+	TOTAL_DEBITED_AMOUNT		NUMBER (13, 2),
+	TOTAL_CREDITS				NUMBER (3, 0),
+	TOTAL_CREDITED_AMOUNT		NUMBER (13, 2),
+	TOTAL_MONTH_END_BALANCE		NUMBER (13, 2),
+	AVG_DEBITS					NUMBER (3, 0),
+	AVG_DEBITED_AMOUNT			NUMBER (13, 2),
+	AVG_CREDITS					NUMBER (3, 0),
+	AVG_CREDITED_AMOUNT			NUMBER (13, 2),
+	AVG_MONTH_END_BALANCE		NUMBER (13, 2),
+	TOTAL_INWARD_CHEQUE_BOUNCE	NUMBER (3, 0),
+	TOTAL_OUTWARD_CHEQUE_BOUNCE	NUMBER (3, 0),
+	BANK_STMT_INCOME_CALC		NUMBER (1, 0) CHECK (BANK_STMT_INCOME_CALC IN (0, 1)),
+	COMPLETION_STATUS			VARCHAR2(20),
+	SELECTED_MONTH				NUMBER(2,0),
+	CREATED_BY    				VARCHAR2(20) DEFAULT 'SYSTEM' NOT NULL,
+	CREATED_AT    				TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	UPDATED_BY    				VARCHAR2(20) DEFAULT 'SYSTEM' NOT NULL,
+	UPDATED_AT    				TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	VERSION       				NUMBER DEFAULT 0 NOT NULL
+)
+TABLESPACE RHP_DATA;
+
+ALTER TABLE RHP_APPL_BANK_INFO
+	ADD CONSTRAINT PK_RHP_APPL_BNK_INFO
+	PRIMARY KEY (BANK_INFO_PK)
+;
+
+CREATE SEQUENCE RHP_APPL_BANK_INFO_SEQ
+	START WITH 1
+	INCREMENT BY 1
+	MAXVALUE 2147483647
+	MINVALUE 1
+	NOCYCLE
+	CACHE 20
+	NOORDER
+;
+
+ALTER TABLE RHP_APPL_BANK_INFO
+	ADD CONSTRAINT RHP_APPL_BANK_INFO_APPL_NO_FK
+	FOREIGN KEY(APPL_NO)
+	REFERENCES RHP_APPLICATION(APPL_NO)
+;
+ALTER TABLE RHP_APPL_BANK_INFO
+	ADD CONSTRAINT RHP_APPL_BANK_INFO_IND_FK
+	FOREIGN KEY(IND_PK)
+	REFERENCES RHP_IND_DET(IND_PK)
+	ON DELETE CASCADE
+;
+-----------------------
+CREATE TABLE RHP_VULNERABLE_SEGMENT ( 
+	VULNERABLE_SEGMENT_PK		NUMBER(*, 0) NOT NULL,
+	ZONE_NAME					VARCHAR2(10) NOT NULL,
+	APPL_NO						VARCHAR2(20) NOT NULL,
+	VULN_SEG_CATEGORY	        VARCHAR2(20),
+	HOUSEHOLD_INCOME            NUMBER(13, 2),
+	SRC_OF_HOUSEHOLD_INC        VARCHAR2(20),
+	TOTAL_HOUSEHOLD_INC         NUMBER(13, 2),
+	TOTAL_HOUSEHOLD_INC_THRESHOLD  NUMBER(13, 2),
+	TOTAL_HOUSEHOLD_INC_IND     VARCHAR2(20),
+	NET_INC_AFT_COMMIT_THRESHOLD NUMBER(13, 2),
+	NET_INC_AFT_COMMIT_IND      VARCHAR2(20),
+	DSR_THRESHOLD               NUMBER(13, 2),
+	DSR_IND                     VARCHAR2(20),
+	VULN_CUSTOMER_STATUS        VARCHAR2(30),
+	CREATED_BY  			    VARCHAR2(20) DEFAULT 'SYSTEM' NOT NULL,
+	CREATED_AT  			    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	UPDATED_BY  			    VARCHAR2(20) DEFAULT 'SYSTEM' NOT NULL,
+	UPDATED_AT  			    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	VERSION    			        NUMBER DEFAULT 0 NOT NULL
+)
+TABLESPACE RHP_DATA;
+
+ALTER TABLE RHP_VULNERABLE_SEGMENT
+ADD CONSTRAINT PK_RHP_VULNERABLE_SEGMENT
+PRIMARY KEY (VULNERABLE_SEGMENT_PK)
+;
+
+CREATE SEQUENCE RHP_VULNERABLE_SEGMENT_SEQ
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 2147483647
+MINVALUE 1
+NOCYCLE
+CACHE 20
+NOORDER
+;
+
+------------------
+Drop views tables trigges
+-------
+
+
+DROP PROCEDURE RHP_PROC_PULL_LOAN_FROM_FINANCING;
+
+DROP FUNCTION func_pmt;
+
+DROP FUNCTION func_get_estimate_instalment;
+
+DROP VIEW VW_AA_DEALER_SELLER_DETAILS;
+
+DROP VIEW VW_VULNERABLE_SEGMENT;
+
+DROP PROCEDURE RHP_VULNERABLE_SEGMENT_CHECK;
+
+DROP TRIGGER RHP_APPL_ADDRESS_TRG;
+
+DROP TABLE RHP_VULNERABLE_SEGMENT CASCADE CONSTRAINTS;
+DROP SEQUENCE RHP_VULNERABLE_SEGMENT_SEQ;
+-----------------------
+Alter commands
+----
+ALTER TABLE APPR_GROUPS
+ADD ORG_TYPE VARCHAR2(50);
+
+CREATE TABLE RHP_UPDATE_INTEGRATION_CHANNEL ( 
+	UPDATE_INT_PK      	NUMBER(*,0) NOT NULL,
+	APPL_NO         	VARCHAR2(20) NOT NULL,
+	APPL_STATUS        	VARCHAR2(20) NOT NULL,
+	INTEGRATION_TYPE	VARCHAR2(20) NOT NULL,
+	STATUS          	VARCHAR2(20) NOT NULL,
+	RETRY_COUNT			NUMBER(3, 0),
+	BATCH_STATUS 		VARCHAR2(20),
+	CREATED_BY    		VARCHAR2(20) DEFAULT 'SYSTEM' NOT NULL,
+	CREATED_AT    		TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	UPDATED_BY    		VARCHAR2(20) DEFAULT 'SYSTEM' NOT NULL,
+	UPDATED_AT    		TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	VERSION       		NUMBER DEFAULT 0 NOT NULL
+)
+TABLESPACE RHP_DATA;
+
+ALTER TABLE RHP_UPDATE_INTEGRATION_CHANNEL
+	ADD CONSTRAINT PK_RHP_UPDATE_INTEGRATION_CHANNEL
+	PRIMARY KEY (UPDATE_INT_PK);
+
+ALTER TABLE RHP_UPDATE_INTEGRATION_CHANNEL
+	ADD CONSTRAINT RHP_UPDATE_INTEGRATION_CHANNEL_FK
+	FOREIGN KEY(APPL_NO)
+	REFERENCES RHP_APPLICATION(APPL_NO);
+	
+CREATE SEQUENCE RHP_UPDATE_INTEGRATION_CHANNEL_SEQ
+	START WITH 1
+	INCREMENT BY 1
+	MAXVALUE 2147483647
+	MINVALUE 1
+	NOCYCLE
+	CACHE 20
+	NOORDER;
+	
+ALTER TABLE RHP_APPLICATION ADD FINAL_DECISION_DATE TIMESTAMP;	
+
+ALTER TABLE RHP_LEAD_IND_DET ADD ID_ISSUED_COUNTRY VARCHAR2(20);	
+
+ALTER TABLE RHP_LEAD_NON_IND_DET ADD ID_ISSUED_COUNTRY VARCHAR2(20);	
+
+ALTER TABLE RHP_LEAD_NON_IND_DET ADD BUSINESS_SIZE VARCHAR2(20);
+
+ALTER TABLE RHP_IND_DET ADD ID_ISSUED_COUNTRY VARCHAR2(20);	
+
+ALTER TABLE RHP_NON_IND_DET ADD ID_ISSUED_COUNTRY VARCHAR2(20);	
+
+ALTER TABLE RHP_NON_IND_DET ADD BUSINESS_SIZE VARCHAR2(20);	
+
+ALTER TABLE RHP_CCRIS_DET ADD CCRIS_ADD_REQ_DATE DATE;
+
+CREATE INDEX IDX_COMMON_REFERENCE_REF_TYPE ON TABLE RHP_COMMON_REFERENCE(REF_TYPE);
+
+---------------------
+Insert data
+----
+
+INSERT INTO RHP_PARAMETER(PARAMETER_PK, PARAM_KEY, PARAM_VALUE, MIN_LIMIT, MAX_LIMIT, TYPE, IS_ACTIVE, SEQ) VALUES
+(RHP_PARAMETER_SEQ.NEXTVAL, 'AFC_HO', '88101',0,0,'T',1,1);
+
+INSERT INTO BATCH_JOB_PARAMS(ID, JOB_NAME, JOB_TYPE, JOB_FREQUENCY, FILE_NAME, FILE_EXTENSION, FILE_FORMAT, FIELD_DELIMETER, DATA_LENGTH, HEADER_VALIDATION_REQUIRED, HEADER_SYSDATE_RANGE, HEADER_DATE_FORMAT, HEADER_VALID_DAYS, TRAILER_VALIDATION_REQUIRED, TRAILER_VALIDATION_VAL, TRAILER_RECORD_COUNT_RANGE, INPUT_PARAM1, INPUT_PARAM2, INPUT_PARAM3, DATA_VALIDATION_VAL, LAST_EXECUTION_AT, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT, VERSION, TEMPLATE_VERSION) 
+VALUES (12, 'AAAutoTrash2Job', 'DB2DB', 'Custom', '', '', '', '', NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BATCH_USER', CURRENT_TIMESTAMP, 'BATCH_USER', CURRENT_TIMESTAMP, 1, '1.0');
+
+INSERT INTO RHP_CHECKPOINT_BR_SETUP (CHECKPOINT_PK, CHECKPOINT, CHECKPOINT_NAME, RULE_ID) 
+VALUES (RHP_CHECKPOINT_BR_SETUP_SEQ.NEXTVAL, 'POST_APPROVAL_CUST_ACCEPTANCE', 'Post Approval - Customer Acceptance', '');
+
+UPDATE RHP_COMMON_REFERENCE SET REF_SUB_CODE3 = '1' WHERE REF_TYPE = 'GOODS_TYPE' AND REF_CODE IN ('PV', 'MTR', 'CD');
+UPDATE RHP_COMMON_REFERENCE SET REF_SUB_CODE3 = '0' WHERE REF_TYPE = 'GOODS_TYPE' AND REF_CODE IN ('CVA', 'CVN');
+
+
+INSERT INTO RHP_TASK_TAB_CONFIG (TASK_TAB_CONFIG_PK, TASK_ID, TAB_ID, DEFAULT_TAB, ENABLE_TAB, ENABLE_TAB_TYPE, ENABLE_TAB_GROUP) VALUES (RHP_TASK_TAB_CONFIG_SEQ.NEXTVAL, 'BM_REJECTION', 'RECOMMENDATION', 'RECOMMENDATION', 'RECOMMENDATION', 'USERGROUP', 'RHP_AFC_Mgr,RHP_Buss_Mgr');
+
+UPDATE RHP_TASK_TAB_CONFIG SET ENABLE_TAB_GROUP='RHP_PO' WHERE TASK_ID='RECOMMENDATION';
+--------------------------------------------------
+
+select * from rhp_application where auto_approval_flag !='null';
+
+rhp_application - case_type :   a.auto_approval_flag
+rhp
+
+
+
+select * from rhp_appl_goods;
+
+
+
+try {
+    		applStatusRepo.findByApplNo(verifyDocumentDTO.getApplNo()).ifPresent(applStatus -> {
+				applStatus.setDocumentStatus(Constants.COMPLETED);				
+				applStatusRepo.save(applStatus);
+			});
+		} catch (Exception e) {
+			log.debug("status reset fail: {}", e.getMessage());
+		}
+
+
+
+
+
+rhp_application - case_type :   a.auto_approval_flag
+rhp_applicaton - approval_level : a.final_approval_group
+rhp_dsr_exposure_summary -debt_service_ratio :  k.dsr_percentage
+rhp_appl_financing - finance_margin: f.finance_margin
+rhp_pricing_master - risk_grad : g.risk_grade
+
+
+
+CREATE OR REPLACE FORCE EDITIONABLE VIEW "RHPDEV"."VW_APPL_HEADER" ("APPL_PK", "LEAD_NO", "APPL_NO", "STATUS", "MAKE_MODEL", "PRODUCT_SUB_TYPE", "PRODUCT_SUB_TYPE_DESC", "APPROVAL_LEVEL", "AUTO_CENTRE_NAME", "APPLICANT_NAME", "FINANCING_AMOUNT", "CASE_TYPE", "RISK_GRADE", "SOURCING_CHANNEL", "CUST_SUB_TYPE", "CUST_SUB_TYPE_DESC", "FINANCE_MARGIN", "CUST_RISK_RATING", "DEBT_SERVICE_RATIO", "ID_NO", "ID_TYPE", "ALT_ID_NO", "ALT_ID_TYPE") AS 
+  select a.appl_pk, a.lead_no, a.appl_no, a.status, d.model, a.product_sub_type, h.ref_desc, a.final_approval_group as approval_level, e.branch_name,
+	case when b.cust_name is null then c.cust_name else b.cust_name end as applicant_name,
+	f.TOTAL_financing_amount AS financing_amount, a.auto_approval_flag as case_type, g.risk_grade as risk_grade, a.source, 
+  	case when b.cust_name is null then c.cust_sub_type else b.cust_sub_type end as cust_sub_type, i.ref_desc as cust_sub_type_desc,
+  	f.finance_margin, j.ref_desc as cust_risk_rating,
+	k.dsr_percentage as debt_service_ratio,
+	case when b.id_no is null then c.id_no else b.id_no end as id_no,
+	case when b.id_type is null then c.id_type else b.id_type end as id_type,
+	case when b.alt_id_no is null then c.alt_id_no else b.alt_id_no end as alt_id_no,
+	case when b.alt_id_type is null then c.alt_id_type else b.alt_id_type end as alt_id_type
+	from rhp_application a
+	left join rhp_ind_det b on a.ind_main_applicant = b.ind_pk
+	left join rhp_non_ind_det c on a.non_ind_main_applicant = c.non_ind_pk
+  left join rhp_appl_goods d on a.appl_no = d.appl_no
+  left join rhp_branches e on a.branch_code = e.branch_code
+  left join rhp_appl_financing f on a.appl_no = f.appl_no 
+  left join rhp_pricing_master g on f.facility_type = g.facility_type
+  left join rhp_common_reference h on a.product_sub_type = h.ref_code and h.ref_type='PRODUCT_SUB_TYPE'
+  left join rhp_common_reference i on (b.cust_sub_type = i.ref_code or c.cust_sub_type = i.ref_code) and i.ref_type='CUST_SUBTYPE'
+  left join rhp_common_reference j on (b.risk_category = j.ref_code or c.risk_category = j.ref_code) and j.ref_type='CUSTOMER_RISK_RATING'
+  left join rhp_dsr_exposure_summary k on a.appl_no = k.appl_no;
+
+
+Backup-  
+
+CREATE OR REPLACE FORCE EDITIONABLE VIEW "RHPDEV"."VW_APPL_HEADER" ("APPL_PK", "LEAD_NO", "APPL_NO", "STATUS", "MAKE_MODEL", "PRODUCT_SUB_TYPE", "PRODUCT_SUB_TYPE_DESC", "APPROVAL_LEVEL", "AUTO_CENTRE_NAME", "APPLICANT_NAME", "FINANCING_AMOUNT", "CASE_TYPE", "RISK_GRADE", "SOURCING_CHANNEL", "CUST_SUB_TYPE", "CUST_SUB_TYPE_DESC", "FINANCE_MARGIN", "CUST_RISK_RATING", "DEBT_SERVICE_RATIO", "ID_NO", "ID_TYPE", "ALT_ID_NO", "ALT_ID_TYPE") AS 
+  select a.appl_pk, a.lead_no, a.appl_no, a.status, d.model, a.product_sub_type, h.ref_desc, '' as approval_level, e.branch_name,
+	case when b.cust_name is null then c.cust_name else b.cust_name end as applicant_name,
+	f.TOTAL_financing_amount AS financing_amount, '' as case_type, '' as risk_grade, a.source, 
+  	case when b.cust_name is null then c.cust_sub_type else b.cust_sub_type end as cust_sub_type, i.ref_desc as cust_sub_type_desc,
+  	f.finance_margin, j.ref_desc as cust_risk_rating,
+	'' as debt_service_ratio,
+	case when b.id_no is null then c.id_no else b.id_no end as id_no,
+	case when b.id_type is null then c.id_type else b.id_type end as id_type,
+	case when b.alt_id_no is null then c.alt_id_no else b.alt_id_no end as alt_id_no,
+	case when b.alt_id_type is null then c.alt_id_type else b.alt_id_type end as alt_id_type
+	from rhp_application a
+	left join rhp_ind_det b on a.ind_main_applicant = b.ind_pk
+	left join rhp_non_ind_det c on a.non_ind_main_applicant = c.non_ind_pk
+  left join rhp_appl_goods d on a.appl_no = d.appl_no
+  left join rhp_branches e on a.branch_code = e.branch_code
+  left join rhp_appl_financing f on a.appl_no = f.appl_no
+  --left join rhp_pricing_master g on f.facility_type = g.facility_type
+  left join rhp_common_reference h on a.product_sub_type = h.ref_code and h.ref_type='PRODUCT_SUB_TYPE'
+  left join rhp_common_reference i on (b.cust_sub_type = i.ref_code or c.cust_sub_type = i.ref_code) and i.ref_type='CUST_SUBTYPE'
+  left join rhp_common_reference j on (b.risk_category = j.ref_code or c.risk_category = j.ref_code) and j.ref_type='CUSTOMER_RISK_RATING';
+
+
+
+select * from config;
+config_entry -PESTOS_URL
+https://172.31.182.111:8443/
+
+SIT  - https://172.31.99.146/
+
+new one dev 
+http://172.31.182.108:1443/
+
+
+
+select * from rhp_appl_task where appl_no='RHP20210000413';
+
+delete from rhp_appl_task where appl_no='RHP20210000413';
+
+select * from config;
+
+update config set config_value='https://172.31.182.111:8443/' where config_entry='PESTOS_URL';
+
+
+select * from task_instance_dtl where v_task_id='1138';

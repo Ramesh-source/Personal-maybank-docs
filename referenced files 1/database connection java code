@@ -1,0 +1,63 @@
+ /*Connection conn = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs=null;
+		
+		try {
+			try {
+				conn = ConnectionManager.getConnection();
+				try {					
+					sql = "select USERID,GIVENNAME,GROUPNAME,BRANCH from VWMBBUSERID where STATUS = '1'";
+				
+					ps = conn.prepareStatement(sql);
+					
+					rs =ps.executeQuery();
+					
+				}catch(Exception e){
+					_log.error("ConcreteSGCommonServerService :: updateReversalForAcctClosureCOMEPS ==> Exception3 :", e.getMessage());
+				} finally {
+					DbUtils.close(ps);
+				}				
+			} catch(Exception e){
+				_log.error("ConcreteSGCommonServerService :: updateReversalForAcctClosureCOMEPS ==> Exception2 in ConnectionManager.getConnection():", e.getMessage());
+			} finally {
+				ConnectionManager.releaseConnection();
+			}		
+		}
+		catch(Exception e) {
+			_log.debug("ConcreteSGCommonServerService :: updateReversalForAcctClosureCOMEPS ==> Exception1 :"+ e.getMessage());			
+		}		
+	 if(rs !=null){
+		 HSSFWorkbook wb = new HSSFWorkbook();
+         HSSFSheet sheet = wb.createSheet("IMS_ACTIVE_IDS");
+         HSSFRow row = sheet.createRow(0);
+         int i=0;
+         row.createCell((short)0).setCellValue("USERID");
+         row.createCell((short)1).setCellValue("USER NAME");
+         row.createCell((short)2).setCellValue("GROUPNAME");
+         row.createCell((short)3).setCellValue("BRANCH");
+         
+         while(rs.next()){
+           row = sheet.createRow(rs.getRow());
+           row.createCell((short)0).setCellValue(rs.getString("USERID"));
+           row.createCell((short)1).setCellValue(rs.getString("GIVENNAME"));
+           row.createCell((short)2).setCellValue(rs.getString("GROUPNAME"));
+           row.createCell((short)3).setCellValue(rs.getString("BRANCH"));
+           i++;
+         }
+          row = sheet.createRow(i++);
+          row.createCell((short)0).setCellValue("Total Records : ");	
+          row.createCell((short)1).setCellValue(i);
+          
+         byte [] emailPdfByte = wb.getBytes();
+         String emailFromat = "BPCEmail";
+         String attchementName = "ims_active_ids.xls";
+         String host="";
+         String errorMsg="";
+        try {
+           sendEmail(attchementName,host,errorMsg,emailPdfByte);
+        }catch (Exception e){
+        	_log.error("Failed to send email : ", e.getMessage());
+        }				
+		 
+		}*/

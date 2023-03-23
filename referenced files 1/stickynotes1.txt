@@ -1,0 +1,1462 @@
+
+
+ 
+SG Development Team	   
+No	Name	Ext	   
+1	Rakesh Jalla	6122	   
+2	Perumanna Meesala	1549	   
+3	Ramesh Raju Sangaraju	1366	   
+4	Suriati Binti Zainuddin	5363	   
+5	Roziyah Binti Abdul Razak	6913	   
+6	Wong Chee Mei 	3110	   
+7	Aimiza Binti Inn	3463	   
+8	Mohd Yusrin Bin Md Yusof	3302	   
+9	Nagalingam Perumal 	7861	   
+10	Lim Kok Yong	8677	   
+Testing Team	   
+1	Venu Gopal	1794	   
+  2	Gayathri	1367	   
+  3	Toni	3778	   
+ 4	Intan	1367	   
+ESB Team	   
+ 1	Jayaseel	4805	   
+ 2	Satish	2677	   
+	             BA TEAM		   
+			   
+3	Azuwa	5076	   
+ 4	Intan	1367	   
+			 
+
+00097183
+C39590
+T56696 - sit
+T56700 - uat
+
+
+4628 - 78781 work item -  Needs to verify the accountno and colleteral id
+
+ConcreteMBBLoanInquiryServerService
+findProdCustDetailsByCollateralID
+
+ConcreteMBBSGRepaymentUIService
+getAcctInfoByCollateralID
+
+
+
+findResultDetailsByInqCriteria
+findLoanAdjustmentBulkReversalDetails
+findProdCustDetailsByAcctNo
+retriveGSTAmountFromHost
+retriveGSTAmountFromHost
+
+findProdCustDetailsByCollateralID
+BSFI112 - colletaral id
+
+
+
+
+T56957 - SIT
+T56959 - UAT
+
+---------------------------------------
+
+permanna
+
+G3234102
+pw : Oct@2016
+
+teller/SO: 222206/222333
+
+HPQC/clarity: Maybank@123
+
+con00116
+-----------------------------------------
+
+http://172.25.43.244:8080/jenkins/job/SG%20ET%20Adhoc/
+
+https://clm.maybank.com.my:9443/ccm/resource/itemName/com.ibm.team.workitem.WorkItem/78705
+
+5.5 release
+
+4510 - 46853
+,4627,3954,4586
+
+
+4629 - rem - Reissue CO - serialno validation
+
+gayatri 1794
+
+655-4586 - workItem - 50375
+
+
+------------------------------------------------------------------------
+3954 - pcr 460 - 46772
+
+Teller - ramesh460
+
+
+\\172.25.20.113\Old Files\C\BFE\KTSession\KT Material - SG\PCR DONE BY BA\Azwa\BR OPS\2016\PCR460_Defect 460_To Bypass Cash Balancing and Close Cash
+
+Files
+
+logout
+
+mbbsignoff.xml
+ConcreteMBBSignOnOffUIService.java
+
+
+CashDrawer Transfer Out
+
+Z:\environment\et\j2ee\customization\sg\src\main\resources\workflow\bop\mbbcashdrawertransferoutpostflow.xml
+ConcreteMBBCashDrawerTransferOutUIService
+
+
+Enable Branch Cash Transaction
+Z:\environment\et\j2ee\customization\rg\src\main\resources\workflow\bop\mbbbranchcashtransmgmt.xml
+
+\ConcreteMBBBranchCashTransMgmtUIService.java
+
+<field name="cashTranStatus" type="S1Boolean">
+                <attributes>
+                    <persistence>
+                         <primitive column-name="CASHTRANSTATUS"/>
+                    </persistence>
+                </attributes>
+                <annotation>Teller Cash Transaction Status</annotation>
+            </field>    
+                  
+            <field name="nonCashTranStatus" type="S1Boolean">
+                <attributes>
+                    <persistence>
+                          <primitive column-name="NONCASHTRANSTATUS"/>
+                    </persistence>
+                </attributes>
+                <annotation>Teller Non Cash Transaction Status</annotation>
+            </field>
+
+
+
+Fixes 
+MBBCheckCashClosedValidator.java
+    - validate
+
+ConcreteSignOnOffUIService.java
+ConcreteMBBSignOnOffUIService.java
+Z:\environment\et\j2ee\customization\sg\src\main\resources\meta\tam\InPSOPrincipal.meta
+MBBBOPUtil.java
+MBBSystemManagedOverrideTransactionService.java
+sg_teller.properties
+MBBBOPConstants.java
+
+---------------------------
+
+4510
+ create the jar file 
+jar cvf ifx_sg.jar *
+
+HPSM - Login id
+c429_ittp_bfe
+password- Maybank@123
+
+4542 - Reversal Regionla link - Unknown status
+
+
+
+
+Defect no - 4573
+PCR
+\sg\src\main\java\com\mbb\rem\ConcreteMBBRegisterInwardRemittanceUIService.java
+
+\sg\src\main\java\com\mbb\rem\ConcreteMBBEncashmentCOUIService.java
+
+4622
+
+\ConcreteMBBSGOutwardAndIssuanceUIService.java
+//SG:PPS:4622 - Fixes for removing the currency value setting as empty due to onChange function keepon looping this method.
+
+Ip address
+
+172.25.43.220
+255.255.255.0
+172.25.43.251
+
+
+for customer search- ConcreteEcpPayGetSessionService.java
+
+getJointAccountHolders
+
+
+Testing data
+
+Local print docs
+
+C:\docs\569 pcr\develop
+
+MBB_RcvrAcctNum
+
+Account Nos
+
+BND:
+16010001027
+MYR:
+164017215750	
+php currency
+A000001PHP1001
+10010028815
+
+<VTLBJC1>00</VTLBJC1>
+
+azmawi - 1454
+intan - 1367
+azuwa  -5076
+
+approval 00 
+Joint accout holder actnos
+04015574385 - 1 p and 1 j
+04015574392 - 1 p and 3 j
+14010059957 - 1 p and 1 j
+14010060499 - 1 p and 3 j
+14014002274 - single account
+04141000540
+04141000534
+
+
+Business-Joint(1P+3H) customers: 04011004819
+
+Business-Joint(1P+1H) customers: 14010059970
+
+Business-Single customer: 04011004536
+
+
+>dormant account?
+04015517930
+04015517045
+
+
+SA Account
+14070004026
+
+
+
+SSW INQUIRY
+BSCO106
+
+
+M060532
+
+T154154
+
+
+
+
+
+
+
+04015574392
+
+
+
+
+https://www.investor.gov/investing-basics/investment-products/mutual-funds
+
+https://mutualfund.birlasunlife.com/Pages/secured/individual/FreshPurchase/Freshpurchase.aspx
+
+46804
+4266&4561 / 569&648
+
+656 - 4597  - work item - 51171
+
+project uat codes checking
+
+172.17.1.157
+
+/rbsacp/WebSphere/AppServer/profiles/rbsServerProfile02/installedApps/mbbaixdev26Node01Cell/et.ear
+
+
+ppps uat codes checking
+
+172.17.1.157
+
+/rbsacp/WebSphere/AppServer/profiles/rbsServerProfile01/nstalledApps/mbbaixdev26Node01Cell/et.ear
+
+
+project sit
+
+/rbssit/WebSphere/AppServer/profiles/rbsServerProfile01/nstalledApps/mbbaixdev26Node01Cell/et.ear
+
+ppsuat
+
+/rbssit/WebSphere/AppServer/profiles/rbsServerProfile02/installedApps/mbbaixdev26Node01Cell/et.ear
+
+
+SG:PCR-569&648(Defect 4266)-Fixes for adding the meta file and removing the hard coded values.
+
+http://www.jpj.gov.my/web/eng/acceptance-of-foreign-driving-license
+
+maps, inward tt in sgd
+vostroAccNo- sending from backend
+
+
+BSRE438: RSW Account Holder Inquiry
+
+BSRE437: RSW Transaction Status Inquiry
+
+BSRE436: Remittance Last Transaction Inquiry
+BSRE435: Remittance Inquiry
+BSRE434: CIF & Rate Inquiry
+BSRE109: Remittance Outward MEPS
+BSRE108: Remittance Outward CO
+BSRE107: Remittance Outward Regional Link
+
+BSRE211: ReIssue CO
+BSRE213 - Encashment TT
+BSRE208 - Encashment Co& DD
+
+BSRE100 - Outward FTT
+BSRE101 - Outward FDD
+BSRE207 - Inward Register
+BSRE301 - Foreign Currency Notes
+BSRE304 -Miscellaneous/ -vostro 
+BSRE200 - Inward SGD and Inward FCY
+BSRE211 - ReIssue -CO
+BSRE210 - Repurchase/refund - DD
+BSRE209 - Repurchase/ Refund - Co
+
+Account-related function
+
+
+Outwardftt
+Outwardfdd--
+Inwardsg
+EncashmentDD&CO
+Repurchase/Refund DD
+Repurchase/ Refund CO
+Repurchase / Refund TT
+ReIssue CO and DD
+Miscellaneous/ -vostro Account-related 
+Inward FCY
+
+
+function
+
+
+Enc
+fddmeps
+
+rem Miscvostroacc
+AcctId
+
+
+
+Below r d acc details:
+BR num: R84012763M
+CIF num: R025140
+Acc num: 14010060155
+5.3 release defects
+
+4591 - rem - amount in words- added ONLY STRING for amount
+
+84015013601,84015016091, 106, 113
+84015017609  - FCTD
+
+24016042460
+Tam changes - 4597
+
+>172.25.219.139:8888
+
+
+
+172.25.219.137:8888
+
+anand ext -6987
+SG:REM:UAT:4266:SIT5.4:7: Fixes for alignments in print document
+
+Toni - 920708833 + 3778
+venu- 1794
+
+Gayatri - 1367 or 1794
+
+
+5076
+
+defect 4044
+
+pending defect - 4510
+
+4573 4591
+ftt and fcn - counter rate checking
+
+
+sonarqube -
+http://172.29.74.80:9000/sonarqube/component_issues/index?id=RBS-SG-SONAR%3A%3ASIT#resolved=false|severities=BLOCKER|rules=squid%3AS2259|directories=src%2Fmain%2Fjava%2Fcom%2Fmbb%2Frem%2Fjms%2Fhandler%2Csrc%2Fmain%2Fjava%2Fcom%2Fmbb%2Frem
+username - rbs
+password - rbs@123
+
+nON INDIVIDUAL
+M060532
+T154286
+
+iNDIVIDUAL
+T154629
+B015810
+http://jom2win.com/my/
+RAMESHRAJU
+crgp343434
+//pcr-569(Defect - 4266) - ** End **
+
+
+SG-SOURCE :-SONARQUBE - FIN -NullPointers in Handlers.
+
+//SONARQUBE Changes on 08/07/2016
+
+51283 - workitem for rem - sonarqube changes
+
+ocjp 
+http://education.oracle.com/pls/web_prod-plq-dad/ou_product_category.getPage?p_cat_id=267&p_org_id=15943&lang=US#tabs-3
+
+customerno-RameshOcjp7
+reference number -098765
+
+username - sangaraju.ramesh@gmail.com
+password - Ocjp@3434
+
+java sites.
+
+javarevisited.blogspot.com
+
+Admin user -
+MbbAdmin
+Maybank@123
+
+
+TAX Enquiry - 1800885436, 0377136767, 03-7713 6655
+34544
+
+9 62091000 - 
+33137 / 33138
+jalan duta..
+
+SG20537049070
+F1532937
+
+Alina Abdul Aziz <alina@hasil.gov.my>
+
+zaidahmu@hasil.gov.my
+
+
+SHARIFAHSHAFIDA@hasil.gov.my
+sharifahshafida@hasil.gov.my
+
+singarpore online site
+https://save.ica.gov.sg/save-public/index.xhtml
+
+
+N6663466 - SATHEESH
+
+
+BA updated docs location
+\\172.25.20.113\Old Files\C\BFE\KTSession
+
+
+HPSM DETAILS
+E7354234
+Akhil@555
+
+uat - putty details
+172.17.1.157
+username - etwscap
+password - qwer1234
+
+
+
+EAC1514653568
+Hot fix - Dev env -
+/opt/IBM/WebSphere/AppServer/profiles/ETRel/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear
+
+/opt/IBM/WebSphere/AppServer/profiles/ETRel/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear/jwsweb.war/app
+
+to check the source code
+
+PUtty - username wasapp, password - wasapp
+cd /usr/java6/bin
+./jarsigner -keystore /opt/IBM/WebSphere/installables/keystore/jwskeystore -storepass password  /opt/IBM/WebSphere/AppServer/profiles/ETRel/installedApps/MBBSGBFEWADDEVNode01Cell/et.ear/jwsweb.war/app/rg__V2.4.1.55.1.jar s1
+
+TAU TESTING
+---------------------
+BR01BS3  - cO
+Password1
+B01BS23  - OFF-BROP-BS2
+Password1  - tELLER - emergency mode 
+
+(Supervisor)
+B01SM02
+Password1
+
+
+B01BS22
+Password1
+
+
+
+
+ET TAM
+B00SM02
+Password1
+
+
+B01BS42
+Password1
+
+RBS Production Defect Call details.
+
+Conference Bridge No
+Malaysia : 9 77124318
+Participant Passcode : 26109404#
+
+To Lock the systemuser id
+https://esupport.maybank.com.my/passwordmanager/
+
+
+https://esupport.maybank.com.my/passwordmanager/user_menu.php?
+
+
+Database Script - Barath
+-----------------------------
+\\10.45.28.222\BFE_Development\DB Resource hand Over\Barath_311215\SG\4375
+-----------------------------
+
+
+SIT PAcakge
+-----------------
+
+/rbssit/WebSphere/AppServer/profiles/rbsServerProfile01/installedApps/mbbaixdev26Cell01/et.ear/jwsweb.war/app
+-----------------------
+Clarity
+----------
+CON00138
+  - New
+  Sushil@222
+
+Y:\01_ADMIN\SG Timesheet\timesheet_2016.xlsx
+
+------------
+
+sit db
+password - asdf1234
+
+dev db
+password - mymets
+
+RTC Workspace:
+-----------------
+C:\Users\E7354234\workspace_production
+
+64103526 x5631 - Fredrik
+902-85118506 - Michelle
+
+
+D008948
+Z97381062
+0102214267 - idha
+https://egov.uscis.gov/casestatus/landing.do
+
+regret - chinthinchadam -- paschatapam
+virtue  - good thing - manchi pani
+dispise - dislike very much
+deplore - dislike
+98167594
+
+
+
+1800881008  -  Customer service for maybank
+ System Workstation ID - L130300018
+
+dEV lOGS
+--------
+/opt/IBM/WebSphere/AppServer/profiles/ETRel/logs/
+
+
+
+/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/logs/server1
+
+DEV putty password
+
+wasapp wasapp
+
+cd /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/logs/server1
+
+view system.logs
+
+
+SIT LOGS
+-------------
+/rbssit/WebSphere/AppServer/profiles/rbsServerProfile01/logs/mbbaixdev26Cell01/mbbaixdev26Cell02Node01/rbsServer01/et
+	
+
+ramesh..sal vesadu..oka 5500 rm 7061298739 cimb veera kishore yaramati ki transfer cheyyava...
+
+ET NAO-DP3 Maybank Tower (Teller)
+B01BS42
+Password1
+
+
+Admin user -
+MbbAdmin
+Maybank@123
+
+ 
+44350000005
+14079004585
+04011005814
+24076001396 
+
+14070004026 - DEV SERVER TESTING
+64010010142 - USD - 
+
+
+14070002109 dormant account
+
+Fcca--64010014014 USD cheque no 000010
+
+Nostro accounts
+>04011002141 
+>04011002158     
+>04011002165 
+>04011002171 
+>04011002188 
+
+321454 - cheque no
+04010409613
+
+Redmin updates - 4357
+4390
+
+
+Biller Code : 8888
+
+Ref-1 : 1004699078
+
+84015023368
+
+
+SANTHOSH - k4764627
+
+Salar G3221068
+
+
+\\DTCM225211\BFE_Development\01_ADMIN\LEAVE PLANNER\
+
+Share drive - Documents
+\\10.45.53.76\Old Files\C\BFE\KTSession\KT Material - SG
+
+
+ESB Mapping.
+
+\\10.45.53.76\Old Files\C\BFE\KTSession\KT Material - SG\ESB SG
+
+Build Request path 
+\\10.45.28.222\BFE_Development\09_REFERENCE\RTC\ET\ET CODE\HPSM_new_Build Request\SIT
+
+\\10.45.28.222\BFE_Development\09_REFERENCE\RTC\ET\ET CODE\HPSM_new_Build Request
+
+
+S1_r3.2_MAIN_BFED3.2_dev_str_code_ET3.7.3_comp_BL297_089_10092015
+
+PPS
+
+T25390  - SITPPS
+
+HPSM http://172.31.75.85:8080/SM9/index.do
+using Zaki's id .. 
+Username: 00092666
+Password: MBBfeb$2016
+
+
+S1_r3.2_MAIN_BFED3.2_dev_str_code_ET3.7.3_comp_BL349_118_11042016
+
+
+
+Ibrahim -
+
+00087795
+Maybank=123
+
+Before start the build accept the changes in rtc and close it...
+server system details-
+DB2ADMIN
+1234hJKL
+https://egov.uscis.gov/casestatus/landing.do
+
+EAC1514653568   -- Ramesh
+EAC1514654638 - pavan
+
+10.45.28.222
+Academy eTiQa, 4th Flr, No. 23, Jln Melaka, 50100 KL
+
+
+http://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
+
+
+
+Unit Trust Accs:
+T154161 - 50010489677
+T154126 - 50010489661
+
+Bonds Accs:
+T154090 - 51010003400
+M060293 - 51010002970
+
+
+84015024065
+
+sit
+/rbssit/WebSphere/AppServer/profiles/rbsServerProfile01/logs/JMSLog
+
+Uat
+/rbsacp/batch/archive/EP_TRACE
+
+
+Dev RElease
+---------
+/opt/IBM/WebSphere/AppServer/profiles/ETRel/logs/
+
+
+/opt/IBM/WebSphere/AppServer/profiles/ETRel/logs/server1/MBBSGBFEWADDEVNode01Cell/MBBSGBFEWADDEVNode01/server1/et
+
+http://www.wisegeek.org/10-most-extreme-places-on-earth-7
+
+
+http://heartuk.org.uk/cholesterol-and-diet/six-super-foods-for-lower-cholesterol
+
+039756 30000 
+64030044048
+
+L130300018
+
+
+http://www.webmd.com/balance/guide/blissing-out-10-relaxation-techniques-reduce-stress-spot?page=2
+
+
+https://egov.uscis.gov/casestatus/mycasestatus.do
+
+CON00138
+CON00138
+  - New
+ Sushil@222
+
+34544 
+1300886688
+
+http://crazyfreelancer.com/10-most-breathtaking-highways-of-the-world/6/
+
+http://economictimes.indiatimes.com/magazines/panache/11-people-who-turned-failure-into-success/articleshow/48052440.cms
+
+
+
+Finance accounts
+44330333883
+44330752386
+44330752408
+44330752386
+44330752408
+44330242113 
+44020002484 
+44331418256
+
+
+
+
+Asteroid - ulka
+volcanoes - agni parvathalu
+
+http://www.healthkart.com/vitamins-n-supplements/supplements/omega-fatty-acids?navKey=CL-1094&itracker=w:cmenu|;p:3|;c:omega-fatty-acids|;
+
+
+sunriseclick.com
+
+
+http://www.immihelp.com/visas/h1b/h1-visa-interview-sample-questions-answers.html
+
+http://www.path2usa.com/h1b-visa-guide/interview-questions
+
+http://redbus2us.com/25-min-of-h1b-visa-stamping-interview-no-client-letter-only-vendor-letter-india-2013/
+
+
+http://www.h1bwiki.com/h1b-interview-questions/
+
+http://consultattorney.visapro.com/s/login.asp
+
+
+
+con00184
+Maybank$123
+
+
+We hope you will have a wonderful day, and we wish you a year filled with health, prosperity and happiness.
+
+All the best,
+
+
+http://www.thehindu.com/opinion/interview/is-has-managed-to-repulse-most-of-the-world/article7492137.ece?homepage=true
+
+
+
+42826  - 4369  -  pcr 596
+
+13 gosts
+the last house on the left..
+american pie
+persuit of happyness
+7 pounds
+armageddon
+
+Changeling
+
+Monster.
+Zodiac
+
+the demolation man
+
+
+64010014542 -FCCA                                               
+64381000311 -JPY
+64010009565 -USD  
+
+http://javabrains.koushik.org/
+
+
+4100 -- workitem - 36330
+
+
+1.    HP Agreement Non Act / Act     -  44330333608, 44330467503  
+2.    HP Second Schedule                  -  44330138405
+3.    Memorandum HP Endorsement  -  44330655706
+4.    Guarantee of HP Agreement     -  44330355272, 44330662097
+
+
+myraceonline.com
+
+
+
+TAX Enquiry - 1800885436, 0377136767, 03-7713 6655
+34544
+
+9 62091000 - 
+33137 / 33138
+jalan duta..
+
+SG20537049070
+F153293
+
+p
+
+0362091000 ref
+
+Alina Abdul Aziz <alina@hasil.gov.my>
+
+SHARIFAHSHAFIDA@hasil.gov.my
+sharifahshafida@hasil.gov.my
+
+https://ez.hasil.gov.my/CI/TerlupaKataLaluan.aspx
+
+4386 
+
+
+4459  TASK ID FOR 4457 defect
+
+http://www.gutenberg.org/ebooks/2852?msg=welcome_stranger
+
+System does not allow to perform the  reversal transaction with different drawer, whichever the cash drawer used for forward transaction, teller  should use the same drawer while performing the reversal for that particular transaction. 
+ 
+ 
+
+
+http://www.indiatimes.com/lifestyle/self/11-hidden-treasure-troves-that-if-found-could-make-you-really-really-rich-234961.html?utm_source=TOI_Homepage_Widget&utm_medium=referral&utm_campaign=Traffic_from_TOI_Homepage_Widget
+
+http://www.hindustantimes.com/ashishshakya/an-open-letter-from-pak-foreign-office-to-citizens-of-india/article1-1378161.aspx
+
+
+04011003621
+Debit Card:
+
+IC NO. : 840715297106
+CARD NO. : 5526305400020738
+CIF : Y043910
+ACCOUNTS : 14070011638
+
+===================================
+ATM Card:
+
+IC NO. : 201021545D
+CARD NO. : 0070000217
+CIF : N069159
+ACCOUNTS : 14070011668
+
+
+ID num: R94561970
+CIF num: A055998
+ATM Card num: 0070000213
+
+
+
+ID num: 820505216381
+CIF num: V004758
+Card num: 5526305400020746
+
+
+
+
+
+
+
+
+4434  Defect.
+Nao file
+MBBSGServiceEnrollmentValidator.java
+
+DP3
+
+mbbacctservice
+mbbsgneweservicesissuance
+
+ConcreteMBBDefaultEServiceUIService
+    . setAccountTypeBasedOnSelectedAccountNo
+
+
+
+
+ConcreteMBBDefaultEServiceUIService.
+    validate
+
+"ATM Card"
+
+Debit Platinum Card
+
+
+http://economictimes.indiatimes.com/magazines/corporate-dossier/infosys-founder-nr-narayana-murthy-making-of-a-legend/articleshow/48786615.cms
+
+
+
+
+
+DB2ADMIN
+1234hJKL
+
+
+
+JAVA
+http://www.javatpoint.com/difference-between-jdk-jre-and-jvm
+
+
+http://www.studytonight.com/java/
+
+http://www.nullskull.com/q/10418373/oops-concepts-with-real-time-examples.aspx
+
+Hash Map:
+
+http://www.dineshonjava.com/2013/06/how-does-java-hashmap-work-internally.html#.VfqPad-qqko
+
+PSOPRINCIPAL lo offcrtype should be 1
+
+https://www.youtube.com/watch?v=iatOa0LhAis
+
+
+
+
+Factory pattren , templete pattren
+getInstance
+
+4268 - uat
+7612 - sit
+
+
+4415 - 626
+
+
+
+4337
+
+T154286  cifno- BUSSINESS CUSTOMER
+
+Batman - begins - 2005
+The Dark Night - BatMan. 2008
+the Dark Night Rises - batman 2012
+training of your dragon
+knowing
+pay the gost
+
+
+Arrow movie
+the flash
+
+
+Test?
+4431
+
+English
+http://englishanyone.com/
+
+
+Scenariao - Ramesh will explain
+Changes are - After run the purge script
+1. Removing the transaction or records on FSTBASETRANKY value is NULL
+2. Modified the PURGE logic for FSTTOTAL Table - included purgecondition that 
+Drawerky should not present for foriegn currency compartment - drawerkey details should be balanced  in compartment
+and local currency compartment- only the drawerkey details which are  balanced  in compartment
+3. Modified the PURGE logic for FSTOPENDRAWER Table - included purge condition that 
+Neither present for foriegn currency compartment - drawerkey details should be balanced  in compartment
+and  local currency compartment- the drawerkey details which are  balanced  in compartment
+Nor present for DrawerKEY should not be present in fstcompartment table.
+
+
+
+
+4450
+--------
+ConcreteMBBAccountServiceUIService
+ -- debitingAccountNoList
+
+
+immortals of meluha pdf
+
+the secret of the nagas
+
+the oath of the vayuputras
+
+
+9704260534 - pattan
+4367 defect
+
+
+pdf converts
+https://online2pdf.com/
+https://online2pdf.com/convert-jpg2pdf
+
+
+
+0166245045 - vijay -- 
+
+
+4457 - uat defect.
+
+
+
+current tasks:
+----------------
+Update the RCA and solution for 4449
+
+
+Foriegn currency drawer updation in fstjournalentry.
+
+PSOConcreteJournalService
+createJournalEntry
+
+
+MBBConcreteJournalService.java
+storeJournalRecord Method
+
+Development test : 
+4264
+4340
+4434
+
+
+20015066507  - td account view signatures
+SG:Defect : 4478   - Fixes for posting the transaction while clicking on the Cancel/Reject button in HSO screen
+
+
+New pcr - 626 - Defect No - 4457
+MBBSGOutwardAndIssuanceFDDForm.meta
+MBRemTXn014.document
+
+RemPrintHelper.java
+     prepareTranObjForPrint method
+
+RemPrintHelperReIssueDD.java
+  prepareTranObjForPrint method
+
+MBBSGREMCRSPrintReissueDD_withoutsuppname.document
+
+MBBSGREMCRSPrintReissueDD_withsuppname.document
+
+
+New pcr - 626 - Defect No - 4457
+MBBREMSettingHelper.java
+     getDrawerId
+
+MBRemTXn014_GBP.document
+
+RemPrintHelper.java
+     prepareTranObjForPrint method
+
+
+
+RemPrintHelperReIssueDD.java
+  prepareTranObjForPrint method
+
+MBBSGREMCRSPrintReissueDD_GBP.document
+
+80 chars
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+7653 and 7655
+
+tea shirt order
+
+\\10.45.28.222\BFE_Development\temp\Naga\Maybank TSHIRT
+
+
+
+
+--
+
+
+
+http://www.rediff.com/business/report/h-1b-visa-reform-bill-introduced-in-us-senate/20151111.htm
+
+http://www.rediff.com/business/
+
+Learn English - mail subject
+01133055762 - pattan
+172.25.30.185
+
+
+Emigration check
+http://www.imi.gov.my/index.php/en/
+
+
+
+
+
+
+4438 &4439 defect Changes
+
+Z:\environment\et\j2ee\customization\custom\src\main\resources\meta\InJournalForm.meta
+Z:\environment\et\j2ee\customization\rg\src\main\resources\skin\journal\JournalDetailsForm.skin
+JournalDetailsService.java
+journalDetailsForm.xml
+\rg\src\main\resources\meta\common\MBBInJournalEntry.meta
+\rg_server\src\main\java\com\mbb\common\journal\MBBConcreteJournalService.java
+Z:\environment\et\j2ee\customization\sg\src\main\java\com\mbb\common\journal\ConcreteMBBJournalViewUIService.java
+
+LC/FC Drawer ID
+
+			if(compartMentName !=null && !compartMentName.equals("SGD")){
+				FieldValue.setFieldValue(journalEntry,"forex_drawer_id",localUserService.getDrawer(30).getDrawerId() );
+				System.out.println("Forex:" + localUserService.getDrawer(30).getDrawerId() );
+			}
+
+
+
+
+REfference classes
+
+ConcretePSOJournalUIService - viewPSODetails
+
+
+
+
+
+
+
+netstart -ao .. To Check the 
+
+
+
+CHASUS33
+
+
+
+
+
+
+picutre resize
+http://www.shrinkpictures.com/
+
+
+http://www.bloomberg.com/news/articles/2015-07-10/japan-s-17-000-tons-of-nuclear-waste-in-search-of-a-home
+
+
+
+AbstracttransactionHandler
+Buildcredentialsrqhdr
+
+	credentialsRqHdr1.setSecTokenLogin("7950");
+		credentialsRqHdr1.setSecTokenKey("password");
+
+
+	public void buildContextRqHdr(){
+
+
+
+https://esupport.maybank.com.my/passwordmanager/
+
+
+http://crda.ap.gov.in/APCRDA/Downloads/MasterPlans/02-Draft%20Capital%20City%20Masterplan%20(Detailed%20Masster%20Plan).pdf
+
+http://yourstory.com/2014/06/amit-singhal-google/
+
+
+
+
+
+
+
+
+Mudah.com.my
+
+
+
+
+
+
+http://www.h1bwiki.com/h1b-visa-fee-doubled-bill-passed/
+
+
+20219537674
+S Ramesh Raju
+SBI
+G K Rachapalli Branch
+
+
+http://indianexpress.com/cricket/scorecard/auin01292016179124/
+
+
+
+C:\Users\K4686916\workspace_new\S1DBA_Code_Comp\DROP3-Phase2\Build\rbset_ddl_3.3.25.sql
+
+
+
+
+
+
+
+E7354234
+
+
+
+
+pdc card :
+sema: bsd3130
+host: BSA110
+5526305402069824
+
+
+10.19
+3408
+
+can check the HeapMemory allocation size for current running application using the below code
+
+ManagementFactory.getMemoryMXBean().getObjectPendingFinalizationCount();
+
+http://www.murthy.com/2016/02/11/extensive-h1b-processing-delays-due-to-increased-h1b-amendment-filings/
+
+
+
+
+
+
+
+
+
+47047 workitem - 4506 defect
+
+
+
+JVM - ADMIN CONSOL
+-Xquickstart
+
+
+
+
+
+Gaurdians
+
+
+
+Defect : 4534 - CRS DRAFT
+pcr and defect - 514 / 4093
+
+
+
+
+
+
+
+
+ConcreteMBBOutwardNextTransactionProcessingCentreUIService
+
+MBBREMConstants.java
+
+469 - line
+
+rudraraju.vishnu@gmail.com
+Pw: Vishnuair123
+
+
+50736
+4473 dp3 issue
+
+
+to access the pd
+.\devuser
+1234Hjkl
+
+
+
+
+EAC1514653568
+RN12S16033990076CC03MYRFL2302S                    RI40
+
+
+
+>242961
+
+findUserByObjectId
+
+4553 : 48031
+
+
+
+4534
+
+
+
+
+4491 - 638 defect
+
+MBBExchangeRateHelper.java
+ - getUniqueExchangeRateValue
+
+
+http://economictimes.indiatimes.com/wealth/invest/how-to-save-and-invest-for-your-childs-education/articleshow/51952339.cms
+
+
+
+
+
+
+jagarnet books
+
+
+
+UT - SERVER LOGS PATH
+/rbsacp/apps/logs/mbbaixdev26Node01Cell/mbbaixdev26Node01/server1/et
+
+ls -lrt - list of the files in folder
+vi  - view
+/type search words
+:q  quit 
+
+
+
+
+
+
+
+
+ref classes
+ConcreteMBBAHBCustomerUIService
+MBBAHBCustomerSearchForm
+isDuplicatedOciss
+mbbFinjournalDetails
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.2 Release
+4478 - 46697 - HSO - rem
+4511 - 47487 - TAU amt
+4556
+4567
+
+to copy pendrive
+MbbAdmin
+Maybank@123
+
+
+
+
+itext-1.00.jar needs to place
+Z:\environment\et\j2ee\ear\epj2ee\3rdparty\JFreeReport
+
+
+651  - 4567 
+WORK item - 48836
+
+576 - 4303 -- 42007
+
+
+
+
+
+
+
+24-06-2016
+
+Offline transaction status - unposted or offline
+
+
+
+4591 - defect class changes
+MBBTranslateAmountToWordsEnglish
+english_convert
+
+
+
+Teller id- and Host id to setup in TAM
+TELLER : 7002
+RBUAT12D4 : RBUAT12D4
+
+
+
+
+
+
+
+
+
+PPS_SIT_Enhancement_IM_RBS_Release_5_2_on_10_July_2016_ET_BL361
+
+https://clm.maybank.com.my:9443/ccm/resource/itemName/com.ibm.team.workitem.WorkItem/50186
+MBBCashDepositSG_CSHDPWTP
+4597
+
+https://www.britishcouncil.my/english/book-course/placement-test
+51283 - Rem - Null pointer exception
+51442 - Rem - True or false conditon checking
+
+
+http://172.29.74.80:9000/sonarqube/component_issues/index?id=RBS-SG-SONAR%3A%3ASIT#resolved=false|severities=BLOCKER|rules=squid%3AS2583|directories=src%2Fmain%2Fjava%2Fcom%2Fmbb%2Frem%2Fprint
+
+
+
+
+
+
+http://erican.edu.my/LanguageCentre/international.php
+
+
+Pendole - for pain killer
+
+
+Lakshmi Sharma
+insider jason statum
+
+Hadoop tutorial
+https://www.tutorialspoint.com/map_reduce/index.htm
+
+Maybank : 164717089443
+Name: Suresh Reddy Anumula

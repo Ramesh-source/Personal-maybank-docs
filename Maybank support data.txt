@@ -1,0 +1,2091 @@
+LI PHASE 1
+--------------------
+LI - Production Release
+------------------------------------
+Step1.
+
+Update back the flag value to 'N' in rg_teller properties file.
+DesktopDate validations.
+
+
+------------------------------------
+
+
+LI DEVELOPED ENTITY CODE FOR 
+BSCO101:BSCO104:BSD4101:BSD4102:
+
+1qaz2wsx
+LI UAT environment:
+1.	App Server
+a.	IP :  10.4.67.41
+b.	Hostname : mbbaixdev26
+c.	Port :          9447  (can confirm you are looking for which port.The one I mentioned is a defaulthost port of AppServer)
+d.	WAS Console (URL) : https://10.4.67.41:9048/admin
+2.	Database
+a.	IP :  10.4.67.40  OR 172.17.1.158
+b.	Hostname :mbbaixdev25
+c.	Port :60015
+d.	Database Name : SGETLIUT
+USERNAME: etdbliu
+password : 1qaz2wsx
+
+
+LI LAUNCH URL
+//c:\IBMJRE\bin\javaws.exe https://172.17.1.159:8453/et/jws/app/mbbteller.jnlp
+
+
+LI logs
+---------
+/rbslisit/WebSphere/AppServer/profiles/rbsliProfile01/logs/mbbaixdev26liCell/rbsliNode01/rbsliServer01/et
+
+LI PHASE 1
+------------------
+
+
+LI work Item(6.4 retrofit) - 98033
+
+
+
+Fields for LI Bypassing
+-----------------------------
+DeskTopDateFlag
+BypassDateValidation
+ClientDt
+
+
+UAT - SERVER
+------
+172.17.1.157
+etwsacp
+qwer1234
+
+
+Clarity
+--------------
+CON00138
+  - New
+  July@2018
+  
+  
+Extenstions
+---------------
+SG Development Team
+No	Name	Ext
+1	Rakesh Jalla	6122
+2	Perumanna Meesala	1549
+3	Ramesh Raju Sangaraju	1366
+4	Suriati Binti Zainuddin	5363
+5	Roziyah Binti Abdul Razak	6913
+6	Wong Chee Mei 	3110
+7	Aimiza Binti Inn	3463
+8	Mohd Yusrin Bin Md Yusof	3302
+9	Nagalingam Perumal 	7861
+10	Lim Kok Yong	8677
+
+Testing Team
+1	Venu Gopal	1794
+
+  3	Toni	3778
+ 4	Intan	1367
+ EDELYN 4803
+ patricia - 1367 /1794 /3034
+ 8761  - Max extenstion
+ 
+ESB Team
+ 1	Jayaseel	5198
+ 2	Satish	2677
+	             BA TEAM	
+		
+
+	
+BA Team
+
+3	Azuwa	5076
+ 4	Intan	1367
+ Laila Ext - 6368
+ ida 6370
+ 
+ DB
+ -----
+RAGA - 1809
+ 
+ 
+ SG TEAM
+ -------------------
+Fred 64103526   1 x5631
+Michele - 64103526    x5633  ( 00965 85118506)
+jonnelyn 9006564103404 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://www.userbenchmark.com/UserRun/7295867
+
+HPSM
+http://172.31.75.85:8080/SM9/index.do
+E7354234
+Feb@2018
+
+Jenkins
+-----------
+http://172.25.43.244:8080/jenkins/
+
+Sonarqube
+-------------
+http://172.29.74.80:9000/sonarqube/sessions/new#resolved=false|severities=BLOCKER|rules=squid%3AS2259|directories=src%2Fmain%2Fjava%2Fcom%2Fmbb%2Frem%2Fjms%2Fhandler%2Csrc%2Fmain%2Fjava%2Fcom%2Fmbb%2Frem
+
+
+Tax
+---------------
+http://www.hasil.gov.my/bt_goindex.php?bt_kump=5&bt_skum=1&bt_posi=7&bt_unit=1&bt_sequ=1
+
+
+Clarity
+------------
+https://clarity.maybank.com.my:8043/niku/nu#action:security.logoutAction
+
+CON00138
+  - New
+  July@2018
+
+
+System Unlock url  - Windows LOCKS
+-----------------------
+https://esupport.maybank.com.my/passwordmanager/
+
+
+
+DMG-- AIG
+\\172.25.12.185\BFE_Development\09_REFERENCE\RTC\ET\ET CODE\HPSM_new_Build Request\SG DB Build Request
+
+
+Share system
+---------------------
+\\dtcm225211\BFE_Development\04_MISC\TOOLS
+172.25.12.216
+
+
+// Build
+-------------
+172.25.12.136
+
+mbbAdmin
+Maybank@123
+
+
+BA DOCUMENTS
+\\172.25.20.113\Old Files\C\BFE\KTSession\KT Material - SG\OEM\OEM Documents
+
+
+RTC url
+https://clm.maybank.com.my:9443/ccm/
+username 
+E7354234
+Nove@123
+
+
+zdevices
+\\172.25.43.244\BFE_Development\04_MISC\TOOLS\S1\ZDevice Drivers
+
+
+----------------------------
+Andaman room booking
+---------------------------
+Name: 00094078 
+Password: 00094078
+
+URL : http://172.25.43.209:609/mrbs/web
+
+------------------------------
+
+
+LI HPQC
+------------
+http://172.17.4.218:8080/qcbin/start_a.jsp
+ramesh
+Password6789
+
+
+
+
+project uat server logs path
+-----------------------------------
+
+/rbsacp/apps/logs/mbbaixdev26Cell01/mbbaixdev26Cell03Node01/rbsServer01/et
+UAT LOGS
+/rbsacp/apps/logs/mbbaixdev26Node01Cell/mbbaixdev26Node01/server1/et
+
+
+
+LIputty 
+user name : etwssit, qwer1234
+db: etdblis,1qaz2wsx
+
+
+
+
+http://jom2win.com/my/
+
+
+
+
+Sever details
+-----------------------------
+
+UAT - SERVER
+------
+172.17.1.157
+etwsacp
+qwer1234
+
+
+staging server sit
+----------------------------------
+172.17.1.158
+wassit
+qwer1234
+
+sftp esrsftp@10.4.67.39
+/staging/files/sit/ftp/REL1/incoming/iccs
+
+
+
+1qaz2wsx
+LI UAT environment:
+--------------------------------------------------
+1.	App Server
+a.	IP :  10.4.67.41
+b.	Hostname : mbbaixdev26
+c.	Port :          9447  (can confirm you are looking for which port.The one I mentioned is a defaulthost port of AppServer)
+d.	WAS Console (URL) : https://10.4.67.41:9048/admin
+2.	Database
+a.	IP :  10.4.67.40  OR 172.17.1.158
+b.	Hostname :mbbaixdev25
+c.	Port :60015
+d.	Database Name : SGETLIUT
+USERNAME: etdbliu
+password : 1qaz2wsx
+
+
+DOCUMENTS lOCATION
+\\172.25.20.113\RBS Documents\Old Files\C\BFE\KTSession\KT Material - SG\Screen Mapping\Deposit\DP2
+
+
+LI LAUNCH URL
+//c:\IBMJRE\bin\javaws.exe https://172.17.1.159:8453/et/jws/app/mbbteller.jnlp
+
+
+SO -ilog
+http://172.17.1.145:10400/teamserver/faces/login.jsp
+rtsAdmin
+rtsAdmin
+
+
+LI logs
+---------
+/rbslisit/WebSphere/AppServer/profiles/rbsliProfile01/logs/mbbaixdev26liCell/rbsliNode01/rbsliServer01/et
+
+
+
+LI - Production Release
+------------------------------------
+Step1.
+
+Update back the flag value to 'N' in rg_teller properties file.
+DesktopDate validations.
+------------------------------------
+
+LI change id
+C46464 
+
+
+Admin permision for db2
+-----------------------------
+.\db2Admin
+1234Hjkl
+
+
+
+Conference bridge details:
+------------------------------------------
+Tel Number (For Singapore):       +65 6408 5838
+Tel Number (For Malaysia):         9 2787 7116
+Participant PIN:                               03712683
+
+
+MacFree Anti virus
+---------
+General01
+
+
+SIT DB IPADDRESS
+----------------------
+172.17.4.92
+
+
+
+
+SG PROJECT SIT
+------------------------
+172.17.4.93
+etwsacp/qwer1234
+etdbsit / qwer1234
+etwssit/qwr1234
+
+SG PROJECT UAT
+------------------------
+172.17.4.93
+etdbsit / qwer1234
+etwsacp/qwer1234
+
+
+SG DEV
+-----------
+172.29.74.14
+wasapp/wasapp
+/opt/IBM/WebSphere/AppServer/profiles/ET/logs
+/opt/IBM/WebSphere/AppServer/profiles/ET/logs/server1/MBBSGBFEWADDEVNode01Cell/MBBSGBFEWADDEVNode01/server1/et
+
+
+SG LI SIT
+-----------------
+
+
+
+
+PRODUCT STATE FILE
+-------------------------
+DEVREL - /opt/IBM/WebSphere/installables/SGETRel
+
+
+IDH Mail ids
+-----------------------
+Gangashri Prakash Patil <gangashri.pp@maybank.com>;
+ Afifah Binti Mohd Khair <afifah.mk@maybank.com>;
+ Ayeesha <ayeesha@maybank.com>; Ricardo Ferranculo III <ricardo.frcl@maybank.com>;
+ Neriza Binti Nazar <neriza.n@maybank.com>; Chenchu Babu Suraparaju <chenchubabu.s@maybank.com>;
+ Joanand Kumar A/L David Pandya Kumar <joanandkumar@maybank.com>; Azlina Binti Abd Salam <azlina.as@maybank.com>; 
+ Sanjay Kumar <sanjay.kumar@maybank.com>; Amelia A/P Raran @ Lawrence <amelia.r@maybank.com>; Amer Ali Khan <amer.ak@maybank.com>; 
+ Norhafidzah Arifah Binti Suhardi <norhafidzah.as@maybank.com>; Izzah Binti Abdul Rahman <izzah.ar@maybank.com>; 
+ Saravanan Lakshmanan <saravanan.l@maybank.com>; Mukesh Savaria <mukesh.sa@maybank.com>; 
+ Vijaya Sarada Akkinapalli <vijaya.s@maybank.com>; Satish N <satish.n@maybank.com>; 
+ Nur Azwan Afzan Binti Ahmad <azwanafzan.a@maybank.com>; Krishnan Venkateswarann <krishnan.v@maybank.com>;
+ Fatimah Binti Zubir <fatimah.z@maybank.com>; Rose Rozylianawati Binti Mohamed Razali <roserozylianawati.mr@maybank.com>;
+ Nina Sharizan Binti Zamshairi <ninasharizan.z@maybank.com>; Nor Hamidah Binti Abdullah Sani <nhamidah.as@maybank.com>;
+ Mharla May D. Guevarra <mharla.guevarra@maybank.com>; Chieng Hie Mee <hiemee.c@maybank.com>; Bodipudi Rajanikanth <bodipudi.r@maybank.com>; 
+ Nurul Thaniya Binti Mohammad <nurulthaniya.mo@maybank.com>; Tai Hang Yong <hangyong.t@maybank.com>; Pangajavalli A/P Marimuthu <valli@maybank.com>;
+ Ubong Mathew <ubong.m@maybank.com>; Manojkumar Jeganathan <manojkumar.j@maybank.com>; Nordin Bin Abdul Rahman <nordin.ar@maybank.com>; 
+ Nagalingam A/L Permal @ Perumal <nagalingam.p@maybank.com>; Tai Ying Ying <yingying.t@maybank.com>;
+ Intan Saffinas Binti Abdullah <isaffinas.a@maybank.com>; Sahfuan Bin Abdul Malik <sahfuan.am@maybank.com>; 
+ Teo Chai Kwee <chaikwee.t@maybank.com>; Devadas Shylaja Prabhuldas <devadas.sp@maybank.com>; Raquelle Mae Ouano <raquelle.mo@maybank.com>; 
+ Lee Shwu Ling <shwuling@maybank.com>; Damodar Seepana <damodar.see@maybank.com>; Jerwin Felix <jerwin.felix@maybank.com>;
+ Nor Aiza Binti Amir <noraiza.a@maybank.com>; Dilli Babu T <dillibabu.t@maybank.com>; Karanam Deepak <karanam.d@maybank.com>;
+ Ravichandra Suresh Kiran Babu Vundavali <ravichandra.s@maybank.com>; Norazuwah Binti Ahmad <norazuwah.a@maybank.com>; 
+ Zulkefly Bin Mohammed <zulkefly@maybank.com>; John Carlo Gabuya <john.cg@maybank.com>; Mohd Yusrin Bin Mohd Yusof <mohdyusrin.m@maybank.com>; 
+ Paramjit Singh Dhami <paramjit.d@maybank.com>; Patricia Simone C Padua <patricia.scp@maybank.com>; Siva Krishna Ramayanam <sivakrishna.r@maybank.com>;
+ Rakesh Jalla <rakesh.j@maybank.com>; Nur Faeza Binti Mahamud <faeza.m@maybank.com>; Tamimah Bivi Binti Mohamed Sahthullah <tamimah@maybank.com>;
+ Hani Nasuha Binti Haris <haninasuha.h@maybank.com>; Marilou L. Reña <marilou.lr@maybank.com>; Ashitha Sasisekharan <ashitha.sa@maybank.com>;
+ Muhammad Saufi Bin Ab Rahim <msaufi.ar@maybank.com>
+
+
+
+
+
+
+RBS Login Credentials:
+BFESG21-17
+B01BS21
+Password1
+LI Environment:
+L01BS11 
+Maybank01#
+TAM Login Credentials:
+B00SM00
+
+HOST Credentials: RB12:
+rbuat12c5-Apr@2018-HOST
+bfuata1-Maybank@1-BWCIF
+bfuatb1-Maybank1-BWCIF
+RB13:
+RBUAT13C4
+maybank43
+RB16:
+RBSIT16M1
+July@2017
+
+Clarity Timesheet:https://clarity.maybank.com.my:8043/niku/nu#action:projmgr.projectDefaultTab&id=5089741&tenantId=clarity
+CON00094
+M@yB@nk2
+
+MyPortul2u:
+http://myportal2u.maybank.com.my/wps/portal
+J5061850
+Portul@u9
+
+JMS Logs Path:
+/rbssit/WebSphere/AppServer/profiles/rbsServerProfile01/logs/JMSLog
+
+Crystal Reports:
+http://172.29.75.8:9080/BOE/BI
+System: branchsuat1capp:6401
+User Name: Super13 or Super14
+Password: Password1
+Aunthentication: LDAP
+
+For BA:
+172.25.219.56
+B01BS14
+
+27 Web Server
+26 App Server
+157 App Server
+
+
+
+
+Extensions:
+Toni : 3778
+Menara : 920708833
+
+Ramesh : 1366
+
+Jass : 2966
+Steven : 7158
+Fauziah : 1660
+
+Michelle Soo : 9006564103526 X 5633
+Fredrik : 9006564103526 X 5631
+JJ (RL_BND accs) : 9006564103721
+Alona (SIBS) : 9006563610502
+Yi Fei (SIBS) : 9006564103869
+Carla : 9006564103888 X 5640
+Roland : 9006563610572
+Maybank Help Desk: 91800881008
+
+SG-RBS Conference details:
+Conference Bridge No:
+Malaysia : 9 77124318
+Participant Passcode : 26109404#
+
+
+
+----------------------
+
+1. Product Code as per below
+00 = Cashier Order
+01 = Demand Draft
+02 = Traveller’s Cheque
+03 = Foreign Note
+04 = Telegraphic Transfer
+05 = MEPS
+06 = Regional Switch 
+
+
+2. Remittance Group No.
+Singapore format : XXXYYYYPPNNNNNN whereby
+XXX - refers to Branch Code (0xx)
+YYYY - refers to Year
+PP - refers to Product Code
+03 = Demand Draft
+NNNNNN - refers to Sequence Number
+
+
+
+
+
+--------------
+
+http://172.31.20.97:8045/qcbin/start_a.jsp
+LI env
+http://172.17.4.218:8080/qcbin/start_a.jsp
+http://172.17.1.248:8080/qcbin/start_a.jsp
+pwd: Password6789
+E7354234
+Dec@2018
+https://signon.thomsonreuters.com/?productId=MKTACC&returnto=https%3A%2F%2Fapp.accelus.com%2F%23login%2F%257B%2522redirect%2522%253A%2522accelus%252Ffsp%252F%25257B%252522location%252522%25253A%252522%25253Flocale%25253Den-GB%252523fsp%25252Fcase%25252F0a3687cf-5c1c-1272-970b-7ddf00001afb%25252Fview%25252Fworldcheck%252522%25257D%2522%257D&bhcp=1
+
+https://developers.thomsonreuters.com/customer-and-third-party-screening/world-check-one-api
+04015578115
+CON00674
+5528
+172.31.56.126
+27000
+
+172.25.43.27
+mbbAdmin
+Maybank@123
+
+Build machine - 172.25.43.244
+http://172.25.12.185:8080/jenkins/view/RBS-SG
+http://172.29.76.86:8080/jenkins/
+rbssg
+rbssg@123
+
+hpsm
+http://172.31.75.85:8080/SM9/index.do
+http://172.31.20.102:8080/hpalmqc/
+https://172.31.56.240:9443/ccm/
+
+14010041532
+14010049009
+04011003852
+14070010686
+04011080014
+
+update SONEDBA.PSOORG set BRNCHBUSNSSDT = current date where cororgky = 14851574;
+
+14851574 BSAO107
+S1387756D
+14010060499 - 1 p and 3 j
+14014002274 - single account
+04141000540
+04141000534
+Credit Card - 5239450030001472
+4506670801105000 - 16/09 
+5188346890100001 - 16/09
+FCCA=64010014187 - 64010024263
+64010026900
+FCTD=84015003057 - K010836
+84015169556, 84015169533, 84015169526
+84015169502
+TD=24016037907 - R8524152
+CA=04011017238
+SA=14010000407
+14070005969
+14010034176 - Dormant
+14010026513
+14010066211
+114012402358
+14010059927
+S1387756D
+**Investment AcctNumbers:
+1. 50010018262
+2. 50010138105 can test at dev release - CREDIT TO MYBANK/REINVEST
+3. 51010000324
+4. 51010000130
+5. 50010000783 can test at dev release - CASH
+6. 50010436409 NAO ACCOUNT
+Loan - 44335280035
+44335279933
+44335279850
+44335279813
+44330752943
+64010909802 - 64010010009 - 
+64010026514 - 64010024017
+REMIT ID - 00120156456452
+
+64015043436
+
+1370 - 001201506250254
+trans code - 1380
+edelyn 4803
+6658
+norazuwah.a@maybank.com 4845
+isaffinas.a@maybank.com
+edelyn.ml@maybank.com
+testers ext
+EDELYN 4803
+Toni - 3778
+intan 1794
+90065 -64103404 - jonnelyn no
+ida - 6370
+
+9566189868
+BA EXT
+idah - 6370
+azuwa - 5076
+Laila Ext - 6368
+Patricia-1367
+sifa - 1794
+64010093256
+
+
+\\172.25.20.113\RBS Documents\Old Files\C\BFE\KTSession\KT Material - SG\Screen Mapping\
+\\filestor\maybank-my\integrated delivery house\RBS\SG BA\KT Material - SG
+
+
+norol wahida
+ext 132712
+
+
+
+------------------------
+Latest backup
+
+Missing files
+
+4822 -  ConcreteSGCommonServerService
+   fetchRemittanceInq
+
+
+ BA docs-
+---------------------------
+\\172.25.20.113\RBS Documents\Old Files\C\BFE\KTSession\KT Material - SG\Screen Mapping\
+\\filestor\maybank-my\integrated delivery house\RBS\SG BA\KT Material - SG
+
+--------------------------
+
+
+
+
+
+IOS, ANDROID
+ORACLE dba
+finance
+
+
+
+PCR#725_UAT#4868
+
+MBBSGDP3PrintUtil
+
+
+HPQC
+------------
+c429_ittp_bfe
+
+
+
+DTCM225211
+00094078
+
+
+E7354234
+March@2018
+
+
+
+-- NAGGA
+00088208
+
+-----------------------------------
+
+scm url
+http://172.29.76.86:8080/jenkins/job/RBS_SG/job/ET_SG-LI_Rel_DEV/build?delay=0sec
+rbssg
+rbssg@123
+
+SonarQube username and password
+rbs
+rbs@123
+
+
+Ganga fixes
+-------------------------
+WI - 108858 sonar fixes  #6
+>1] WI 108858 -  for defect 6
+>2] WI 108867 - for defect 7
+
+
+TestTellerco
+TestTeller
+
+
+
+-----------------
+LI
+
+putty --
+
+172.17.4.93
+etwssit
+qwer1234
+
+
+
+Store and forward change fiels
+---------------
+MBBStoreForwardGenerateValidator.java
+
+ConcreteMBBBOFServerService.java
+ConcreteMBBStoreForwardProcessUIService.java
+
+
+
+SONAR QUBE
+------------------------------
+//Sonarqube fixes (REG_RBS # 1)
+
+
+
+VPN
+--------------------------------
+https://1access.maybank.net/Citrix/XenAppNS/auth/login.aspx
+https://connect.maybank.com/vpn/index.html
+https://sconnect.maybank.com/vpn/index.html
+
+pps
+Conference Bridge No
+Malaysia : 9 77124318
+Participant Passcode : 26109404#
+
+
+00093735
+Rozie@dec17
+
+BSFI410
+
+4201
+
+ramesh
+4793
+4798 yus
+
+
+LI work Item(6.4 retrofit) - 98033
+
+LI USERNAME - ramesh
+PASSWORD - Password4567
+
+Remittance -Sequence no
+outward Ftt - productCode - 4
+outward and issuance- Meps - 5
+Outward and Issuance - FDD - 1
+outward and issuance - CO - 0
+
+update MBBRMTSQNC set sqncno = 501000 where branchid in ('406','417','433') and productcd = 5 
+
+0 - co,1 dd,2 fn,3 tc,4 tt, 5 meps,6 regional link
+
+
+Administrator
+id -cscadmin
+password - T1t@n1um
+
+9480879771  BANk Manager
+renuka shetty
+
+
+Tools
+\\172.25.43.244\BFE_Development\04_MISC\TOOLS
+
+
+\\172.25.43.244\BFE_Development\04_MISC\BFE_MY\PPS_MY
+
+
+pps server logs
+/rbsacp/apps/logs/mbbaixdev26Node01Cell/mbbaixdev26Node01/server1/et
+
+cif no - Z008271
+
+unix cmd
+chmod 777 doSGPostalCode.ksh
+
+./doSGPostalCode.ksh
+
+
+i-290b
+Notice of appeal or Motion
+
+
+Branch - Testing , BRANCH ID 535 , CORORGKY 14854578
+
+server sit
+-------------------------
+172.17.1.158
+wassit
+qwer1234
+
+
+staging server sit
+----------------------
+sftp esrsftp@10.4.67.39
+/staging/files/sit/ftp/REL1/incoming/iccs
+
+
+sia cheap thrills 
+
+k4117273
+Gangashri prakash patil
+
+
+db2 connect to <dbname> user <username> using <pwd>
+
+mbbmykl - myr
+
+
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00241_25052018
+Local Incorp Phase 2
+
+
+T128573
+
+
+
+UAT - SERVER
+------
+172.17.1.157
+etwsacp
+qwer1234
+
+CON00138
+  - New
+  Dec@2018
+
+
+
+90396
+
+
+
+http://172.17.1.248:8080/qcbin/start_a.jsp
+
+------------------------------------------------------------------------------------------
+System Unlock url  - Windows LOCKS
+-----------------------
+https://esupport.maybank.com.my/passwordmanager/
+
+RBS_SG_ET_Prod_Release_dev_BL558_160_22052018
+
+RBS_SG_ET_Release_dev_BL558_22052018
+Phase 7.1.1(C62656)
+91800881008
+
+------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+Accounts
+----------------
+BND:
+16010001027
+MYR:
+164017215750	
+php currency
+A000001PHP1001
+
+Local Incorp Phase 2
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00242_08062018
+
+9550943636
+Release 7.2
+RBS_SG_ET_Release_dev_BL581_30102018
+
+RBS_SG_ET_Prod_Release_dev_BL561_165_21112018
+Release 7.1.3 (C70795)
+All cash transaction might be impacted by using the Virtual TAU. Hence, need to test the negative scenario for every transaction.
+
+Only Balance TAU drawer function is impacted in order to get the branch TAU total as we call the new service in TAU API. No other functions Impacted.
+
+10010028815
+04015574385 - 1 p and 1 j
+04015574392 - 1 p and 3 j
+14010059957 - 1 p and 1 j
+14010060499 - 1 p and 3 j
+14014002274 - single account
+04141000540
+04141000534
+FCCA ACCOUNTNO- 64010009050
+64010020346
+LI SIT #389 - Branch delivery form alignment
+
+iSAVVI.. 
+14070008106
+14014010024
+
+4201
+Ln captalize late charge.
+
+
+01
+06
+
+fctd - account clouser
+84015003057
+RBS_SG_ET_Release_dev_BL516_19122017
+
+44330242113
+44330244664
+44330315179
+44330315327
+44330331155
+44330332776
+5526305400021751  - Debit card
+4697
+4699
+
+001201706251075
+
+DEV SERVER - 172.29.74.14
+Bond subscription
+50010050119
+50010001675
+
+
+BA DOCUMENTS
+\\172.25.20.113\Old Files\C\BFE\KTSession\KT Material - SG\OEM\OEM Documents
+
+46722652
+46722622
+
+\\175.125.12.216\BFE_Development\04_MISC\TOOLS
+4702
+6.1.3
+C50671 
+T75103
+
+
+TDA ACCOUNT 24016041547
+24016009615
+24016022871
+24016036240
+24016026491-572
+24016026572
+24016020604
+Inward Return - Loans account no- 44332437294
+44331007412
+
+------------- ttd account no
+20015002180
+----------------------
+
+313
+------------------------------------------------
+RTC url
+https://clm.maybank.com.my:9443/ccm/
+
+username 
+
+109341
+RBS_SG_ET_LI_Release_BL506_082_14052018
+
+Project Local Incorp(C46464) - Phase II
+E7354234
+Nove@123
+
+5125.70
+cifno - T154878
+SD1564462
+91800881008  - mAYBANK SYSTEM REPAIR
+
+
+
+
+patricia - 1367
+
+intan 3034
+
+1794 - inthan
+
+269 - LI 
+4735 - UAT
+
+
+
+
+spring of life
+
+tremanodious
+
+was country
+doomed nation
+
+
+
+
+https://academy.zenva.com/product/python-mini-degree-c/?utm_source=Facebook&utm_medium=Social+Advertisement&utm_campaign=Python+MD+%2425+-+Python+ML+-+Developing+Europe+-+Add+to+Cart&utm_content=6086090890241-Ad+32-Mobile--&a=1
+
+https://www.javaworld.com/article/3224505/application-development/machine-learning-for-java-developers.html
+
+
+RBS_SG_ET_Release_dev_BL559_25052018
+Phase 7.1.1(C62656)
+
+gayatri - 1367
+
+Fred 64103526   1 x5631
+Michele - 64103526    x5633
+jonnelyn 9006564103404 
+
+zdevices
+\\172.25.43.244\BFE_Development\04_MISC\TOOLS\S1\ZDevice Drivers
+
+----------------------------
+Andaman room booking
+---------------------------
+Name: 00094078 
+Password: 00094078
+
+URL : http://172.25.43.209:609/mrbs/web
+
+------------------------------
+
+CASH NON CASH TRANSACTION PCR
+3954
+workitem 46772
+
+BalanceDrawer
+MBBEndOfDay
+MBBBranchEndOfDay
+MBBForceBranchEndOfDay
+
+RHRSHA 23050
+HGCHWF 40050
+
+*116*1#
+
+35000/12 = 2916/-
+35000 @ 4.88% interest per month = 142.33
+Total Amount = 3059/-
+
+Maybank address
+43rd Floor, Menara Maybank,100
+Jalan Tun Perak,
+50050,Kuala Lumpur
+
+Aadar Card
+https://uidai.gov.in/
+
+
+rozie details - HPSM
+00093735
+Rozie@feb2017
+
+
+LIputty 
+user name : etwssit, qwer1234
+db: etdblis,1qaz2wsx
+
+
+
+DB2
+
+connect to SGETLIUT
+
+set schema SONEDBA
+
+EXPORT TO resultFstorg.csv OF DEL MODIFIED BY NOCHARDEL select * from fstorg where id in (413,440,406);
+
+
+Statement Date	: 02 Jun 2017
+Account Number	: 26133310031717
+Tax Invoice Number	: 211153343
+Current Charges	: RM 116.94
+Tax Invoice Due Date	: 05 Jul 2017
+Total Outstanding Amount	: RM 116.94
+Payee Name	: TT dotCom Sdn Bhd
+
+
+
+4829
+MBBSGDeposit2ReverseTransactionRouteHandler.java
+if(transName.contains("MBBMultDepositSG")){
+			FieldValue.setFieldValue(transObj, "hasForexDrawer", false);
+		}
+
+
+
+
+https://www.phenomenalglobe.com/diving-perhentian-islands-malaysia/
+
+\\filestor\maybank-my\integrated delivery house\event
+
+
+
+http://www.timesnownews.com/livetv/timesnow/video
+
+https://timesofindia.indiatimes.com/live-tv
+T94958
+
+
+
+
+
+
+DeskTopDateFlag
+BypassDateValidation
+ClientDt
+
+
+
+<property>
+            <name>signon.bypass.desktopDate</name>
+            <value>Y</value>        
+ </property>
+
+
+BL506_066_27122017- Project LI SIT and UAT build request
+
+DMG S1DMG_r3.3_MAIN_BFED3_SG_BL00219_13022017
+Script to Insert sequence no for 440 branch
+ sget_dml3ph2_scr0049
+S1DMG_r3.3_MAIN_BFED3_SG_BL00218_25012017
+ (Script to update EntityType=Subsidiary in PSOORG Table.)
+sget_dml3ph2_scr0048
+
+
+
+murder on the orient express
+
+
+https://telugu.yourstory.com/read/e8a9437fe1/from-scissors-to-double-car-between-two-fingers
+
+
+eva notty
+jayaden james
+kylie page
+alexia texas
+noomi woods
+
+
+
+immensed
+
+
+SG DEV 9.7
+
+li sit 10.
+
+If you have any queries, you can always contact the Help Desk.
+
+Kind regards,
+Maybank Help Desk
+800-6011-304         (Singapore)
+1800-88-1008         (Malaysia)
+maybankhelpdesk@maybank.com.my
+
+
+
+
+Hi Edelyn,
+
+PFA the screenshots for create new affiliates in TAM.
+And we have implemented entity type and branch code only for account inquiry in Phase1, haven’t implemented on interface Message Code, Need to check with James on this.
+
+
+Thanks,
+Ramesh.
+
+
+
+
+
+
+
+annoyed meaning -
+
+
+4853  - ESB CHANGES
+4783 - ESB CHANGES
+4842 - kiv
+4811 - rozie - pending fixes
+4812 - rozie - pending fixes
+
+4759
+
+8620
+
+9651
+
+nina.sharizan@gmail.com
+
+
+K4117273
+
+LI Defect  #322 UAT .4865 - fixed
+LI Defect  #476 UAT 4864 - Fixed
+LI Defect  #264  Confirmation pending from Fred
+LI Defect  #307  Confirmation pending from Jon
+
+
+Ramesh_Data (file://D121200026/Ramesh_Data)
+
+SOFTWARES (file://L171200481/softwares)
+Server Details
+
+ip:172.17.1.157
+protocol/port: SFTP/22
+userid: etwsacp
+pass: qwer1234
+
+rbsacp  --- profile1 - pps:uat , profile2 - project:uat
+rbssit  --- profile1 - project:sit , profile2 - pps:sit
+
+ 
+Service ID	Function Name	   
+BSRE208	EncashmentCO	   
+BSRE208	Encashment DD	   
+BSRE100	Outward FTT	   
+BSRE207	Inward Remittance Register/TT	   
+BSRE435	Remittance Inquiries->Remittance Inq	   
+BSRE200	Inward FCY	   
+BSRE436	Remittance Inq lastTran	   
+BSRE209	Repurchase/Refund CO	   
+BSRE307	Misc --> Manual posting	   
+BSRE210	Repurchase Refund DD	   
+BSRE101	Outward and Issuance FDD	   
+BSRE211	ReIssue CO	   
+BSRE212	ReIssue DD	   
+BSRE213	Repurchase TT	   
+BSRE108	Outward and Issuance CO	   
+BSRE109	Outward and Issuance MEPS	   
+BSRE304	Misc --> Vostro Account Related	 
+
+
+
+4873 -- check with yusrin
+
+
+
+
+
+28
+
+
+
+
+
+Gotheyinstitue 
+a1
+a2
+b1
+b2
+c1
+\\L171200478
+
+
+General1
+Anand - 5873
+babu anna 
+>172.25.12.119
+
+373
+
+
+Ganga
+file://D121200026/Ramesh_Data
+
+share
+\\dtcm225211\BFE_Development\04_MISC\TOOLS
+
+RBS SG (\\filestor\maybank-my\integrated delivery House\RBS)
+
+03_BFE_SG (\\filestor\Maybank-MY\Integrated Delivery House\RBS\BFE Development)
+
+RTC
+----------------------------------
+Web URI=https://rtc.maybank.com.my:9443/ccm/web 
+https://clm.maybank.com.my:9443/ccm/
+userId= E7354234 
+Password= Feb@2018
+RBS_SG_ET_Release_dev_BL561_30052018
+C65599
+
+\\filestor\maybank-my\Integrated Delivery House\RBS\RBS SG
+DB LOGIN
+.\db2admin
+1234Hjkl
+
+
+
+T118054
+
+4793 -
+
+S1SOEBFE_r3.0_MAIN_BFED3_dev_str_BL1.16_19022018
+97008
+
+
+
+>BSFI410
+extFormRequest.setMBBVariant(mbbVariant);
+mbbVariant.setMBBTransactionType("03");
+
+
+4881
+
+
+LI PHASE 1
+-----------------
+WORK ITEM- 83162
+post nostro syndrome - PNS
+
+
+STEFEN CLIFORD ALIYAS STORMYDENIYALSU
+
+
+Sonarqube changes
+----------------------------------
+
+// Sonarqube fixes (REG_RBS # 1)
+					//return 0;
+
+
+
+
+*currency *drafttype * defaultAgentFlag
+
+
+
+
+Web Services
+----------------
+https://www.service-architecture.com/articles/web-services/web_services_explained.html
+SOAP stands for Simple Object Access Protocol
+Representation State Transfer (REST)
+JavaScript Object Notation (JSON)
+
+
+
+REG_RBS
+RBS_SG_REGRESSION_AUTOMATION
+
+172.17.1.164  9080
+
+babu loan - 1748
+
+
+------------------------
+
+LI  - DB
+Username 
+password  1qaz2wsx
+
+
+
+
+Extensions:
+Toni : 3778
+Menara : 920708833
+
+114610
+
+4958
+4951
+Rel 7.2 Drop 2
+RBS_SG_ET_Release_dev_BL577_11102018
+
+Leila : 6368
+Hamidah : 6370
+Azuwah : 5076
+Nina : 3991
+Sim Fui : 1425
+Yusrin : 3302
+Rakesh : 6122
+Ramesh : 1366
+Ganga : 1549
+Sue : 5363
+Rozi : 6913
+Aimi : 3463
+Mani : 1618
+Jayaseel : 5198
+Max : 8761
+Edelyn : 4803
+Intan : 1794/3034
+Joana & Patricia : 1367
+Sidah & Hany : 5422
+Srini (Auto) : 4676
+Kartik (Auto) : 1360
+Automation : 5085
+Jass : 2966
+Steven : 7158
+Fauziah : 1660
+Ruzanita : 2961
+Tamimah : 2397
+Kranthi : 3916
+Akmal (Regional Link) : 4618
+Canon Guy : 4412
+Saufi : 1459
+Bobby : 6371
+Siti Zalina : 6369
+Nurul Ain : 6460
+Hafizah : 6372
+Michelle Soo : 9006564103526 X 5633
+Fredrik : 9006564103526 X 5631
+JJ (RL_BND accs) : 9006564103721
+Alona (SIBS) : 9006563610502
+Yi Fei (SIBS) : 9006564103869
+Carla : 9006564103888 X 5640
+Roland : 9006563610572
+Maybank Help Desk: 91800881008
+-----
+ DB
+ -----
+RAGA - 1809
+
+---
+SG-RBS Conference details:
+Conference Bridge No:
+Malaysia : 9 77124318
+Participant Passcode : 26109404#
+
+
+import com.mbb.common.MBBRVRSLXML;
+
+
+
+List currency = new ArrayList();
+		try {
+		
+			MBBRemCommonService service = (MBBRemCommonService) GrndsFactory.produce(MBBRemCommonService.SERVICE_NAME);
+			Map returnMasterParemeterObj = service.findAllCurrencyTranslationsByTransType();
+
+New50
+
+
+
+
+
+
+Mulitple Deposit
+
+
+
+----------
+parameterization - 4919 (pcr 750)
+
+
+2716 kimbli
+
+
+
+Inward SGD(payment mode - Trans)
+
+
+
+
+http://172.29.76.86:8080/jenkins/job/RBS_SG/job/Deploy-ET_SG-LI_Rel_DEV/5/console
+
+
+
+20015002180 -- group No
+
+
+RBS_SG_ET_LI_Release_BL561_088_07062018
+Project Local Incorp(C46464) - Phase II 
+
+
+
+--leg infor 
+psotransleginfo
+
+
+
+
+Parameterization
+---------------------
+pending currencies - fcn and fcy (SAR AND php)
+
+SAR in outward fdd
+
+
+------------- Gl refno  - 
+MBBSGRemTransactionHelper.java
+ space issue - paymentGLRef  & chrgsPaymentGLRef
+ fix is   mbbremhelper - remove the space for first item
+
+
+
+--4375
+
+
+Negotioble items
+------------------------
+MBBInventoryFactory --- findBySerialWithPrefix
+
+MBBBOPNegotiableUtil
+
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00244_28062018
+
+RBS_SG_ET_LI_Release_BL561_096_04072018
+Project Local Incorp(46464) - Phase II
+
+
+
+
+
+Pending tasks
+---------------------------
+system password expiry
+
+parameterization on FIN BOF AND Third Party
+
+
+
+
+-----------------
+
+System New password
+
+July@2018
+
+
+TICKET NO
+SD2044796
+
+
+
+
+yUSRIN PFNO
+---------------
+00094078
+
+M@ybank36
+HELPDESK NO -  1800881008
+
+
+
+ pcr li - 
+745 - store and forward
+752 - payatbranch
+754 - 4929 -  pcr - removal agent codes for subsidiary
+
+
+
+deffered defecet 2399  for LI
+
+4929 - 754 - pcr - removal agent codes for subsidiary
+
+sTATIC ISSUE
+3930
+3961
+
+
+
+----------------------------------------
+pending prod issue
+
+4499 
+
+
+
+-------------------------
+need to check db script for  4325 - 41544
+
+
+
+
+---------------- parameterization rollback script wrong
+
+-- Delete VIEW VWMBBPRMMSTRDATA
+DROP VIEW SONEDBA.VWMBBPRMMSTRDATA;
+missing semicolor
+
+
+
+if (bcode!=null && (bcode.equals("431") || bcode.equals("537")))
+
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00250_31072018
+Parameterization Scripts for Rel 7.2
+
+
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00249_26072018
+
+Parameterization Scripts for Rel 7.2
+
+
+
+pending tasks for next week
+---------------------
+
+LI pcrs ut's for 752 754 756
+
+parameterization ut's
+
+
+C68150 - 7.2  change id
+172.17.1.157 
+
+
+
+
+
+S1DBA_r3.3_MAIN_BFED3_SG_BL00125_11072018
+Parameterization Scripts Rel - 7.2
+
+
+
+
+Pending things to be do for LI
+-------------------------
+* Script Name  : rbset_ddl_3.3.39_rlbk.sql
+              missing semicolon ;  DROP VIEW SONEDBA.VWMBBPRMMSTRDATA;
+
+
+4727 - defect...
+
+4934 defect should check with michelle
+
+
+
+1. Product Code as per below
+00 = Cashier Order
+01 = Demand Draft
+02 = Traveller’s Cheque
+03 = Foreign Note
+04 = Telegraphic Transfer
+05 = MEPS
+06 = Regional Switch 
+
+
+LI HPQC
+
+password :  Password@2018 
+
+
+Java
+https://spring.io/guides/gs/maven/
+
+
+
+English
+-------------
+anne frank the dairy of younger girl
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00252_23082018
+Parameterization Scripts for Rel 7.2 Drop1
+
+workitem - 111167
+pcr 750
+defect 4919
+
+Parameterization
+---------------------------------
+not required sget_dml3ph2_scr0084
+sget_dml3ph2_scr0085
+sget_dml3ph2_scr0090 scripts for 7.2 drop1
+
+
+4885 - kosovo
+
+BR38BT1
+
+SIT TESTING REMOTE
+172.25.219.191
+
+IDHADMIN
+Maybank@123
+U40SM01
+
+Tam 
+SUPER02
+Password1
+
+
+172.25.219.38
+
+
+
+114610
+113905
+
+
+
+unix commands
+check the folders  : df -k
+remove folders : rm - k foldername
+
+
+
+pradeep.b@encorainc.com
+
+
+
+
+
+
+RBS_SG_ET_Release_dev_BL573_23082018
+Rel 7.2 Drop 1
+
+
+
+\\filestor\maybank-my\Integrated Delivery House\RBS\RBS SG\SG BA\KT Material - SG\Screen Mapping\Deposit\DP2
+
+
+
+Generate jar file
+
+jar -cvf classname jarname
+
+
+
+Parameterization Scripts for Rel 7.2 Drop II
+
+S1DMG_r3.3_MAIN_BFED3_SG_BL00261_25092018
+
+>4945 - RCA updated in QC
+>4915 - RCA updated in QC
+>4946 - Follow up with Ida on the PCR for new GL Ref No
+>4947 - Follow up with Jayaseel on deployment of ESB fixes in Li environment
+
+
+
+testingusername12333
+
+
+4655
+
+
+cile amount issue = 4902
+
+
+Host Files - C:\Windows\System32\drivers\etc
+
+
+
+Hi All,
+
+Below is the Production implementation support list for Release 6.5.2.
+
+ 
+Team	Primary Support	Contact Number	   
+iLog	Aimiza	+6012-757 4197	 
+
+·	Deployment – Monday, 19 Feb 2018, 9pm – 10pm
+·	PIV – Monday, 19 Feb 2018, 10pm – 10:30pm
+
+·	Primary support will need to support : 9pm – 10.30pm; Monday, 19 Feb 2018. 
+
+
+Thanks and Regards,
+
+
+Passport no
+P4337245
+P4335804
+
+
+
+Myportal Password
+Nove@2018
+
+Citrix
+Dec@2018
+
+PCR160 166
+
+912027601000
+Share system - 172.25.12.185
+
+dev - 136
+
+viswanadh.v@maybank
+
+
+java 8 updates
+https://docs.oracle.com/javase/8/docs/
+
+
+
+
+
+
+pending defects - merges - 
+4905 - only ilog changes need to merge
+4941 - pending user confirmation
+
+Pending my tasks -7.2 Rel
+4926 UT-- 
+
+Rozie changes
+4915 -- 111921
+suppose to check in SG project
+mbbaccountinquiry.xml
+
+
+
+ 
+RBS Product Code	Product Type	Host Product Code	   
+0	Cashier's Order	02	   
+1	Demand Draft	03	   
+2	Traveller's Cheque	04	   
+3	Foreign Note	05	   
+4	Telegraphic Transfer	06	   
+5	MEPS	06	   
+6	Regional Switch	06	 
+
+
+
+Drawer Types - rgdrawertypes.def
+
+
+
+Tau Testing
+----------------------
+Hadapsar Branch
+1. ramesh teller
+2.ramesh460 CO
+
+Testing Branch
+
+HadpasarCO1
+
+
+
+771 pcr file changes
+------------------------
+MBBSGREMMiscVostroAccount.skin
+ConcreteMBBSGREMMiscUIService.java
+MBBSGREMMiscVostroAccountForm.meta
+
+
+7.1.3
+-----------
+C70795
+
+
+
+
+Performance Enhancement
+Remaining items – Target by Q2 2019
+Branch Cash Position Summary
+Branch Close cash  
+
+findByDrawerListWithNoDependent
+GrndsConfigurationEnvironment
+MBBOpenDrawer.meta
+<!-- Start Rel 7.2 - Performance Fix -->
+
+
+doubts on merging
+   <!-- REL 7.2 Start --> 
+            <factory-method name="findByDrawerListWithNoDependent"
+MbbInventory.java  -  workitem 98690 defect 4848
+
+4939 defect changes
+
+7.1.3
+Release 7.1.3 (C70795)
+S1DMG_r3.3_MAIN_BFED3_SG_BL00268_23112018
+
+TAU--
+files
+-- MBBBranch.meta
+ConcretePSOOrgService
+
+Phase 7.2 (C68150)
+RBS_SG_ET_Release_dev_BL563_02122018
+
+doubts on 7.2 rel
+111921 defect no - 4915
+
+-----------------
+
+ERROR|2018-11-28 11:58:44,868|mbbaixdev26|java.lang.Runtime@1c201c2|WebContainer : 7|BR06ASM1|||populate transaction object common exception: Index: 0, Size: 0
+INFO|2018-11-28 11:58:44,868|mbbaixdev26|java.lang.Runtime@1c201c2|WebContainer : 7|BR06ASM1|||enter the method setTranStatusByESBCode of AbstractTransactionHandler
+
+UPDATE FSTOpenDrawer SET versionStamp = ?, updateUser = ?, updateDttm = ?, fstdrawerky = ?, fstterminalky = ?, cdmregupdateid = ?, isopen = ?, luid = ?, arcprincipalky = ?, isonlineopen = ?, businessdate = ? WHERE FSTOpenDrawerKy = ? AND versionStamp = ? (4, 'BR06ASM1', '2018-11-28 13:09:24.874', 39002, null:-5, null:12, false, '5808bf54-a044ba40-67706770-420b937e', 25054, false, '2018-11-28', 678081, 3)
+
+
+
+
+--- TAU sharing between two entities changs
+ConcreteMBBTAUBalanceCashUIService.java
+MBBSGTAUBalanceCash.skin
+MBBTAUCashUnloadByHandForm.meta
+MBBSgTAUBopService.java
+\sg\src\main\resources\workflow\bop\mbbbalancetaucashdrawer.xml
+BalancingTotalDetailEngine.java  - SG project
+Z:\environment\et\j2ee\customization\sg\src\main\java\com\mbb\admin\forms\TAUDrawerPanel.java
+sgadmin_forms.properties
+
+MBBTAUBalancingContextValue.java
+\ConcreteMBBTAUBalancingContextValue.java
+reference fils
+GetTellerTotalsRes.java
+MBBTAUCashBalancingEngine.java  Method - refreshTotal (Sg project)
+
+MBBInvDrawerMaintenancePanel.java
+MBBTcDrawerPanel.java
+
+RBS SG Weekly meeting updates
+\\filestor\maybank-my\Integrated Delivery House\RBS\RBS SG\RBS SG Weekly PPT
+
+
+
+
+release plan
+
+\\filestor\maybank-my\Integrated Delivery House\RBS\RBS SG\SG_DM\Releases\Release Plan
+
+SHARING DEV SYSTEM
+172.25.12.136
+
+
+TDA ACCOUNTNO 84015172705 - FCTD
+
+CheeMei  Task
+placement mode - cross currency
+BSD2113
+64010009050
+64015043554
+84015172705
+
+D07BS22
+---- Product state file
+/rbssit/installables/SGETAPP/ET/mbbaixdev26_SIT_Development
+
+
+4924 CFD 10/12
+PLS UPDATE LATEST CFD
+
+
+
+BYPASSING AD LOGIN
+MBBUtilities.java - checkADTAMGroupMatch
+
+
+new work item 121838 4958 defect no
+121412 - old work item
+
+
+RBS_SG_ET_Release_dev_BL587_18122018
+
+Phase 7.2 (C68150)
+
+
+
+TAU dev clarity
+15
+
+
+Parameterization defects
+dp3 4936
+nao 4935
+BOP - Branch Cash Position Summary - 4964
+BOP - Branch Close Cash - 4965
+
+pcr 770 (Defect 4963) - Fixes for calculating difference amount based on the sharedtau flag
+
+
+PCR 770 - 4963 - Work item - 121979
+
+
+
+
+S1DBA_r3.3_MAIN_BFED3_SG_BL00129_24122018
+
+(C68150) 7.2 Release
+
+
+
+RBS_SG_ET_Release_dev_BL593_07012019
+Phase 7.2 (C68150)
+
+
+
+pls ya move my pc end of  tmorrow
+
+00093763
+Sue@dec18
+
+
+
+
+IP Address: 172.25.219.141
+User Name: IDHADMIN
+System Password: Maybank@123
+
+Teller ID: R40CS03
+Password: Maybank01#
+
+
+balance drawers perfamance fixes - 4939 - 114744
+
+
+
+MICHELLE SOO WEI YIN <wysoo@maybank.com.sg>
+
+
+
+formula for Adjust Opening amount :  
+         New Adjustment amount = New adjustment opening amount -  (Adjustedamount + begining cash);    
+               
+
+formula for Adjustment closing balance amount : 
+         New Adjustment amount = New Adjusment amount - Begining Cash.
+
+
+ 
+           
+
+
+
+
+-----------------
+DB SIT  - LI BAU
+etdbsit - password -qwer1234
+
+
+------
+local db username - devuser
+password 1234Hjkl
+
+SUPER02
+
+
+------------
+
+RBS_SG_ET_Release_dev_BL592_04012019
+Phase 7.2 (C68150)
+
+
+MANI
+System Login pwd: Nov-2018
+
+Teller Id: Mani123
+
+
+MYRBS TEAM Share folder -  \\172.25.20.113\rbs-my-fis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tasks
+1. Adjustment on Opening/Closing
+2. TAM 
+
+
+
+
+
+
+
+
+
+
+enter
+----
+brendavi.encora@gmail.com
+
+brenda.v@encorainc.com
+
+askar movies
+------------------------
+?? ????????
+????
+‘? ??????? ???? ???????’, ‘?????’,  ‘??????? ???????’ 
+https://www.w3schools.com/sql/sql_create_table.asp
+
+
+
+
+
+
+
+

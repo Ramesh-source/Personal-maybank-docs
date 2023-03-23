@@ -1,0 +1,11 @@
+select * from fstopendrawer where arcprincipalky in (select arcprincipalky from arcprincipal where name ='RQWCWSS');
+
+select * from fsttotal where OPID='RQWCWSS';
+
+select * from FSTJOURNALENTRY where op_id='RQWCWSS';
+
+select * from FSTJOURNALENTRY where BRANCH_ID='411';
+
+Select * from FSTDRAWER=738841107;
+
+select * from FSTDRAWERCOMPMNT where FSTDRAWERKY in (Select FSTDRAWERKY from FSTDRAWER WHERE DRAWERID=738841107);

@@ -1,0 +1,529 @@
+Desk Contacts
+------------------
+Toni 3778
+aida 6913
+Hamidah : 6370
+Leila : 6368
+
+Sim Fui : 1425
+Yusrin : 3302
+Ramesh : 1366
+Jayaseel : 5198
+Max : 8761
+Intan : 1794/3034
+Jass : 2966
+Steven : 7158
+Akmal (Regional Link) : 4618
+Bobby : 6371
+Siti Zalina : 6369
+Nurul Ain : 6460
+Hafizah : 6372
+Michelle Soo : 9006564103526 X 5633
+Fredrik : 9006564103526 X 5631
+JJ (RL_BND accs) : 9006564103721
+Alona (SIBS) : 9006563610502
+Yi Fei (SIBS) : 9006564103869
+Carla : 9006564103888 X 5640
+Roland : 9006563610572
+Maybank Help Desk: 91800881008
+Darwin ext: 19307
+
+
+Defect 303 issue - Rca
+Copypaste issue--
+------------------------
+PasteKeyEventProcessor.java
+Disabe -- copy and paste
+hpqc 5126 and pcr 829
+workitem - 147838
+
+
+Developers details
+-----------------------------
+kim - 80000968
+password - Mar@2020
+Teller Id- Mani123
+
+Nithish
+L181200247W10
+PF No - 80003026
+
+Yus - 00094078 / M@ybank13
+For Remote - ipaddress / username /password
+172.25.12.129 / MAYBANK-MY\00094078 / M@ybank13
+
+rozie - 00093735 / Rozie@Mac2020
+SUE - 00093763 / Sue@jan2020
+
+
+
+Testers ---
+-------------------
+-- toni system acccess
+172.25.219.38
+.\IDHADMIN
+Maybank@123
+
+
+Testing Data in SIT
+---------------------------
+PROJECT SIT- TELLER IDS
+----------------------------------------
+1.B01BS15
+Password1
+
+2.B01BS42
+Password1
+
+pps sit
+B00SMOO - TELLE ADMIN ID - PPS SIT
+
+Dev tam
+------------------
+B00SM00
+Admin
+Password1
+
+DEV ET
+----------
+B01BS11 - Locked
+B01BS15
+
+
+Servers Data
+------------------------------------------------------
+
+project uat was855
+-----
+172.17.4.124 
+username - etwsacp
+qwer1234
+
+
+signpad issue--
+https://developer-docs.wacom.com/
+
+product state files
+------------------------------------------
+-- SIT product state file
+/rbssit/installables/SGETAPP/ET
+
+-- ODM - operatation decession making tool
+
+LI SIT
+-----------------------------
+username - etdblist 
+1qaz2wsx
+
+old project sit
+---------------------------
+projest sit
+-------------
+ip address - 172.17.4.93
+https://172.17.4.93:9043/ibm/console/
+Admin
+Password
+
+use/pass - etwssit/qwer1234
+password - qwer1234
+
+NEW PROJECT SIT
+------------------------
+ipaddresss- 172.17.4.124
+use/pwd - etwssit /qwer1234
+https://172.17.4.124:9043/ibm/console/login.do
+
+
+project uat-
+-------------------------------
+etwsacp/qwer1234 putty / filezilla
+logs
+/rbsacp/apps/logs/mbbaixdev26Node01Cell/mbbaixdev26Node01/server1/et
+
+DEV ip address
+---------------------
+172.29.74.14
+
+
+
+
+
+Personal Data
+------------------------
+1.tata aia
+username and password
+9703621991
+password - crgp@3434
+
+2.MY cimb account
+------
+cimb
+username - rameshsangaraju2
+Crgp@3434
+CIMB
+7003147271
+RAMESH RAJU
+F1532937
+SUSPICIE ACTIVITIES
+
+3.nrionline.
+ram0002075
+password - nsdl@2019
+
+4.dig
+------------------
+60166165208
+digi@2019
+
+5.AIRASIA
+sangaraju.ramesh@gmail.com
+Airasia@2019
+
+6.microsoft@2020
+--------------------------
+rrp.jan2020
+RrpJan@2020
+
+7.ielts
+-----
+https://ieltsonlinetests.com/writing-tips/how-write-compare-and-contrast-type-essay-ielts-writing-task-2
+
+
+https://www.dailystep.com/en/blog/ielts-speaking-test-part-2-describe-festival-your-country
+
+8.KOTAK
+------------
+1112366336
+CRN 211705227
+pinno for banking 165028
+debitcard pinno - 343434
+
+sangaraju.ramesh@gmail.com
+
+Crgp@3434
+
+
+English
+------
+say something upon you - song
+m- demi rose
+anveshi
+delinquencies - nirlakshyam - Please look into your team delinquencies as in below report.
+
+Maybank Shared Services Sdn Bhd,
+12th Floor Menara Maybank,
+100, Jalan Tun Perak,
+50500 Kuala Lumpur
+
+SBI
+-----
+madhavi@7272 - sbi profile password
+
+INSTAREM
+---------------------
+https://www.instarem.com/invite/1gb4bq
+sangaraju.ramesh@gmail.com
+Instarem@2019
+60 1548770932 - Suport no
+refferal code- OE8K5d
+CIN: CIN73004809
+
+TAX FILING
+-------------
+03-6209 1000
+
+SG 2053704907
+F1532937
+change the filing of tax location from 
+jalan duta 
+to Menara Olympia, Jalan Raja Chulan
+
+
+DB Related
+------------------------
+Ctrl + q - to open the database schema
+Alt Enter - to open the server properties
+
+Tables--
+------------------
+SO info - PSOTRANSLEGINFO 
+FSTJOURNALENTRY
+
+
+Telnet data
+-------------------
+10.4.67.40 60002
+
+
+
+RBS APPLICATION SUPPORT DATA
+--------------------------------------
+MY PC WORKSTATION - L181200329W10
+
+Reference Mails
+------
+Learning <learning@maybank.com>
+
+Delete history- jabbar
+-----------------------------------
+C:\Users\00087318\AppData\Local\Cisco\Unified Communications\Jabber\CSF\History
+
+System -
+---------------------------
+00134670
+password - Jan-2020
+
+clarity
+-------------
+Nov@2019
+
+-- 
+System Unlock
+----------------
+00134670
+Mar@2019 or Apr@2019
+------
+My portal
+-----
+Apr@2019
+
+
+
+RTC
+----------------------------------------
+https://clm.maybank.com.my:9443/ccm
+00134670
+Mar@2019
+Ramesh Raju Sangaraju
+00134670
+
+---- Release weekly updates
+----------------------------------------
+RBS SG (\\filestor\maybank-my\integrated delivery house\RBS\ RBS SG Weekly PPT
+
+----------------
+To override testing in local
+---------------------
+fst.rso.hybridMode = true (should change to false)
+use two systems with one db..
+
+----225.158.78.0
+Update the Ilog Migration rules
+--------------------------------------
+http://172.31.20.102:9090/spacedirectory/view.action
+
+http://172.31.20.102:9090/display/RBSSG/iLog+Migration
+
+
+aCCOUNTS
+-------------------------------------------------------------------------
+-- UT ACCOUNTS
+50010121989
+50010157151
+UT aacount  50010698628
+
+64010009050 - usd ----
+64010909802 -HKD
+	String accountNo = "14079004555"; // SA
+		// accountNo = "4506670500009000"; //Credit Card
+		// accountNo = "5104430500009000" //Debit Card
+		// accountNo = "04075053315"; //Current Account
+		accountNo = "64030044048"; // Foreign Current Account
+64015043554 USD
+64015045762 USD
+64015045778 USD
+64015045785 USD
+64015045792 USD
+64015046326 AUD
+
+		// accountNo = "24079106454"; // TD
+		accountNo = "
+"; //84075000196  FCTD
+		// accountNo = ""; //Debit Card
+		// accountNo = "44070017632"; // Testing
+		// accountNo = "04075053315"; // CA
+		// accountNo = "44030016245"; // LOAN
+BND:
+16010001027
+MYR:
+164017215750	 please select
+php currency
+A000001PHP1001
+10010028815
+--------------------------------
+TDA ACCOUNT 24016041547
+24016009615
+24016022871
+24016036240
+24016026491-572
+24016026572
+24016020604
+------------------------
+Inward Return - Loans account no- 44332437294
+44331007412
+
+
+------------- ttd account no
+20015002180
+-----------
+5526305400021751  - Debit card
+
+
+----------------------------------------------------------------------------
+
+FUNCTIONS AND SERVICE IDS
+--------------------------------
+BSRE438: RSW Account Holder Inquiry
+
+BSRE437: RSW Transaction Status Inquiry
+
+BSRE436: Remittance Last Transaction Inquiry
+BSRE435: Remittance Inquiry
+BSRE434: CIF & Rate Inquiry
+BSRE109: Remittance Outward MEPS
+BSRE108: Remittance Outward CO
+BSRE107: Remittance Outward Regional Link
+
+BSRE211: ReIssue CO
+BSRE213 - Encashment TT
+BSRE208 - Encashment Co& DD
+
+BSRE100 - Outward FTT
+BSRE101 - Outward FDD
+BSRE207 - Inward Register
+BSRE301 - Foreign Currency Notes
+BSRE304 -Miscellaneous/ -vostro 
+BSRE200 - Inward SGD and Inward FCY
+BSRE211 - ReIssue -CO
+BSRE210 - Repurchase/refund - DD
+BSRE209 - Repurchase/ Refund - Co
+
+--- PRODUCT TYPES
+0,Cashier Order;
+1,Demand Draft;
+2,Traveler's Cheque;
+3,ForeignNote;
+4,Telegraphic Transfer;
+5,MEPS;
+6,Regional Switch
+
+-----------------------
+BSAO108 – Account Creation,BSD2117 - TDA Creation,BSAO109 – Add Mailing Address,BSD3118 – Add Relationship,
+BSD4105 - Service Inquiry (for IB and WP),BSAO204 - Generate Access ID (For WP),BSAO110 – Link Services,
+BSD3130 - Sema Link Service
+
+
+---------------------------------
+
+Ilog
+-----------------------------
+
+Ilog - sg.properties
+iLog.SO.WS.PROTOCOL = http
+iLog.SO.WS.IP = 172.17.4.32
+iLog.SO.WS.PORT = 9080
+
+work items for defects
+--------------------------------
+RBS - TAM PARAMETERIZATION
+4955
+117137
+HPQC 5115 TRP PARAMETERIZATION - WORKITEM 144114
+HPQC 5116 FIN PARAMETERIZATION - WORKITEM 144116
+
+pending changes -- pcr 762(parameterization) read the countryname from parameterization table -  pending tasks - 8.2 release
+files
+file changes
+MBBAccountSetupUtils.java
+reference -MBBAccountSetupUtils.fetchParamCodeFromHostCode
+
+debug in websphere
+https://www.mkyong.com/websphere/remote-debugging-with-eclipse-websphere-7/
+
+
+
+
+DBA  AND WAS855
+------------------
+------------------
+select * from FSTFOREXARTICLE where CODE  in ('PBSBCONV1','PBSBISL1','PBSBYSZ1');
+
+select * from FSTINVENTORY where ITEMTYPE='MBBNegType09';
+
+
+select * from FSTINVENTORY where FSTFOREXARTICLEKY=7003
+
+was85586.8
+
+security: JAVAWS AppPolicy Permission requested for: https://172.29.74.14:10202/et/jws/app/pcrypto.jar
+security: Istrusted: null true
+
+
+Bootstrapping FSTBootstrapServlet: Started Universal Adapter Framework
+
+was85 - my changes
+52463 - workitem
+
+RBSTellerBootstrap
+OEMClientExternalSystemStatusStrategy.java
+StatusMonitor
+ClientExternalSystemStatusStrategy.java
+
+
+------------ was855 my
+
+MY Changes
+----
+work item 48240, 
+defect 11703
+
+SIT admin console
+https://172.29.75.4:9043/ibm/console/logon.jsp
+Admin / password
+
+select * from ARCCONFIGURATION  where propertyname like '%manualSettingMode%' with ur
+
+remote debug
+java -Xdebug -runjdwp:transport=dt_socket, server=y, suspend=n, address=10202 com.mbb.common.MBBServerExternalSystemStatusStrategy
+---------------
+Morning work 24062019
+-----
+hotfix for defect 5010 svs alignment
+
+-------------------------------------------------------------------------------
+
+
+
+
+proxy
+--------------
+172.31.69.147 8080
+
+
+361896601
+
+
+https://storiespace.com/t1/?&geocode=en-my&hero=18&tmplcode=igzt&instsecret=1&cep=ls-jj69ptZwClhgCKWCSBE00-qIdnMI-Be1_1VJREohFcFKIXp_G6D5TjTlYD1_paBX5RJnAuBrb79ROsMLPWurhWvp3lhwhbd3dYGO18Hwp7wg0T2XIcaZBe5pv60ttkoKboIjeY2ReZKL0C441KTUbjmp8Ux0uqDle3KMRsPisPnzV41a25YN_vcMMXzdBMOJL_1rBOg-wmt-Z9_seDUjDH9qWxo3TwMqDfn7xhEFsU71t4Oz9AO-sdW1nMH7UOFXTnTWRew_bQ-MjgdOhLtzqi4gHqGu-REeDs5sqCZ7s7qQwQwtGV7-iLWC62bFynbLVBjvUF25i4KDaP3gEO1uc6nTcydZQkx04nzvt3SvE5Ryul5jwAJp-hZx0OobtpecpnOOC76m4fRdB9ucZGdznPg10FjWl-j5uwdCX6rQO1RphFgQbD6EKPDD1CyyZuT1X_vwS74uzbtEQ-Z66mTcb2By5WDjv4euaElwJbrGH3HcxoFFZFEslvZ5Xoium&lptoken=150e875522de828e4278&utm_content=4256063&utm_term=101131&utm_source=revcontent&utm_medium=tr&utm_campaign=658803&adv_targets=native&ref=tr_revcontent_vm_658803&rev_campaign_id=658803&rc_uuid=Kz0sivJE6aWYD6gtKiO4E2dDkyANYPIbImxBlqSWI8HV4fdNpToUjnMsY2VrxkpLVbZQR6c63vrE4FUmzHTvtVey0MEeSlZ5tPIA-Jl-Oeyts-7bFqXzwEeGvekFHVN45NGWOi0wRv9k5PxA1cQsFFUvq-Kxobcltz2TP6N3L7xi0dOV2JtiSGlyX7zEmlhKFkrtf_I_19EshiBPHiY8jQ
+
+
+IBM CONSO - RBS SG
+-------------
+https://172.29.74.14:10203/ibm/console/login.do
+https://172.17.4.93:9043/ibm/console/login.do?action=secure - SG ADMIN CONSOE
+
+myporta
+--------------
+http://myportal2u.maybank.com.my/wps/portal
+
+
+---- rbs sg admin conso- 124 new sit--
+https://172.17.4.124:9043/ibm/console/login.do
+
+
+https://jira.maybank.com.my/secure/Dashboard.jspa
+00134670
+Oct@2022
+
+https://myhr2u.maybank.com.my/mbb_new_logon/logon.htm
+00134670
+Sept@2022

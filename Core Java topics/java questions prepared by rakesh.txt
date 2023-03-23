@@ -1,0 +1,4 @@
+Implementation of callable interface
+solve producer and consumer problem using wait() and notify()
+why wait and notify declared in object class
+

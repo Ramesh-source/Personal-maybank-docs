@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BatchFileLayout>
+   <Inbound>
+      <Data schemaFile="Purge.xsd"><!--schemaFile must be in the same directory as this file-->
+         <PrimaryKey/>
+      </Data>
+      <!--Data records only. 0 = data delimited, 1 = Fixed field-->
+      <RecordFormat delimiter="0x007C" type="0"/>
+      <AppProcessor name="com.s1.arch.batch.purge.AuditPurge"/>
+      <!-- as with Data element, header and trailer fields can be fixed field and size attribute applied-->
+      <!-- all data types in optional header and trailer fields are passed as strings-->
+      <Header>
+         <Id/>
+         <Product/>
+         <Program/>
+         <DataFormatVersion/>
+         <FI/>
+         <FileDateTime/>
+         <SourceId/>
+      </Header>
+      <Data>
+         <PrimaryKey/>
+      </Data>
+      <Trailer>
+         <Id/>
+         <RecordCount/>
+      </Trailer>
+      <!-- If this element is not specified RecordFormat setting is used-->
+      <HeaderTrailerFormat delimiter="0x007C" type="0"/>
+   </Inbound>
+<!-- OUTBOUND -->
+   <Outbound>
+      <Header>
+         <Id/>
+         <Product/>
+         <Program/>
+         <DataFormatVersion/>
+         <FI/>
+         <FileDateTime/>
+         <SourceId/>
+      </Header>
+      <Data>
+         <PrimaryKey/>
+         <Deleted/>
+      </Data>
+      <Trailer>
+         <Id/>
+         <RecordCount/>
+      </Trailer>
+      <RecordFormat delimiter="0x007C" type="0"/>
+   </Outbound>
+
+</BatchFileLayout>

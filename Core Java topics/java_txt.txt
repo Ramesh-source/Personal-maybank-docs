@@ -1,0 +1,5 @@
+Participate & manage in agile/scrum software development, prototyping and code reviews with a small '' of developers
+As a '' developer, you will code back-end services in Spring framework technologies
+Design, implement and/or use RESTful web services
+Write testable, well thought-out code within the '' and Spring ecosystem, embracing additional languages and frameworks when appropriate
+Unit, e2e and performance testing software under load to ensure reliability and scalability

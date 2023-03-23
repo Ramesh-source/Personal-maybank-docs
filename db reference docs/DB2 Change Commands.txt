@@ -1,0 +1,49 @@
+-------------- COMMAND PROMPT LOOKS LIKE FOLLOWING ----------------
+
+
+in start, type db2cmd
+
+go to C:\> drive
+
+C:\>
+
+C:\>db2 connect to ET37_OEM user devuser using 1234Hjkl
+
+   Database Connection Information
+
+ Database server        = DB2/NT 9.5.1
+ SQL authorization ID   = DEVUSER
+ Local database alias   = ET37_OEM
+
+
+C:\>db2 drop database ET37_OEM
+SQL1035N  The database is currently in use.  SQLSTATE=57019
+
+Note: 
+stop DB2DAS-DB@DAS00 service from services
+stop DB2-DB2COPY1-DB2
+start DB2-DB2COPY1-DB2
+
+C:\>db2 drop database ET37_OEM
+DB20000I  The DROP DATABASE command completed successfully.
+
+C:\>db2 connect to ET37_OEM user devuser using 1234Hjkl
+SQL1013N  The database alias name or database name "ET37_OEM" could not be
+found.  SQLSTATE=42705
+
+C:\>db2 restore db ET37_OEM
+DB20000I  The RESTORE DATABASE command completed successfully.
+
+C:\>db2 connect to ET37_OEM user devuser using 1234Hjkl
+
+   Database Connection Information
+
+ Database server        = DB2/NT 9.5.1
+ SQL authorization ID   = DEVUSER
+ Local database alias   = ET37_OEM
+
+
+C:\>
+
+----------------------------- THE END -------------------------------
+C:\>db2 restore db ET37_FST from . taken at 20140703110916
